@@ -34,11 +34,12 @@ class Parse_Excel_Activator {
         $table = $wpdb->prefix . "parse_excel_data";
         $sql = "CREATE TABLE ".$table." (
 		id INT NOT NULL AUTO_INCREMENT,
-		departamento VARCHAR (512) NOT NULL,
-		rubro VARCHAR (255) NOT NULL,
+		departamento VARCHAR (255) NOT NULL,
+		clasificacion VARCHAR (255) NOT NULL,
 		localidad VARCHAR (255) NOT NULL,
-		nombre_comercial VARCHAR (512) NOT NULL,
 		direccion VARCHAR (512) NOT NULL,
+		nombre_comercial VARCHAR (512) NOT NULL,
+		imagen VARCHAR (512) NOT NULL,
 		beneficios VARCHAR (512) NOT NULL,
   		PRIMARY KEY (id)
 		);";

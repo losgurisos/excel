@@ -105,7 +105,7 @@ require_once('load-from-excel.php');
 
 add_action('admin_menu','parse_excel_menu');
 
-add_shortcode( 'ParseExcel', 'parse_excel_shortcode' );
+add_shortcode( 'parse_excel_render', 'parse_excel_shortcode' );
 function parse_excel_shortcode( $atts )
 {
     return parseExcelLogic( $atts );
@@ -114,7 +114,21 @@ function parse_excel_shortcode( $atts )
 // THE LOGIC
 function parseExcelLogic( $atts )
 {
-	return 'hola';
+	// database object
+	global $wpdb;
+    $table = $wpdb->prefix . "parse_excel_data";
+    require( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+    $sql = "SELECT * FROM ".$table;
+
+    $result = $wpdb->get_results($sql);
+
+    $html = '';
+
+    for($i = 0; i < count($result); $i++){
+    	$html .= "<div></div>"
+    }
+	return $html';
 }
 // WIDGET
 //require_once( dirname(__FILE__) . "/widget.php");
