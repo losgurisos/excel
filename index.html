@@ -36,9 +36,12 @@ and open the template in the editor.
                 width: 100%;
             }
             .item-apply-on {
-                color:#b81d2c;
+                font-family: HelveticaLight;
+                color: #b81d2c;
                 margin: 2px;
+                margin-top: 5px;
                 width: 245px;
+                font-weight: bold;
                 line-height: 12px;
                 font-size: 11px;
                 overflow: hidden;
@@ -130,15 +133,36 @@ and open the template in the editor.
                 height: 50px;
                 background-image: url('img/icon_tecnologia.png');
             }
-            .item-address {
-                position: relative;
-                margin-top: 10px;
-                width: 195px;
-                font-size: 11px;
-                line-height: 11px;
-                color: #5B5B5B;
-                padding-left: 50px;
+            .item .item-category-img tecnologia{
+                background-image: url('img/icon_tecnologia.png');
             }
+            .item .item-category-img moda{
+                background-image: url('img/icon_moda.png');
+            }
+            .item .item-category-img ninos{
+                background-image: url('img/icon_ninos.png');
+            }
+            .item .item-category-img hogar{
+                background-image: url('img/icon_hogar.png');
+            }
+            .item .item-category-img otros{
+                background-image: url('img/icon_otros.png');
+            }
+            .item .item-category-img vehiculos{
+                background-image: url('img/icon_vehiculos.png');
+            }
+
+            .item-address {font-family: HelveticaLight;
+                           font-weight: bold;
+                           position: relative;
+                           margin-top: 10px;
+                           width: 195px;
+                           font-size: 11px;
+                           line-height: 11px;
+                           color: #5B5B5B;
+                           padding-left: 50px;
+            }
+
             .item-address::before {
                 content: " ";
                 height: 30px;
@@ -168,7 +192,7 @@ and open the template in the editor.
                                 </div>
                                 <div class="item-data">
                                     <div class="item-category-img">
-                                       
+
                                     </div>
                                     <div class="item-disscount">
                                         <p class="val">10%</p>
