@@ -21,10 +21,10 @@ and open the template in the editor.
     <body>
         <script>
 
-            $(document).ready(function(){
+            $(document).ready(function () {
 
             });
-            
+
         </script>
         <style>
             @font-face {
@@ -107,6 +107,11 @@ and open the template in the editor.
                 width: 150px;
                 background: #4CAF50;
                 height: 150px;float:left;}
+            .item .item-img img{
+                width: 100%;
+                height: auto;
+                overflow: hidden;
+            }
 
             .item .item-data {
                 float: left;
@@ -119,6 +124,9 @@ and open the template in the editor.
                 font-style: italic;
                 margin: 0;
                 float: left;
+            }
+            .item-category-img img{
+
             }
             .item .item-data .item-disscount p.mini {
                 float: left; color:#b81d2c;
@@ -138,25 +146,25 @@ and open the template in the editor.
                 width: 60px;
                 background-size: 60px;
                 height: 50px;
-                background-image: url('img/icon_tecnologia.png');
+                background-image: url('img/icon_tecnologia_dark.png');
             }
-            .item .item-category-img tecnologia{
-                background-image: url('img/icon_tecnologia.png');
+            .item .item-category-img .tecnologia{
+                background-image: url('img/icon_tecnologia_dark.png');
             }
-            .item .item-category-img moda{
-                background-image: url('img/icon_moda.png');
+            .item .item-category-img .moda{
+                background-image: url('img/icon_moda_dark.png');
             }
-            .item .item-category-img ninos{
-                background-image: url('img/icon_ninos.png');
+            .item .item-category-img .ninos{
+                background-image: url('img/icon_ninos_dark.png');
             }
-            .item .item-category-img hogar{
-                background-image: url('img/icon_hogar.png');
+            .item .item-category-img .hogar{
+                background-image: url('img/icon_hogar_dark.png');
             }
-            .item .item-category-img otros{
-                background-image: url('img/icon_otros.png');
+            .item .item-category-img .otros{
+                background-image: url('img/icon_otros_dark.png');
             }
-            .item .item-category-img vehiculos{
-                background-image: url('img/icon_vehiculos.png');
+            .item .item-category-img .vehiculos{
+                background-image: url('img/icon_vehiculos_dark.png');
             }
 
             .item-address {font-family: HelveticaLight;
@@ -183,19 +191,19 @@ and open the template in the editor.
             .category-filter {
 
             }
-            
+
         </style>
         <div class="container">
             <!-- Example row of columns -->
 
-            <?php $url = plugins_url(); ?>
+
             <div class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12 sidebar">
                     <div class="top">
                         <p class="title">Descuentos en comercios amigos</p>
                         <div class="row">
-                            <div class="category-filter col-lg-6 col-md-6" style="background: <?php echo 'url(' . $url ?>'public/images/icon_hogar.png)' ?>">asd</div>
-                            <div class="category-filter col-lg-6 col-md-6" style="background: url()">asd</div>
+                            <div class="category-filter col-lg-6 col-md-6" style="background: url()>asd</div>
+                                 <div class="category-filter col-lg-6 col-md-6" style="background: url()">asd</div>
                             <div class="category-filter col-lg-6 col-md-6" style="background: url()">asd</div>
                             <div class="category-filter col-lg-6 col-md-6" style="background: url()">asd</div>
                             <div class="category-filter col-lg-6 col-md-6" style="background: url()">asd</div>
@@ -210,7 +218,7 @@ and open the template in the editor.
                         <li class="col-md-6 ">
                             <div class="item">
                                 <div class="item-img">
-
+                                    <img src=""/>
                                 </div>
                                 <div class="item-data">
                                     <div class="item-category-img">
