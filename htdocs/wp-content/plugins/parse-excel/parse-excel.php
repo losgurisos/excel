@@ -105,7 +105,8 @@ require_once('load-from-excel.php');
 
 add_action('admin_menu','parse_excel_menu');
 
-add_shortcode( 'ParseExcel', 'parse_excel_shortcode' );
+add_shortcode( 'parse_excel_render', 'parse_excel_shortcode' );
+
 function parse_excel_shortcode( $atts )
 {
     return parseExcelLogic( $atts );
@@ -114,7 +115,55 @@ function parse_excel_shortcode( $atts )
 // THE LOGIC
 function parseExcelLogic( $atts )
 {
-	return 'hola';
+	
+
+	
+	// database object
+	global $wpdb;
+    $table = $wpdb->prefix . "parse_excel_data";
+    require( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+    $sql = "SELECT * FROM ".$table;
+
+    $result = $wpdb->get_results($sql);
+
+    
+
+
+    $html = '<ul class="item-list">';
+
+    for($i = 0; $i < count($result); $i++){
+    	//$html .= "<div></div>"
+
+
+    	 $html .= 
+            '<li class="col-md-6 ">
+                <div class="item">
+                    <div class="item-img" style="background: url('.$result[$i]->imagen.');">
+
+                    </div>
+                    <div class="item-data">
+                        <div class="item-category-img">
+                            '.$result[$i]->clasificacion.'
+                        </div>
+                        <div class="item-disscount">
+                            <p class="val">'.$result[$i]->beneficios.'</p>
+                            <p class="mini">dto</p>
+                        </div>
+
+                        <div class="item-apply-on">
+                            En las marcas Phillips: minidomésticos y
+                            cuidado personal y GA.MA: Toda la línea
+                        </div>
+                        <div class="item-address">
+                            '.$result[$i]->direccion.'
+                        </div></div>
+                </div>
+            </li>';
+    }
+
+    $html .= '</ul>';
+	return $html;
 }
 // WIDGET
 //require_once( dirname(__FILE__) . "/widget.php");

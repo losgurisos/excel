@@ -60,10 +60,11 @@ function load_from_excel (){
 			    // Inserte data
 		        $sql = "INSERT INTO ".$table." (
 					departamento,
-					rubro,
+					clasificacion,
 					localidad,
-					nombre_comercial,
 					direccion,
+					nombre_comercial,
+					imagen,
 					beneficios
 				) VALUES (
 					'".$rowData[0][0]."',
@@ -71,7 +72,8 @@ function load_from_excel (){
 					'".$rowData[0][2]."',
 					'".$rowData[0][3]."',
 					'".$rowData[0][4]."',
-					'".$rowData[0][5]."'
+					'".$rowData[0][5]."',
+					'".$rowData[0][6]."'
 				);";
 
 				// Exec query
