@@ -267,7 +267,6 @@ and open the template in the editor.
             .container-beneficios .checkbox-container{
                 margin: 0 auto;
                 width: 12px;
-                margin-top: 15px;
             }
             .beneficio.col-lg-3 .beneficio_image {
                 width: 60px;
@@ -296,7 +295,12 @@ and open the template in the editor.
                 margin: 0 auto;
                 margin-top: 20px;
             }
-
+            .beneficio_name {
+                color: white;
+                text-align: center;
+                font-size: 11px;
+                margin-top: 10px;
+            }
 
             @media only screen and (max-width:1025px){
                 .category-filter-container .category-filter-item .category-filter .cat-filter-icon {
@@ -305,6 +309,9 @@ and open the template in the editor.
                     background-repeat: no-repeat;
                     background-size: 100%;
                     margin: 0 auto;
+                }
+                .beneficio_name {
+                    font-size: 8px;
                 }
                 .category-filter-container .category-filter-item .category-filter .cat-filter-title {
 
@@ -326,7 +333,11 @@ and open the template in the editor.
                     background-repeat: no-repeat;
                     background-size: 100%;
                     margin: 0 auto;
-                }.category-filter-container .category-filter-item .category-filter .cat-filter-title {
+                }
+                .beneficio_name {
+                    font-size: 6px;
+                }
+                .category-filter-container .category-filter-item .category-filter .cat-filter-title {
                     text-align: center;
                     font-size: 8px;
                     margin: 0;
@@ -393,13 +404,17 @@ and open the template in the editor.
                     padding: 0;
                 }
                 .container-beneficios {
-                    margin-top: 10px;height: 45px;
+                    margin-top: 10px;
+                    height: 55px;
                 }
                 .container-beneficios .checkbox-container {
-                    margin-top: 0;
+                    margin: 0 auto;
+                    width: 12px;
+                    margin-top: 0px;
                 }
-                .container-beneficios .checkbox-container {
-                    height: 30px;
+                .beneficio_name {
+                    font-size: 6px;
+                    margin: 0;
                 }
                 .beneficio.col-lg-3.efectivo .beneficio_image,.beneficio.col-lg-3.restaurantes .beneficio_image,.beneficio.col-lg-3.estaciones .beneficio_image,.beneficio.col-lg-3.movil .beneficio_image {
 
@@ -417,7 +432,7 @@ and open the template in the editor.
                     height: 650px;
                     box-sizing: content-box;
                     padding: 0;
-                    padding-top: 315px;
+                    padding-top: 325px;
                 }
                 ul.item-list {
                     list-style: none;
@@ -488,6 +503,7 @@ and open the template in the editor.
                     margin: 15px 0px;
                     border-radius: 10px;
                 }
+
             }
         </style>
         <div class="container">
@@ -569,18 +585,22 @@ and open the template in the editor.
                         <div class="container-beneficios">
                             <div class="beneficio col-lg-3 col-sm-3 col-xs-3 col-md-3 efectivo">
                                 <div class="beneficio_image "></div>
+                                <div class="beneficio_name">Retirar efectivo</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
                             </div>
                             <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  movil">
                                 <div class="beneficio_image"></div>
+                                <div class="beneficio_name">Pago móvil</div>
                                 <div class="checkbox-container"><input type="checkbox"/></div>
                             </div>
                             <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  restaurantes">
                                 <div class="beneficio_image"></div>
+                                <div class="beneficio_name">Restaurantes</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
                             </div>
                             <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  estaciones">
                                 <div class="beneficio_image"></div>
+                                <div class="beneficio_name">Estaciones</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
                             </div>
                         </div>
@@ -617,7 +637,29 @@ and open the template in the editor.
                             </div>
                         </li>
                         <li class="col-md-12 col-lg-6">
-                            <div class="item"></div>
+                            <div class="item">
+                                <div class="item-img">
+                                    <img src=""/>
+                                </div>
+                                <div class="item-data">
+                                    <div class="item-category-img">
+
+                                    </div>
+                                    <div class="item-disscount">
+                                        <p class="val">10%</p>
+                                        <p class="mini">dto</p>
+                                    </div>
+
+                                    <div class="item-apply-on">
+                                        En las marcas Phillips: minidomésticos y
+                                        cuidado personal y GA.MA: Toda la línea
+                                    </div>
+                                    <div class="item-address">
+                                        8 de Octubre
+                                        8 de octubre
+                                        8 de octubre
+                                    </div></div>
+                            </div>
                         </li>
                         <li class="col-md-12 col-lg-6">
                             <div class="item"></div>
