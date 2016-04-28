@@ -20,6 +20,15 @@ and open the template in the editor.
     </head>
     <body>
         <style>
+            @font-face {
+                font-family: HelveticaLight;
+                src: url("fonts/Helvetica Light.ttf");
+            }
+            @font-face {
+                font-family: HelveticaNeueLTStd;
+                src: url("fonts/HelveticaNeueLTStd-BdIt.otf");
+            }
+
             .body{
                 font-family: Helvetica;
             }
@@ -84,9 +93,10 @@ and open the template in the editor.
                 list-style: none;
                 padding: 30px;
             }
-            .item .item-img{width: 150px;
-                            background: #4CAF50;
-                            height: 150px;float:left;}
+            .item .item-img{
+                width: 150px;
+                background: #4CAF50;
+                height: 150px;float:left;}
 
             .item .item-data {
                 float: left;
@@ -97,7 +107,6 @@ and open the template in the editor.
                 line-height: 75px;
                 font-weight: bold;
                 font-style: italic;
-
                 margin: 0;
                 float: left;
             }
@@ -110,22 +119,34 @@ and open the template in the editor.
                 margin: 38px 0px 0px 5px;
             }
             .item .item-disscount {
-
                 height: 75px;
+                font-family: HelveticaNeueLTStd;
             }
             .item .item-category-img {
                 position: absolute;
-                right: 0;
-                width: 50px;
+                right: 35px;
+                width: 60px;
+                background-size: 60px;
                 height: 50px;
+                background-image: url('img/icon_tecnologia.png');
             }
             .item-address {
+                position: relative;
                 margin-top: 10px;
                 width: 195px;
                 font-size: 11px;
                 line-height: 11px;
                 color: #5B5B5B;
                 padding-left: 50px;
+            }
+            .item-address::before {
+                content: " ";
+                height: 30px;
+                width: 20px;
+                display: block;
+                left: 15px;
+                position: absolute;
+                background-image: url("img/location_pin.png");
             }
         </style>
         <div class="container">
@@ -147,7 +168,7 @@ and open the template in the editor.
                                 </div>
                                 <div class="item-data">
                                     <div class="item-category-img">
-                                        img
+                                       
                                     </div>
                                     <div class="item-disscount">
                                         <p class="val">10%</p>
