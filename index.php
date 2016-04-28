@@ -180,26 +180,146 @@ and open the template in the editor.
                 background-image: url("img/location_pin.png");
             }
 
-            .category-filter {
-
+            .category-filter-container {
+                margin: 15px 30px;
+                height: 100%;
             }
-            
+            .category-filter-container .category-filter-item {
+                height: 100%;
+                margin-bottom: 50px;
+            }
+            .category-filter-container .category-filter-item .category-filter{
+                height: 100px;
+                width: 100%;
+            }
+
+            .category-filter-container .category-filter-item .tecnologia .cat-filter-icon{
+                background: url('img/icon_tecnologia.png');
+            }
+            .category-filter-container .category-filter-item  .moda .cat-filter-icon{
+                background: url('img/icon_moda.png');
+            }
+            .category-filter-container .category-filter-item  .ninos .cat-filter-icon{
+                background: url('img/icon_ninos.png');
+            }
+            .category-filter-container .category-filter-item  .hogar .cat-filter-icon{
+                background: url('img/icon_hogar.png');
+            }
+            .category-filter-container .category-filter-item  .otros .cat-filter-icon{
+                background: url('img/icon_otros.png');
+            }
+            .category-filter-container .category-filter-item  .vehiculos .cat-filter-icon{
+                background: url('img/icon_vehiculos.png');
+            }
+            .category-filter-container .category-filter-item .category-filter .cat-filter-icon {
+                height: 70px;
+                width: 70px;
+                background-repeat: no-repeat;
+                background-size: 100%;
+                margin: 0 auto;
+            }
+            .category-filter-container .category-filter-item .category-filter .cat-filter-title {
+                color: white;
+                text-align: center;
+            }
+            .category-filter-container .category-filter-item .category-filter .cat-filter-checkbox-container {
+                width: 15px;
+                height: 15px;
+                margin: 0 auto;
+            }
+            .category-filter-container .category-filter-item .category-filter .cat-filter-checkbox {
+                width: 100%;
+                height: 100%;
+            }
+            .category-filter-container .category-filter-item .category-filter div {
+                margin-bottom: 15px;
+            }
+            .cities-filter-container {
+                width: 100%;
+            }
+            .cities-filter-select-container {
+                margin: 0 auto;
+                width: 210px;
+                height: 30px;
+            }
+            .cities-filter-select {
+                height: 100%;
+                width: 100%;
+            }
+
         </style>
         <div class="container">
             <!-- Example row of columns -->
 
-            <?php $url = plugins_url(); ?>
+            
             <div class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12 sidebar">
                     <div class="top">
                         <p class="title">Descuentos en comercios amigos</p>
                         <div class="row">
-                            <div class="category-filter col-lg-6 col-md-6" style="background: <?php echo 'url(' . $url ?>'public/images/icon_hogar.png)' ?>">asd</div>
-                            <div class="category-filter col-lg-6 col-md-6" style="background: url()">asd</div>
-                            <div class="category-filter col-lg-6 col-md-6" style="background: url()">asd</div>
-                            <div class="category-filter col-lg-6 col-md-6" style="background: url()">asd</div>
-                            <div class="category-filter col-lg-6 col-md-6" style="background: url()">asd</div>
-                            <div class="category-filter col-lg-6 col-md-6" style="background: url()">asd</div>
+
+                            <div class="category-filter-container">
+                                
+                                <div class="category-filter-item  col-lg-4 col-md-6">
+                                    <div class="category-filter tecnologia">
+                                        <div class="cat-filter-icon "></div>
+                                        <div class="cat-filter-title">Tecnologia</div>
+                                        <div class="cat-filter-checkbox-container">
+                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="category-filter-item  col-lg-4 col-md-6">
+                                    <div class="category-filter moda">
+                                        <div class="cat-filter-icon"></div>
+                                        <div class="cat-filter-title">Moda</div>
+                                        <div class="cat-filter-checkbox-container">
+                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="category-filter-item  col-lg-4 col-md-6" >
+                                    <div class="category-filter ninos">
+                                        <div class="cat-filter-icon"></div>
+                                        <div class="cat-filter-title">Niños</div>
+                                        <div class="cat-filter-checkbox-container">
+                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="category-filter-item  col-lg-4 col-md-6" >
+                                    <div class="category-filter hogar">
+                                        <div class="cat-filter-icon"></div>
+                                        <div class="cat-filter-title">Hogar</div>
+                                        <div class="cat-filter-checkbox-container">
+                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="category-filter-item  col-lg-4 col-md-6">
+                                    <div class="category-filter vehiculos">
+                                        <div class="cat-filter-icon"></div>
+                                        <div class="cat-filter-title">Vehículos</div>
+                                        <div class="cat-filter-checkbox-container">
+                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="category-filter-item  col-lg-4 col-md-6">
+                                    <div class="category-filter otros">
+                                        <div class="cat-filter-icon"></div>
+                                        <div class="cat-filter-title">Otros</div>
+                                        <div class="cat-filter-checkbox-container">
+                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cities-filter-container">
+                            <div class="cities-filter-select-container">
+                                <select class="cities-filter-select"></select>
+                            </div>
                         </div>
                     </div>
                     <div class="beneficios">Beneficios Pranta!</div>
