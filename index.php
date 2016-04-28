@@ -56,12 +56,13 @@ and open the template in the editor.
             .sidebar{
                 padding: 0;
                 height: 650px;
-                background: #b81d2c;
+                background: #850308;           
                 position: fixed;
                 height:100%;
+                z-index: 999;
             }
             .sidebar .top{
-                height:422px;
+                height:422px;background: #b81d2c;
             }
             .sidebar .top p.title {
                 color: white;
@@ -74,6 +75,7 @@ and open the template in the editor.
                 padding-top: 25px;
             }
             .sidebar .beneficios {
+                line-height: 55px;
                 height: 55px;
                 background: #fdc600;
                 color: white;
@@ -82,7 +84,7 @@ and open the template in the editor.
                 text-align: center;
             }
             .sidebar .bottom{
-                background: #850308;
+
             }
             .center{
                 height: 650px; box-sizing: content-box;
@@ -192,6 +194,46 @@ and open the template in the editor.
 
             }
 
+
+            .container-beneficios {
+                margin-top: 30px;overflow: hidden;height: 95px;
+            }
+            .beneficio.col-lg-3 {
+                height: 70px;
+                padding: 0;
+            }
+            .container-beneficios .checkbox-container{
+                margin: 0 auto;
+                width: 12px;
+                margin-top: 15px;
+            }
+            .beneficio.col-lg-3 .beneficio_image {
+                width: 60px;
+                margin: 0 auto;
+                background-position: 0px 0px;
+                height: 55px;
+                background-image: url("img/icons_beneficios.png");
+            }
+            .beneficio.col-lg-3.efectivo .beneficio_image {
+                width: 60px;
+                background-position: 0px 0px;
+            }
+            .beneficio.col-lg-3.movil .beneficio_image {
+                background-position: 218px 0px;
+            }
+            .beneficio.col-lg-3.restaurantes .beneficio_image {
+                width: 70px;
+                background-position: 150px 0px;
+            }
+            .beneficio.col-lg-3.estaciones .beneficio_image {
+                background-position: 60px 0px;
+            }
+            .beneficia{
+                background-image: url("img/logo_beneficia.png");    height: 66px;
+                width: 188px;
+                margin: 0 auto;
+                margin-top: 20px;
+            }
         </style>
         <div class="container">
             <!-- Example row of columns -->
@@ -211,7 +253,29 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="beneficios">Beneficios Pranta!</div>
-                    <div class="bottom"></div>
+                    <div class="bottom">
+                        <div class="container-beneficios">
+                            <div class="beneficio col-lg-3 efectivo">
+                                <div class="beneficio_image "></div>
+                                <div  class="checkbox-container"><input type="checkbox"/></div>
+                            </div>
+                            <div class="beneficio col-lg-3 movil">
+                                <div class="beneficio_image"></div>
+                                <div class="checkbox-container"><input type="checkbox"/></div>
+                            </div>
+                            <div class="beneficio col-lg-3 restaurantes">
+                                <div class="beneficio_image"></div>
+                                <div  class="checkbox-container"><input type="checkbox"/></div>
+                            </div>
+                            <div class="beneficio col-lg-3 estaciones">
+                                <div class="beneficio_image"></div>
+                                <div  class="checkbox-container"><input type="checkbox"/></div>
+                            </div>
+                        </div>
+                        <div class="beneficia">
+
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-9 center">
                     <ul class="item-list">
