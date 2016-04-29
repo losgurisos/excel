@@ -121,22 +121,22 @@ ul.item-list {
     height: 50px!important;
     background-image: url('../img/icon_tecnologia_dark.png');
 }
-.item .item-category-img .tecnologia{
+.item .item-category-img.tecnologia{
     background-image: url('../img/icon_tecnologia_dark.png');
 }
-.item .item-category-img .moda{
+.item .item-category-img.moda{
     background-image: url('../img/icon_moda_dark.png');
 }
-.item .item-category-img .ninos{
+.item .item-category-img.ninos{
     background-image: url('../img/icon_ninos_dark.png');
 }
-.item .item-category-img .hogar{
+.item .item-category-img.hogar{
     background-image: url('../img/icon_hogar_dark.png');
 }
-.item .item-category-img .otros{
+.item .item-category-img.otros{
     background-image: url('../img/icon_otros_dark.png');
 }
-.item .item-category-img .vehiculos{
+.item .item-category-img.vehiculos{
     background-image: url('../img/icon_vehiculos_dark.png');
 }
 
