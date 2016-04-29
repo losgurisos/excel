@@ -17,7 +17,7 @@
  * @since      1.0.0
  * @package    Parse_Excel
  * @subpackage Parse_Excel/includes
- * @author     Andrés <penalunandres@gmail.com>
+ * @author     Software <gmail@gmail.com>
  */
 class Parse_Excel_Activator {
 

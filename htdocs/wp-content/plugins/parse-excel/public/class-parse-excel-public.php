@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /**
  * The public-facing functionality of the plugin.
@@ -18,7 +18,7 @@
  *
  * @package    Parse_Excel
  * @subpackage Parse_Excel/public
- * @author     Andrés <penalunandres@gmail.com>
+ * @author     Software <gmail@gmail.com>
  */
 class Parse_Excel_Public {
 
@@ -95,9 +95,8 @@ class Parse_Excel_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/parse-excel-public.js',array('jquery'), $this->version, false );
-		
-	
+
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/parse-excel-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

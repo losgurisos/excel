@@ -7,7 +7,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://lospibesnotienenpagina.com
+ * @link              http://localhost.com
  * @since             1.0.0
  * @package           Parse_Excel
  *
@@ -16,8 +16,8 @@
  * Plugin URI:        http://www.notenemospaginadelplugin.com
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
- * Author:            Andrés
- * Author URI:        http://lospibesnotienenpagina.com
+ * Author:            Software
+ * Author URI:        http://localhost.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       parse-excel
