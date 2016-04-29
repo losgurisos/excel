@@ -147,7 +147,7 @@ function parseExcelLogic( $atts )
 
                                     </div>
                                     <div class="item-disscount">
-                                        <p class="val">'.($result[$i]->descuento === 0? "":$result[$i]->descuento).'%</p>
+                                        <p class="val">'.($result[$i]->descuento === '0'? "":$result[$i]->descuento).'%').'</p>
                                         <p class="mini">dto</p>
                                     </div>
 
