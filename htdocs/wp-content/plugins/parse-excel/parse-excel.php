@@ -106,7 +106,7 @@ function parse_excel_shortcode( $atts )
 function parseExcelLogic( $atts )
 {
 	
-
+	$trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
 	
 	// database object
 	global $wpdb;
@@ -120,7 +120,7 @@ function parseExcelLogic( $atts )
     
 
 
-    $html = '<div class="container">
+    $html = '<div class="container parse-excel">
             	<div class="row">';
 
 	$html .= getSidebar();
@@ -128,9 +128,16 @@ function parseExcelLogic( $atts )
 	$html .= '<div class="col-md-9 center">
                     <ul class="item-list">';
 
+                   
+
     for($i = 0; $i < count($result); $i++){
 
-         $html .= '<li class="col-md-12 col-lg-6 cat-'.strtolower($result[$i]->clasificacion).' dep-'.strtolower(str_replace(" ", "_", $result[$i]->departamento)).'">
+    	$_clasificacion = $result[$i]->clasificacion;
+		foreach ($trans as $clave => $valor) {
+		    $_clasificacion = str_replace($clave, $valor, $_clasificacion);
+		}
+
+         $html .= '<li class="col-md-12 col-lg-6 cat-'.strtolower($_clasificacion).' dep-'.strtolower(str_replace(" ", "_", $result[$i]->departamento)).'">
                             <div class="item">
                                 <div class="item-img">
                                     <img src="'.$result[$i]->imagen.'"/>
@@ -144,7 +151,7 @@ function parseExcelLogic( $atts )
                                         <p class="mini">dto</p>
                                     </div>
 
-                                    <div class="item-apply-on">'.$result[$i]->beneficio.'</div>
+                                    <div class="item-apply-on">'.$result[$i]->beneficios.'</div>
                                     <div class="item-address">'.$result[$i]->direccion.'</div></div>
                             </div>
                         </li>';
@@ -159,6 +166,8 @@ function parseExcelLogic( $atts )
 
 	return $html;
 }
+
+
 function getSidebar(){
 
 	return '<div class="col-md-3 col-sm-3 col-xs-12 excel-sidebar">
