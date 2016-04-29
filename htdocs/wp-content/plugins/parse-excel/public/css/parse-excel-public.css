@@ -1,10 +1,10 @@
 @font-face {
     font-family: HelveticaLight;
-    src: url("fonts/Helvetica Light.ttf");
+    src: url("../fonts/Helvetica Light.ttf");
 }
 @font-face {
     font-family: HelveticaNeueLTStd;
-    src: url("fonts/HelveticaNeueLTStd-BdIt.otf");
+    src: url("../fonts/HelveticaNeueLTStd-BdIt.otf");
 }
 
 .body{
@@ -119,25 +119,25 @@ ul.item-list {
     width: 60px;
     background-size: 60px;
     height: 50px;
-    background-image: url('img/icon_tecnologia_dark.png');
+    background-image: url('../img/icon_tecnologia_dark.png');
 }
 .item .item-category-img .tecnologia{
-    background-image: url('img/icon_tecnologia_dark.png');
+    background-image: url('../img/icon_tecnologia_dark.png');
 }
 .item .item-category-img .moda{
-    background-image: url('img/icon_moda_dark.png');
+    background-image: url('../img/icon_moda_dark.png');
 }
 .item .item-category-img .ninos{
-    background-image: url('img/icon_ninos_dark.png');
+    background-image: url('../img/icon_ninos_dark.png');
 }
 .item .item-category-img .hogar{
-    background-image: url('img/icon_hogar_dark.png');
+    background-image: url('../img/icon_hogar_dark.png');
 }
 .item .item-category-img .otros{
-    background-image: url('img/icon_otros_dark.png');
+    background-image: url('../img/icon_otros_dark.png');
 }
 .item .item-category-img .vehiculos{
-    background-image: url('img/icon_vehiculos_dark.png');
+    background-image: url('../img/icon_vehiculos_dark.png');
 }
 
 .item-address {font-family: HelveticaLight;
@@ -168,7 +168,7 @@ ul.item-list {
     display: block;
     left: 15px;
     position: absolute;
-    background-image: url("img/location_pin.png");
+    background-image: url("../img/location_pin.png");
 }
 
 .category-filter-container {
@@ -185,22 +185,22 @@ ul.item-list {
 }
 
 .category-filter-container .category-filter-item .tecnologia .cat-filter-icon{
-    background: url('img/icon_tecnologia.png');
+    background: url('../img/icon_tecnologia.png');
 }
 .category-filter-container .category-filter-item  .moda .cat-filter-icon{
-    background: url('img/icon_moda.png');
+    background: url('../img/icon_moda.png');
 }
 .category-filter-container .category-filter-item  .ninos .cat-filter-icon{
-    background: url('img/icon_ninos.png');
+    background: url('../img/icon_ninos.png');
 }
 .category-filter-container .category-filter-item  .hogar .cat-filter-icon{
-    background: url('img/icon_hogar.png');
+    background: url('../img/icon_hogar.png');
 }
 .category-filter-container .category-filter-item  .otros .cat-filter-icon{
-    background: url('img/icon_otros.png');
+    background: url('../img/icon_otros.png');
 }
 .category-filter-container .category-filter-item  .vehiculos .cat-filter-icon{
-    background: url('img/icon_vehiculos.png');
+    background: url('../img/icon_vehiculos.png');
 }
 .category-filter-container .category-filter-item .category-filter .cat-filter-icon {
     height: 70px;
@@ -256,7 +256,7 @@ ul.item-list {
     margin: 0 auto;
     background-position: 0px 0px;
     height: 55px;
-    background-image: url("img/icons_beneficios.png");
+    background-image: url("../img/icons_beneficios.png");
 }
 .beneficio.col-lg-3.efectivo .beneficio_image {
     width: 60px;
@@ -273,7 +273,7 @@ ul.item-list {
     background-position: 60px 0px;
 }
 .beneficia{
-    background-image: url("img/logo_beneficia.png");    height: 66px;
+    background-image: url("../img/logo_beneficia.png");    height: 66px;
     width: 188px;
     margin: 0 auto;
     margin-top: 20px;
