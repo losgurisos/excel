@@ -206,7 +206,7 @@ function getSidebar() {
                                 <div class="category-filter-item col-xs-2 col-sm-4 col-lg-4 col-md-6" >
                                     <div class="category-filter ninos">
                                         <div class="cat-filter-icon"></div>
-                                        <div class="cat-filter-title">NiÃ±os</div>
+                                        <div class="cat-filter-title">Niños</div>
                                         <div class="cat-filter-checkbox-container">
                                             <input category="ninos" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
@@ -224,7 +224,7 @@ function getSidebar() {
                                 <div class="category-filter-item col-xs-2  col-sm-4 col-lg-4 col-md-6">
                                     <div class="category-filter vehiculos">
                                         <div class="cat-filter-icon"></div>
-                                        <div class="cat-filter-title">VehÃ­culos</div>
+                                        <div class="cat-filter-title">Vehículos</div>
                                         <div class="cat-filter-checkbox-container">
                                             <input category="vehiculos" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
@@ -271,26 +271,26 @@ function getSidebar() {
                     <div class="beneficios">Beneficios Pranta!</div>
                     <div class="bottom">
                         <div class="container-beneficios">
-                            <div class="beneficio col-lg-3 col-sm-3 col-xs-3 col-md-3 efectivo">
+                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-xs-3 col-md-3 efectivo">
                                 <div class="beneficio_image "></div>
                                 <div class="beneficio_name">Retirar efectivo</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
-                            </div>
-                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  movil">
+                            </a>
+                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  movil">
                                 <div class="beneficio_image"></div>
-                                <div class="beneficio_name">Pago mÃ³vil</div>
+                                <div class="beneficio_name">Pago móvil</div>
                                 <div class="checkbox-container"><input type="checkbox"/></div>
-                            </div>
-                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  restaurantes">
+                            </a>
+                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  restaurantes">
                                 <div class="beneficio_image"></div>
                                 <div class="beneficio_name">Restaurantes</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
-                            </div>
-                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  estaciones">
+                            </a>
+                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  estaciones">
                                 <div class="beneficio_image"></div>
                                 <div class="beneficio_name">Estaciones</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
-                            </div>
+                            </a>
                         </div>
                         <div class="beneficia">
 
