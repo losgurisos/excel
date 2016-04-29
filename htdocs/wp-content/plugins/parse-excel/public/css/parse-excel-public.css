@@ -1,10 +1,10 @@
 @font-face {
     font-family: HelveticaLight;
-    src: url("fonts/Helvetica Light.ttf");
+    src: url("../fonts/Helvetica Light.ttf");
 }
 @font-face {
     font-family: HelveticaNeueLTStd;
-    src: url("fonts/HelveticaNeueLTStd-BdIt.otf");
+    src: url("../fonts/HelveticaNeueLTStd-BdIt.otf");
 }
 
 .body{
@@ -168,7 +168,7 @@ ul.item-list {
     display: block;
     left: 15px;
     position: absolute;
-    background-image: url("img/location_pin.png");
+    background-image: url("../img/location_pin.png");
 }
 
 .category-filter-container {
@@ -256,7 +256,7 @@ ul.item-list {
     margin: 0 auto;
     background-position: 0px 0px;
     height: 55px;
-    background-image: url("img/icons_beneficios.png");
+    background-image: url("../img/icons_beneficios.png");
 }
 .beneficio.col-lg-3.efectivo .beneficio_image {
     width: 60px;
@@ -273,7 +273,7 @@ ul.item-list {
     background-position: 60px 0px;
 }
 .beneficia{
-    background-image: url("img/logo_beneficia.png");    height: 66px;
+    background-image: url("../img/logo_beneficia.png");    height: 66px;
     width: 188px;
     margin: 0 auto;
     margin-top: 20px;
