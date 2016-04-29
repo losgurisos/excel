@@ -846,7 +846,8 @@ and open the template in the editor.
                         <li class="col-md-12 col-lg-6">
                             <div class="item"></div>
                         </li>
-
+ 
+ 
 
                     </ul>
                 </div>
