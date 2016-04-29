@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The plugin bootstrap file
  *
@@ -24,32 +25,36 @@
  * Domain Path:       /languages
  */
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (!defined('WPINC')) {
+    die;
 }
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-parse-excel-activator.php
  */
 function activate_parse_excel() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-parse-excel-activator.php';
-	Parse_Excel_Activator::activate();
+    require_once plugin_dir_path(__FILE__) . 'includes/class-parse-excel-activator.php';
+    Parse_Excel_Activator::activate();
 }
+
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-parse-excel-deactivator.php
  */
 function deactivate_parse_excel() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-parse-excel-deactivator.php';
-	Parse_Excel_Deactivator::deactivate();
+    require_once plugin_dir_path(__FILE__) . 'includes/class-parse-excel-deactivator.php';
+    Parse_Excel_Deactivator::deactivate();
 }
-register_activation_hook( __FILE__, 'activate_parse_excel' );
-register_deactivation_hook( __FILE__, 'deactivate_parse_excel' );
+
+register_activation_hook(__FILE__, 'activate_parse_excel');
+register_deactivation_hook(__FILE__, 'deactivate_parse_excel');
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-parse-excel.php';
+require plugin_dir_path(__FILE__) . 'includes/class-parse-excel.php';
+
 /**
  * Begins execution of the plugin.
  *
@@ -61,101 +66,99 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-parse-excel.php';
  */
 function run_parse_excel() {
 
-	$plugin = new Parse_Excel();
-	$plugin->run();
-
+    $plugin = new Parse_Excel();
+    $plugin->run();
 }
+
 //menu items
 function parse_excel_menu() {
 
     // Main Menu
     add_menu_page(
-        'Parse Excel', //page title
-        'Parse Excel', //menu title
-        'edit_pages', //capabilities
-        'parse_excel', //menu slug
-        'load_from_excel' //function
+            'Subir Promos', //page title
+            'Subir Promos', //menu title
+            'edit_pages', //capabilities
+            'parse_excel', //menu slug
+            'load_from_excel' //function
     );
 
 
     // add
-    /*add_submenu_page(
-        'parse_excel', //parent slug
-        'Cargar Excel', //page title
-        'Cargar desde excel', //menu title
-        'edit_pages', //capability
-        'centros_item_create', //menu slug
-        'centros_item_create' //function
-    );*/
+    /* add_submenu_page(
+      'parse_excel', //parent slug
+      'Cargar Excel', //page title
+      'Cargar desde excel', //menu title
+      'edit_pages', //capability
+      'centros_item_create', //menu slug
+      'centros_item_create' //function
+      ); */
 }
+
 require_once('load-from-excel.php');
 //require_once('centros-update-item.php');
 //require_once('centros-list-items.php');
 //require_once('includes/helpers.php');
 
-add_action('admin_menu','parse_excel_menu');
+add_action('admin_menu', 'parse_excel_menu');
 
-add_shortcode( 'parse_excel_render', 'parse_excel_shortcode' );
+add_shortcode('parse_excel_render', 'parse_excel_shortcode');
 
-function parse_excel_shortcode( $atts )
-{
-    return parseExcelLogic( $atts );
+function parse_excel_shortcode($atts) {
+    return parseExcelLogic($atts);
 }
 
 // THE LOGIC
-function parseExcelLogic( $atts )
-{
-	
-	$trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
-	
-	// database object
-	global $wpdb;
+function parseExcelLogic($atts) {
+    add_action('wp_footer', 'add_shortcode_css');
+    $trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
+
+    // database object
+    global $wpdb;
     $table = $wpdb->prefix . "parse_excel_data";
     require( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-    $sql = "SELECT * FROM ".$table;
+    $sql = "SELECT * FROM " . $table;
 
     $result = $wpdb->get_results($sql);
 
-    
+
 
 
     $html = '<div class="container parse-excel">
             	<div class="row">';
 
-	$html .= getSidebar();
+    $html .= getSidebar();
 
-	$html .= '<div class="col-md-9 excel-center">
+    $html .= '<div class="col-md-9 excel-center">
                     <ul class="item-list">';
 
-                   
 
-    for($i = 0; $i < count($result); $i++){
 
-    	$_clasificacion = $result[$i]->clasificacion;
-		foreach ($trans as $clave => $valor) {
-		    $_clasificacion = str_replace($clave, $valor, $_clasificacion);
-		}
+    for ($i = 0; $i < count($result); $i++) {
 
-         $html .= '<li class="col-md-12 col-lg-6 cat-'.strtolower($_clasificacion).' dep-'.strtolower(str_replace(" ", "_", $result[$i]->departamento)).'">
+        $_clasificacion = $result[$i]->clasificacion;
+        foreach ($trans as $clave => $valor) {
+            $_clasificacion = str_replace($clave, $valor, $_clasificacion);
+        }
+
+        $html .= '<li class="col-md-12 col-lg-6 cat-' . strtolower($_clasificacion) . ' dep-' . strtolower(str_replace(" ", "_", $result[$i]->departamento)) . '">
                             <div class="item">
                                 <div class="item-img">
-                                    <img src="'.$result[$i]->imagen.'"/>
+                                    <img src="' . $result[$i]->imagen . '"/>
                                 </div>
                                 <div class="item-data">
-                                    <div class="item-category-img '.strtolower($_clasificacion).'">
+                                    <div class="item-category-img ' . strtolower($_clasificacion) . '">
 
                                     </div>
                                     <div class="item-disscount">
-                                        <p class="val">'.($result[$i]->descuento === '0'? "":($result[$i]->descuento.'%')).'</p>
+                                        <p class="val">' . ($result[$i]->descuento === '0' ? "" : ($result[$i]->descuento . '%')) . '</p>
                                         <p class="mini">dto</p>
                                     </div>
 
-                                    <div class="item-apply-on">'.$result[$i]->beneficios.'</div>
-                                    <div class="item-address">'.$result[$i]->direccion.'</div></div>
+                                    <div class="item-apply-on">' . $result[$i]->beneficios . '</div>
+                                    <div class="item-address">' . $result[$i]->direccion . '</div></div>
                             </div>
                         </li>';
-
     }
 
     // items container center
@@ -164,13 +167,16 @@ function parseExcelLogic( $atts )
     // container and row
     $html .= '</div></div>';
 
-	return $html;
+    return $html;
 }
 
+function add_shortcode_css() {
+    wp_enqueue_style('parse-excel-shortcode-css', plugins_url('public/css/parse-excel-public.css', __FILE__), false);
+}
 
-function getSidebar(){
+function getSidebar() {
 
-	return '<div class="col-md-3 col-sm-3 col-xs-12 excel-sidebar">
+    return '<div class="col-md-3 col-sm-3 col-xs-12 excel-sidebar">
                     <div class="top">
                         <p class="title">Descuentos en comercios amigos</p>
                         <div class="row">
@@ -292,6 +298,7 @@ function getSidebar(){
                     </div>
                 </div>';
 }
+
 // WIDGET
 //require_once( dirname(__FILE__) . "/widget.php");
 run_parse_excel();

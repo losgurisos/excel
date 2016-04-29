@@ -679,7 +679,7 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
-                    <div class="beneficios">Beneficios Pranta!</div>
+                    <div class="beneficios">Beneficios Pronto!</div>
                     <div class="bottom">
                         <div class="container-beneficios">
                             <div class="beneficio col-lg-3 col-sm-3 col-xs-3 col-md-3 efectivo">

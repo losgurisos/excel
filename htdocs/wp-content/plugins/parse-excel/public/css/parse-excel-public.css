@@ -26,10 +26,9 @@
 }
 .excel-sidebar{
     padding: 0 !important;
-    height: 650px !important;
+    height: 750px !important;
     background: #850308;           
     position: absolute !important;
-    height:100% !important;
     z-index: 999;
 }
 .excel-sidebar .top{
@@ -117,8 +116,9 @@ ul.item-list {
     position: absolute;
     right: 35px !important;
     width: 60px !important;
+    background-repeat: none;
     background-size: 60px !important;
-    height: 50px!important;
+    height: 60px!important;
     background-image: url('../img/icon_tecnologia_dark.png');
 }
 .item .item-category-img.tecnologia{
@@ -295,6 +295,9 @@ ul.item-list {
     padding: 0 !important;
     padding-left:25% !important;
 }
+#masthead{
+    display :none;  
+}
 @media only screen and (min-width:1024px){
     height: 750px !important;
 }
@@ -380,12 +383,16 @@ ul.item-list {
     }
 }
 @media only screen and (max-width:425px){
+    .category-filter-container .category-filter-item .category-filter {
+        height: 55x !important;
+
+    }
     .excel-sidebar .top {
-        height: 165px !important;
+        height: 180px !important;
     }
     .excel-center {
         padding-left: 0 !important;
-        padding-top: 325px !important;
+        padding-top: 330px !important;
     }
 
     .excel-sidebar .beneficios {
@@ -395,7 +402,7 @@ ul.item-list {
 
     }
     .excel-sidebar{
-        position: relative !important;
+        position: relative !important;height: 330px !important;
     }
     .category-filter-container .category-filter-item {
         height: 60px !important;
@@ -478,11 +485,12 @@ ul.item-list {
     .item-apply-on {
         font-family: HelveticaLight;
         color: #b81d2c;
-        margin: 0;
-        width: 170px;
+        margin: 0 !important;
+        width: 170px !important;
         font-weight: bold;
-        line-height: 12px;
-        font-size: 9px  !important;
+        line-height: 12px !important;
+        text-align: left;
+        font-size: 8px  !important;
         overflow: hidden;
     }
     .item .item-data {
@@ -519,7 +527,7 @@ ul.item-list {
 }
 
 .container.parse-excel {
-    padding: 0px 15px;
+    padding: 0 !important;
     margin: 0 !important;
     width: 100%;
 }
