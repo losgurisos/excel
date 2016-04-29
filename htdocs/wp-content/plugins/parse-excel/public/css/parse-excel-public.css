@@ -351,7 +351,7 @@ ul.item-list {
         width: 30px !important;
         background-repeat: no-repeat;
         background-size: 155px;
-        background-position: 0px 0px !important;    height: 35px;
+        background-position: 0px 0px !important;    height: 35px !important;
     }
     .beneficio.col-lg-3.movil .beneficio_image {
         width: 30px !important;
@@ -376,8 +376,9 @@ ul.item-list {
     .excel-sidebar .top {
         height: 165px !important;
     }
-    .excel-center{
-        padding: 0 !important;
+    .excel-center {
+        padding-left: 0 !important;
+        padding-top: 325px !important;
     }
 
     .excel-sidebar .beneficios {
@@ -523,4 +524,7 @@ ul.item-list {
 }
 ul.item-list {
     padding: 0 !important;
+}
+.edit-link{
+    display: none;
 }
