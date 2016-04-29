@@ -28,7 +28,7 @@
     padding: 0 !important;
     height: 650px !important;
     background: #850308;           
-    position: fixed;
+    position: absolute !important;
     height:100% !important;
     z-index: 999;
 }
@@ -291,6 +291,13 @@ ul.item-list {
     height: 465px !important;
     background: #b81d2c;
 }
+.excel-center {
+    padding: 0 !important;
+    padding-left:25% !important;
+}
+@media only screen and (min-width:1024px){
+    height: 750px !important;
+}
 @media only screen and (max-width:1025px){
     .category-filter-container .category-filter-item .category-filter .cat-filter-icon {
         height: 50px !important; 
@@ -510,10 +517,7 @@ ul.item-list {
 .container {
     width: 100% !important;
 }
-.excel-center {
-    padding: 0 !important;
-    padding-left:25% !important;
-}
+
 .container.parse-excel {
     padding: 0px 15px;
     margin: 0 !important;
