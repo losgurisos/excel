@@ -483,3 +483,6 @@ ul.item-list {
         margin: 15px 0px;
         border-radius: 10px;
     }
+    .hentry{
+        display: none;
+    }
