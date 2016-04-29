@@ -525,6 +525,6 @@ ul.item-list {
 ul.item-list {
     padding: 0 !important;
 }
-.edit-link{
-    display: none;
+.edit-link,.sep-str{
+    display: none !important;
 }
