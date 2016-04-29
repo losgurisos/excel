@@ -25,7 +25,7 @@
     overflow: hidden;
 }
 .excel-sidebar{
-    padding: 0;
+    padding: 0 !important;
     height: 650px;
     background: #850308;           
     position: fixed;
@@ -40,7 +40,7 @@
     font-weight: bold;
     font-size: 24px;
     text-align: center;
-    margin: 0 auto;
+    margin: 0 auto !important;
     width: 60%;
     line-height: 20px;
     padding-top: 25px;
@@ -57,7 +57,7 @@
 .excel-sidebar .bottom{
 
 }
-.center{
+.excel-center{
     height: 650px; box-sizing: content-box;
     padding-left: 25%;
 }
@@ -152,6 +152,9 @@ ul.item-list {
 }
 .container.parse-excel{
     padding: 0px 15px;
+}
+.container.parse-excel .row{
+    margin: 0 !important;
 }
 .container{
     padding: 0;
@@ -284,7 +287,10 @@ ul.item-list {
     font-size: 11px;
     margin-top: 10px;
 }
-
+.excel-sidebar .top {
+    height: 465px;
+    background: #b81d2c;
+}
 @media only screen and (max-width:1025px){
     .category-filter-container .category-filter-item .category-filter .cat-filter-icon {
         height: 50px;
@@ -306,7 +312,7 @@ ul.item-list {
     }
     .excel-sidebar .top p.title {
         font-size: 17px;
-        line-height: 15px;
+        line-height: 15px !important;
     }
 }
 @media only screen and (max-width:768px){
@@ -487,4 +493,20 @@ ul.item-list {
         border-radius: 10px;
     }
 
+}
+.entry-header{
+    display:none;
+}
+.container{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container.parse-excel {
+    padding: 0px 15px;
+    margin: 0;
+    width: 100%;
+}
+#content ul li{
+    list-style: none;
 }
