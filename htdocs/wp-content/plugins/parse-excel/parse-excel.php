@@ -125,7 +125,7 @@ function parseExcelLogic( $atts )
 
 	$html .= getSidebar();
 
-	$html .= '<div class="col-md-9 center">
+	$html .= '<div class="col-md-9 excel-center">
                     <ul class="item-list">';
 
                    
