@@ -1,17 +1,10 @@
-/**
- * All of the CSS for your public-facing functionality should be
- * included in this file.
- */
-.site-content{
-    padding:0 !important;
-}
 @font-face {
     font-family: HelveticaLight;
-    src: url("../fonts/Helvetica Light.ttf");
+    src: url("fonts/Helvetica Light.ttf");
 }
 @font-face {
     font-family: HelveticaNeueLTStd;
-    src: url("../fonts/HelveticaNeueLTStd-BdIt.otf");
+    src: url("fonts/HelveticaNeueLTStd-BdIt.otf");
 }
 
 .body{
@@ -31,7 +24,7 @@
     font-size: 11px;
     overflow: hidden;
 }
-.sidebar{
+.excel-sidebar{
     padding: 0;
     height: 650px;
     background: #850308;           
@@ -39,10 +32,10 @@
     height:100%;
     z-index: 999;
 }
-.sidebar .top{
+.excel-sidebar .top{
     height:422px;background: #b81d2c;
 }
-.sidebar .top p.title {
+.excel-sidebar .top p.title {
     color: white;
     font-weight: bold;
     font-size: 24px;
@@ -52,7 +45,7 @@
     line-height: 20px;
     padding-top: 25px;
 }
-.sidebar .beneficios {
+.excel-sidebar .beneficios {
     line-height: 55px;
     height: 55px;
     background: #fdc600;
@@ -61,7 +54,7 @@
     font-weight: bold;
     text-align: center;
 }
-.sidebar .bottom{
+.excel-sidebar .bottom{
 
 }
 .center{
@@ -126,22 +119,22 @@ ul.item-list {
     width: 60px;
     background-size: 60px;
     height: 50px;
-    background-image: url('../img/icon_tecnologia_dark.png');
+    background-image: url('img/icon_tecnologia_dark.png');
 }
 .item .item-category-img .tecnologia{
-    background-image: url('../img/icon_tecnologia_dark.png');
+    background-image: url('img/icon_tecnologia_dark.png');
 }
 .item .item-category-img .moda{
-    background-image: url('../img/icon_moda_dark.png');
+    background-image: url('img/icon_moda_dark.png');
 }
 .item .item-category-img .ninos{
-    background-image: url('../img/icon_ninos_dark.png');
+    background-image: url('img/icon_ninos_dark.png');
 }
 .item .item-category-img .hogar{
-    background-image: url('../img/icon_hogar_dark.png');
+    background-image: url('img/icon_hogar_dark.png');
 }
 .item .item-category-img .otros{
-    background-image: url('../img/icon_otros_dark.png');
+    background-image: url('img/icon_otros_dark.png');
 }
 .item .item-category-img .vehiculos{
     background-image: url('img/icon_vehiculos_dark.png');
@@ -157,6 +150,16 @@ ul.item-list {
                color: #5B5B5B;
                padding-left: 50px;
 }
+.container.parse-excel{
+    padding: 0px 15px;
+}
+.container{
+    padding: 0;
+    margin: 0;
+    margin-top: 30px;
+    width: 100%;
+}
+
 
 .item-address::before {
     content: " ";
@@ -165,7 +168,7 @@ ul.item-list {
     display: block;
     left: 15px;
     position: absolute;
-    background-image: url("../img/location_pin.png");
+    background-image: url("img/location_pin.png");
 }
 
 .category-filter-container {
@@ -182,22 +185,22 @@ ul.item-list {
 }
 
 .category-filter-container .category-filter-item .tecnologia .cat-filter-icon{
-    background: url('../img/icon_tecnologia.png');
+    background: url('img/icon_tecnologia.png');
 }
 .category-filter-container .category-filter-item  .moda .cat-filter-icon{
-    background: url('../img/icon_moda.png');
+    background: url('img/icon_moda.png');
 }
 .category-filter-container .category-filter-item  .ninos .cat-filter-icon{
-    background: url('../img/icon_ninos.png');
+    background: url('img/icon_ninos.png');
 }
 .category-filter-container .category-filter-item  .hogar .cat-filter-icon{
-    background: url('../img/icon_hogar.png');
+    background: url('img/icon_hogar.png');
 }
 .category-filter-container .category-filter-item  .otros .cat-filter-icon{
-    background: url('../img/icon_otros.png');
+    background: url('img/icon_otros.png');
 }
 .category-filter-container .category-filter-item  .vehiculos .cat-filter-icon{
-    background: url('../img/icon_vehiculos.png');
+    background: url('img/icon_vehiculos.png');
 }
 .category-filter-container .category-filter-item .category-filter .cat-filter-icon {
     height: 70px;
@@ -253,7 +256,7 @@ ul.item-list {
     margin: 0 auto;
     background-position: 0px 0px;
     height: 55px;
-    background-image: url("../img/icons_beneficios.png");
+    background-image: url("img/icons_beneficios.png");
 }
 .beneficio.col-lg-3.efectivo .beneficio_image {
     width: 60px;
@@ -270,7 +273,7 @@ ul.item-list {
     background-position: 60px 0px;
 }
 .beneficia{
-    background-image: url("../img/logo_beneficia.png");    height: 66px;
+    background-image: url("img/logo_beneficia.png");    height: 66px;
     width: 188px;
     margin: 0 auto;
     margin-top: 20px;
@@ -301,7 +304,7 @@ ul.item-list {
         height: 100%;
         margin-bottom: 0px;
     }
-    .sidebar .top p.title {
+    .excel-sidebar .top p.title {
         font-size: 17px;
         line-height: 15px;
     }
@@ -332,10 +335,10 @@ ul.item-list {
         width: 150px;
         height: 30px;
     }
-    .sidebar .top {
+    .excel-sidebar .top {
         height: 340px;
     }
-    .sidebar .beneficios {
+    .excel-sidebar .beneficios {
         font-size: 18px;
     }
     .beneficio.col-lg-3.efectivo .beneficio_image {
@@ -364,16 +367,16 @@ ul.item-list {
     }
 }
 @media only screen and (max-width:425px){
-    .sidebar .top {
+    .excel-sidebar .top {
         height: 165px;
     }
-    .sidebar .beneficios {
+    .excel-sidebar .beneficios {
         font-size: 18px;
         height: 30px;
         line-height: 30px;
 
     }
-    .sidebar{
+    .excel-sidebar{
         position: relative;
     }
     .category-filter-container .category-filter-item {
@@ -483,6 +486,5 @@ ul.item-list {
         margin: 15px 0px;
         border-radius: 10px;
     }
-    .hentry{
-        display: none;
-    }
+
+}
