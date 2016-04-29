@@ -20,29 +20,29 @@ and open the template in the editor.
     </head>
     <body>
         <script>
-                    
+
             $(document).ready(function () {
 
                 var categoriesFilters = [];
                 var depFilter = '';
-                
+
 
                 var items = $(".item-list li");
                 var cbFilters = $(".cat-filter-checkbox");
-                
-                function initCategoryFilters () {
-                    cbFilters.each(function(){
+
+                function initCategoryFilters() {
+                    cbFilters.each(function () {
                         categoriesFilters[$(this).attr('category')] = false;
                     });
                 }
 
-                cbFilters.change(function(){
-                    
+                cbFilters.change(function () {
+
                     var cat = $(this).attr('category');
 
                     var index = categoriesFilters.indexOf(cat);
 
-                    if(index === -1)
+                    if (index === -1)
                         categoriesFilters.push(cat);
                     else
                         categoriesFilters.splice(index, 1);
@@ -50,11 +50,11 @@ and open the template in the editor.
 
                     reloadFilters();
 
-                
+
                 });
 
 
-                $("#cities-filter-select").change(function(){
+                $("#cities-filter-select").change(function () {
 
                     depFilter = $(this).val();
                     reloadFilters();
@@ -67,15 +67,15 @@ and open the template in the editor.
 
                     var filtersApplied = [];
 
-                    if(categoriesFilters.length){
+                    if (categoriesFilters.length) {
                         // apply category filter and dep if exists
-                        for(var cat in categoriesFilters){
-                            filtersApplied.push(".cat-"+categoriesFilters[cat].toLowerCase()+(depFilter?".dep-"+depFilter:""));
+                        for (var cat in categoriesFilters) {
+                            filtersApplied.push(".cat-" + categoriesFilters[cat].toLowerCase() + (depFilter ? ".dep-" + depFilter : ""));
                         }
                     }
-                    else if(depFilter !== ''){
+                    else if (depFilter !== '') {
                         // only apply dep filter
-                        filtersApplied.push(".dep-"+depFilter);
+                        filtersApplied.push(".dep-" + depFilter);
                     }
                     else {
                         // show all
@@ -85,18 +85,18 @@ and open the template in the editor.
                     // creating selector query
                     var selectorQuery = '.item-list li:not(';
 
-                    for(var i in filtersApplied)
+                    for (var i in filtersApplied)
                         selectorQuery += filtersApplied[i] + ',';
-                    
 
-                    selectorQuery = selectorQuery.substring(selectorQuery.length -1, 0);
+
+                    selectorQuery = selectorQuery.substring(selectorQuery.length - 1, 0);
                     selectorQuery += ')';
 
                     // execute selector query
                     $(selectorQuery).hide();
 
                 }
-                    
+
             });
 
         </script>
@@ -127,7 +127,7 @@ and open the template in the editor.
                 font-size: 11px;
                 overflow: hidden;
             }
-            .sidebar{
+            .excel-sidebar{
                 padding: 0;
                 height: 650px;
                 background: #850308;           
@@ -135,10 +135,10 @@ and open the template in the editor.
                 height:100%;
                 z-index: 999;
             }
-            .sidebar .top{
+            .excel-sidebar .top{
                 height:422px;background: #b81d2c;
             }
-            .sidebar .top p.title {
+            .excel-sidebar .top p.title {
                 color: white;
                 font-weight: bold;
                 font-size: 24px;
@@ -148,7 +148,7 @@ and open the template in the editor.
                 line-height: 20px;
                 padding-top: 25px;
             }
-            .sidebar .beneficios {
+            .excel-sidebar .beneficios {
                 line-height: 55px;
                 height: 55px;
                 background: #fdc600;
@@ -157,7 +157,7 @@ and open the template in the editor.
                 font-weight: bold;
                 text-align: center;
             }
-            .sidebar .bottom{
+            .excel-sidebar .bottom{
 
             }
             .center{
@@ -253,6 +253,16 @@ and open the template in the editor.
                            color: #5B5B5B;
                            padding-left: 50px;
             }
+            .container.parse-excel{
+                padding: 0px 15px;
+            }
+            .container{
+                padding: 0;
+                margin: 0;
+                margin-top: 30px;
+                width: 100%;
+            }
+
 
             .item-address::before {
                 content: " ";
@@ -397,7 +407,7 @@ and open the template in the editor.
                     height: 100%;
                     margin-bottom: 0px;
                 }
-                .sidebar .top p.title {
+                .excel-sidebar .top p.title {
                     font-size: 17px;
                     line-height: 15px;
                 }
@@ -428,10 +438,10 @@ and open the template in the editor.
                     width: 150px;
                     height: 30px;
                 }
-                .sidebar .top {
+                .excel-sidebar .top {
                     height: 340px;
                 }
-                .sidebar .beneficios {
+                .excel-sidebar .beneficios {
                     font-size: 18px;
                 }
                 .beneficio.col-lg-3.efectivo .beneficio_image {
@@ -460,16 +470,16 @@ and open the template in the editor.
                 }
             }
             @media only screen and (max-width:425px){
-                .sidebar .top {
+                .excel-sidebar .top {
                     height: 165px;
                 }
-                .sidebar .beneficios {
+                .excel-sidebar .beneficios {
                     font-size: 18px;
                     height: 30px;
                     line-height: 30px;
 
                 }
-                .sidebar{
+                .excel-sidebar{
                     position: relative;
                 }
                 .category-filter-container .category-filter-item {
@@ -582,12 +592,12 @@ and open the template in the editor.
 
             }
         </style>
-        <div class="container">
+        <div class="container parse-excel">
             <!-- Example row of columns -->
 
 
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12 sidebar">
+                <div class="col-md-3 col-sm-3 col-xs-12 excel-sidebar">
                     <div class="top">
                         <p class="title">Descuentos en comercios amigos</p>
                         <div class="row">
@@ -715,7 +725,7 @@ and open the template in the editor.
                                     </div>
 
                                     <div class="item-apply-on">
-                                    TECNOLOGIA MDEO
+                                        TECNOLOGIA MDEO
                                         En las marcas Phillips: minidomésticos y
                                         cuidado personal y GA.MA: Toda la línea
                                     </div>
@@ -729,7 +739,7 @@ and open the template in the editor.
 
                         <li class="col-lg-6 col-md-12 cat-ninos dep-maldonado">
                             <div class="item">
-                            <div class="item-img">
+                                <div class="item-img">
                                     <img src=""/>
                                 </div>
                                 <div class="item-data">
@@ -742,7 +752,7 @@ and open the template in the editor.
                                     </div>
 
                                     <div class="item-apply-on">
-                                    NINOS MALDONADO
+                                        NINOS MALDONADO
                                         En las marcas Phillips: minidomésticos y
                                         cuidado personal y GA.MA: Toda la línea
                                     </div>
@@ -777,7 +787,7 @@ and open the template in the editor.
                                     </div></div>
                             </div>
                         </li>
-    
+
 
                         <li class="col-lg-6 col-md-12 cat-ninos">
 
@@ -846,14 +856,14 @@ and open the template in the editor.
                         <li class="col-md-12 col-lg-6">
                             <div class="item"></div>
                         </li>
- 
- 
+
+
 
                     </ul>
                 </div>
 
             </div>
-     
+
         </div>
     </body>
 </html>
