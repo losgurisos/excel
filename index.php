@@ -20,9 +20,83 @@ and open the template in the editor.
     </head>
     <body>
         <script>
-
+                    
             $(document).ready(function () {
 
+                var categoriesFilters = [];
+                var depFilter = '';
+                
+
+                var items = $(".item-list li");
+                var cbFilters = $(".cat-filter-checkbox");
+                
+                function initCategoryFilters () {
+                    cbFilters.each(function(){
+                        categoriesFilters[$(this).attr('category')] = false;
+                    });
+                }
+
+                cbFilters.change(function(){
+                    
+                    var cat = $(this).attr('category');
+
+                    var index = categoriesFilters.indexOf(cat);
+
+                    if(index === -1)
+                        categoriesFilters.push(cat);
+                    else
+                        categoriesFilters.splice(index, 1);
+
+
+                    reloadFilters();
+
+                
+                });
+
+
+                $("#cities-filter-select").change(function(){
+
+                    depFilter = $(this).val();
+                    reloadFilters();
+
+                });
+
+                function reloadFilters() {
+
+                    items.show()
+
+                    var filtersApplied = [];
+
+                    if(categoriesFilters.length){
+                        // apply category filter and dep if exists
+                        for(var cat in categoriesFilters){
+                            filtersApplied.push(".cat-"+categoriesFilters[cat].toLowerCase()+(depFilter?".dep-"+depFilter:""));
+                        }
+                    }
+                    else if(depFilter !== ''){
+                        // only apply dep filter
+                        filtersApplied.push(".dep-"+depFilter);
+                    }
+                    else {
+                        // show all
+                        return;
+                    }
+
+                    // creating selector query
+                    var selectorQuery = '.item-list li:not(';
+
+                    for(var i in filtersApplied)
+                        selectorQuery += filtersApplied[i] + ',';
+                    
+
+                    selectorQuery = selectorQuery.substring(selectorQuery.length -1, 0);
+                    selectorQuery += ')';
+
+                    // execute selector query
+                    $(selectorQuery).hide();
+
+                }
+                    
             });
 
         </script>
@@ -233,8 +307,8 @@ and open the template in the editor.
                 text-align: center;
             }
             .category-filter-container .category-filter-item .category-filter .cat-filter-checkbox-container {
-                width: 15px;
-                height: 15px;
+                width: 13px;
+                height: 13px;
                 margin: 0 auto;
             }
             .category-filter-container .category-filter-item .category-filter .cat-filter-checkbox {
@@ -246,6 +320,7 @@ and open the template in the editor.
             }
             .cities-filter-container {
                 width: 100%;
+                margin-bottom: 15px;
             }
             .cities-filter-select-container {
                 margin: 0 auto;
@@ -255,6 +330,7 @@ and open the template in the editor.
             .cities-filter-select {
                 height: 100%;
                 width: 100%;
+
             }
 
             .container-beneficios {
@@ -309,12 +385,12 @@ and open the template in the editor.
 
                             <div class="category-filter-container">
                                 
-                                <div class="category-filter-item  col-lg-4 col-md-6">
+                                <div  class="category-filter-item  col-lg-4 col-md-6">
                                     <div class="category-filter tecnologia">
                                         <div class="cat-filter-icon "></div>
                                         <div class="cat-filter-title">Tecnologia</div>
                                         <div class="cat-filter-checkbox-container">
-                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                            <input category="tecnologia" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -323,7 +399,7 @@ and open the template in the editor.
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Moda</div>
                                         <div class="cat-filter-checkbox-container">
-                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                            <input category="moda" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -332,7 +408,7 @@ and open the template in the editor.
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Niños</div>
                                         <div class="cat-filter-checkbox-container">
-                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                            <input category="ninos" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -341,7 +417,7 @@ and open the template in the editor.
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Hogar</div>
                                         <div class="cat-filter-checkbox-container">
-                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                            <input category="hogar" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -350,7 +426,7 @@ and open the template in the editor.
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Vehículos</div>
                                         <div class="cat-filter-checkbox-container">
-                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                            <input category="vehiculos" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -359,7 +435,7 @@ and open the template in the editor.
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Otros</div>
                                         <div class="cat-filter-checkbox-container">
-                                            <input type="checkbox" class="cat-filter-checkbox"/>
+                                            <input category="otros" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -367,7 +443,17 @@ and open the template in the editor.
                         </div>
                         <div class="cities-filter-container">
                             <div class="cities-filter-select-container">
-                                <select class="cities-filter-select"></select>
+                                <select id="cities-filter-select" class="cities-filter-select">
+                                    <option value="">-- Departamento --</option>
+                                    <option value="montevideo">Montevideo</option>
+                                    <option value="maldonado">Maldonado</option>
+                                    <option value="salto">Salto</option>
+                                    <option value="artigas">Artigas</option>
+                                    <option value="flores">Flores</option>
+                                    <option value="cerro_largo">Cerro Largo</option>
+                                    <option value="lavalleja">Lavalleja</option>
+                                    <option value="florida">Florida</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -398,7 +484,58 @@ and open the template in the editor.
                 </div>
                 <div class="col-md-9 center">
                     <ul class="item-list">
-                        <li class="col-md-6 ">
+                        <li class="col-md-6 cat-tecnologia dep-montevideo">
+                            <div class="item">
+                                <div class="item-img">
+                                    <img src=""/>
+                                </div>
+                                <div class="item-data">
+                                    <div class="item-category-img">
+
+                                    </div>
+                                    <div class="item-disscount">
+                                        <p class="val">10%</p>
+                                        <p class="mini">dto</p>
+                                    </div>
+
+                                    <div class="item-apply-on">
+                                    TECNOLOGIA MDEO
+                                        En las marcas Phillips: minidomésticos y
+                                        cuidado personal y GA.MA: Toda la línea
+                                    </div>
+                                    <div class="item-address">
+                                        8 de Octubre
+                                        8 de octubre
+                                        8 de octubre
+                                    </div></div>
+                            </div>
+                        </li>
+                        <li class="col-md-6 cat-ninos dep-maldonado">
+                            <div class="item">
+                            <div class="item-img">
+                                    <img src=""/>
+                                </div>
+                                <div class="item-data">
+                                    <div class="item-category-img">
+
+                                    </div>
+                                    <div class="item-disscount">
+                                        <p class="val">10%</p>
+                                        <p class="mini">dto</p>
+                                    </div>
+
+                                    <div class="item-apply-on">
+                                    NINOS MALDONADO
+                                        En las marcas Phillips: minidomésticos y
+                                        cuidado personal y GA.MA: Toda la línea
+                                    </div>
+                                    <div class="item-address">
+                                        8 de Octubre
+                                        8 de octubre
+                                        8 de octubre
+                                    </div></div></div>
+                        </li>
+                        <li class="col-md-6 cat-ninos dep-maldonado">
                             <div class="item">
                                 <div class="item-img">
                                     <img src=""/>
@@ -423,23 +560,55 @@ and open the template in the editor.
                                     </div></div>
                             </div>
                         </li>
-                        <li class="col-md-6 ">
-                            <div class="item"></div>
+                        <li class="col-md-6 cat-ninos">
+                            <div class="item">
+                                <div class="item-img">
+                                    <img src=""/>
+                                </div>
+                                <div class="item-data">
+                                    <div class="item-category-img">
+
+                                    </div>
+                                    <div class="item-disscount">
+                                        <p class="val">10%</p>
+                                        <p class="mini">dto</p>
+                                    </div>
+
+                                    <div class="item-apply-on">
+                                        En las marcas Phillips: minidomésticos y
+                                        cuidado personal y GA.MA: Toda la línea
+                                    </div>
+                                    <div class="item-address">
+                                        8 de Octubre
+                                        8 de octubre
+                                        8 de octubre
+                                    </div></div>
+                            </div>
                         </li>
-                        <li class="col-md-6 ">
-                            <div class="item"></div>
-                        </li>
-                        <li class="col-md-6 ">
-                            <div class="item"></div>
-                        </li>
-                        <li class="col-md-6 ">
-                            <div class="item"></div>
-                        </li>
-                        <li class="col-md-6 ">
-                            <div class="item"></div>
-                        </li>
-                        <li class="col-md-6 ">
-                            <div class="item"></div>
+                        <li class="col-md-6 cat-ninos">
+                            <div class="item">
+                                <div class="item-img">
+                                    <img src=""/>
+                                </div>
+                                <div class="item-data">
+                                    <div class="item-category-img">
+
+                                    </div>
+                                    <div class="item-disscount">
+                                        <p class="val">10%</p>
+                                        <p class="mini">dto</p>
+                                    </div>
+
+                                    <div class="item-apply-on">
+                                        En las marcas Phillips: minidomésticos y
+                                        cuidado personal y GA.MA: Toda la línea
+                                    </div>
+                                    <div class="item-address">
+                                        8 de Octubre
+                                        8 de octubre
+                                        8 de octubre
+                                    </div></div>
+                            </div>
                         </li>
                         <li class="col-md-6 ">
                             <div class="item"></div>

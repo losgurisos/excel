@@ -133,8 +133,6 @@ function parseExcelLogic( $atts )
     $html = '<ul class="item-list">';
 
     for($i = 0; $i < count($result); $i++){
-    	//$html .= "<div></div>"
-
 
     	 $html .= 
             '<li class="col-md-6 ">
