@@ -127,7 +127,7 @@ and open the template in the editor.
                 font-size: 11px;
                 overflow: hidden;
             }
-            .sidebar{
+            .excel-sidebar{
                 padding: 0;
                 height: 650px;
                 background: #850308;           
@@ -135,10 +135,10 @@ and open the template in the editor.
                 height:100%;
                 z-index: 999;
             }
-            .sidebar .top{
+            .excel-sidebar .top{
                 height:422px;background: #b81d2c;
             }
-            .sidebar .top p.title {
+            .excel-sidebar.top p.title {
                 color: white;
                 font-weight: bold;
                 font-size: 24px;
@@ -148,7 +148,7 @@ and open the template in the editor.
                 line-height: 20px;
                 padding-top: 25px;
             }
-            .sidebar .beneficios {
+            .excel-sidebar .beneficios {
                 line-height: 55px;
                 height: 55px;
                 background: #fdc600;
@@ -157,7 +157,7 @@ and open the template in the editor.
                 font-weight: bold;
                 text-align: center;
             }
-            .sidebar .bottom{
+            .excel-sidebar .bottom{
 
             }
             .center{
@@ -397,7 +397,7 @@ and open the template in the editor.
                     height: 100%;
                     margin-bottom: 0px;
                 }
-                .sidebar .top p.title {
+                .excel-sidebar .top p.title {
                     font-size: 17px;
                     line-height: 15px;
                 }
@@ -428,10 +428,10 @@ and open the template in the editor.
                     width: 150px;
                     height: 30px;
                 }
-                .sidebar .top {
+                .excel-sidebar .top {
                     height: 340px;
                 }
-                .sidebar .beneficios {
+                .excel-sidebar .beneficios {
                     font-size: 18px;
                 }
                 .beneficio.col-lg-3.efectivo .beneficio_image {
@@ -460,16 +460,16 @@ and open the template in the editor.
                 }
             }
             @media only screen and (max-width:425px){
-                .sidebar .top {
+                .excel-sidebar .top {
                     height: 165px;
                 }
-                .sidebar .beneficios {
+                .excel-sidebar .beneficios {
                     font-size: 18px;
                     height: 30px;
                     line-height: 30px;
 
                 }
-                .sidebar{
+                .excel-sidebar{
                     position: relative;
                 }
                 .category-filter-container .category-filter-item {
@@ -587,7 +587,7 @@ and open the template in the editor.
 
 
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12 sidebar">
+                <div class="col-md-3 col-sm-3 col-xs-12 excel-sidebar">
                     <div class="top">
                         <p class="title">Descuentos en comercios amigos</p>
                         <div class="row">
@@ -847,7 +847,7 @@ and open the template in the editor.
                             <div class="item"></div>
                         </li>
  
- 
+
 
                     </ul>
                 </div>

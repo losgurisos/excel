@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin activation
  *
@@ -41,12 +40,11 @@ class Parse_Excel_Activator {
 		nombre_comercial VARCHAR (512) NOT NULL,
 		imagen VARCHAR (512) NOT NULL,
 		beneficios VARCHAR (512) NOT NULL,
+		descuento VARCHAR (255) NOT NULL DEFAULT '0',
   		PRIMARY KEY (id)
 		);";
 
         require( ABSPATH . 'wp-admin/includes/upgrade.php' );
         dbDelta( $sql );
-
 	}
-
 }
