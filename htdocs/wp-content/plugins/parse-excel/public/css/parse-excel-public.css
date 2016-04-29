@@ -42,7 +42,7 @@
     text-align: center;
     margin: 0 auto !important;
     width: 60%;
-    line-height: 20px;
+    line-height: 20px !important;
     padding-top: 25px;
 }
 .excel-sidebar .beneficios {
@@ -59,7 +59,7 @@
 }
 .excel-center{
     height: 650px; box-sizing: content-box;
-    padding-left: 25%;
+    padding-left: 25% !important;
 }
 .item-col{
     height: 650px;
@@ -263,10 +263,10 @@ ul.item-list {
 }
 .beneficio.col-lg-3.efectivo .beneficio_image {
     width: 60px !important;
-    background-position: 0px 0px;
+    background-position: 0px 0px !important;
 }
 .beneficio.col-lg-3.movil .beneficio_image {
-    background-position: 218px 0px;
+    background-position: 218px 0px !important;
 }
 .beneficio.col-lg-3.restaurantes .beneficio_image {
     width: 70px !important;
@@ -348,10 +348,10 @@ ul.item-list {
         font-size: 18px;
     }
     .beneficio.col-lg-3.efectivo .beneficio_image {
-        width: 30px;
+        width: 30px !important;
         background-repeat: no-repeat;
         background-size: 155px;
-        background-position: 0px 0px;    height: 35px;
+        background-position: 0px 0px !important;    height: 35px;
     }
     .beneficio.col-lg-3.movil .beneficio_image {
         width: 30px !important;
@@ -376,6 +376,10 @@ ul.item-list {
     .excel-sidebar .top {
         height: 165px !important;
     }
+    .excel-center{
+        padding: 0 !important;
+    }
+
     .excel-sidebar .beneficios {
         font-size: 18px;
         height: 30px !important;
@@ -390,11 +394,11 @@ ul.item-list {
     }
     .beneficio.col-lg-3 {
         height: 40px !important;
-        padding: 0;
+        padding: 0 !important;
     }
     .container-beneficios {
         margin-top: 10px !important;
-        height: 55px;
+        height: 55px !important;
     }
     .container-beneficios .checkbox-container {
         margin: 0 auto !important;
@@ -417,7 +421,7 @@ ul.item-list {
         background-size: 100px !important;
         margin-bottom: 10px !important;
     }
-    .center {
+    .excel-center {
         height: 650px !important;
         box-sizing: content-box;
         padding: 0 !important;
@@ -505,8 +509,9 @@ ul.item-list {
 .container {
     width: 100% !important;
 }
-#content p {
-    margin: 0 !important;
+.excel-center {
+    padding: 0 !important;
+    padding-left:25% !important;
 }
 .container.parse-excel {
     padding: 0px 15px;
@@ -515,4 +520,7 @@ ul.item-list {
 }
 #content ul li{
     list-style: none !important;
+}
+ul.item-list {
+    padding: 0 !important;
 }
