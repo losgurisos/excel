@@ -1,5 +1,4 @@
 <?php
-
 function load_from_excel (){
 
 
@@ -65,7 +64,8 @@ function load_from_excel (){
 					direccion,
 					nombre_comercial,
 					imagen,
-					beneficios
+					beneficios,
+					descuento
 				) VALUES (
 					'".$rowData[0][0]."',
 					'".$rowData[0][1]."',
@@ -73,7 +73,8 @@ function load_from_excel (){
 					'".$rowData[0][3]."',
 					'".$rowData[0][4]."',
 					'".$rowData[0][5]."',
-					'".$rowData[0][6]."'
+					'".$rowData[0][6]."',
+					'".$rowData[0][7]."'
 				);";
 
 				// Exec query
@@ -113,8 +114,4 @@ function load_from_excel (){
 	<?php
 
 }
-
-
-
 ?>
-

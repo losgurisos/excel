@@ -138,6 +138,7 @@ and open the template in the editor.
             .excel-sidebar .top{
                 height:422px;background: #b81d2c;
             }
+
             .excel-sidebar .top p.title {
                 color: white;
                 font-weight: bold;
@@ -856,9 +857,6 @@ and open the template in the editor.
                         <li class="col-md-12 col-lg-6">
                             <div class="item"></div>
                         </li>
-
-
-
                     </ul>
                 </div>
 
