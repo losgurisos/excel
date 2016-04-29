@@ -147,12 +147,12 @@ function parseExcelLogic( $atts )
                                     <div class="item-apply-on">'.$result[$i]->beneficio.'</div>
                                     <div class="item-address">'.$result[$i]->direccion.'</div></div>
                             </div>
-                        </li>'
+                        </li>';
 
     }
 
     // items container center
-    $html .= '</ul></div>'
+    $html .= '</ul></div>';
 
     // container and row
     $html .= '</div></div>';
@@ -281,7 +281,7 @@ function getSidebar(){
 
                         </div>
                     </div>
-                </div>'
+                </div>';
 }
 // WIDGET
 //require_once( dirname(__FILE__) . "/widget.php");
