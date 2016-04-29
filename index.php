@@ -343,7 +343,6 @@ and open the template in the editor.
             .container-beneficios .checkbox-container{
                 margin: 0 auto;
                 width: 12px;
-                margin-top: 15px;
             }
             .beneficio.col-lg-3 .beneficio_image {
                 width: 60px;
@@ -372,6 +371,216 @@ and open the template in the editor.
                 margin: 0 auto;
                 margin-top: 20px;
             }
+            .beneficio_name {
+                color: white;
+                text-align: center;
+                font-size: 11px;
+                margin-top: 10px;
+            }
+
+            @media only screen and (max-width:1025px){
+                .category-filter-container .category-filter-item .category-filter .cat-filter-icon {
+                    height: 50px;
+                    width: 50px;
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                    margin: 0 auto;
+                }
+                .beneficio_name {
+                    font-size: 8px;
+                }
+                .category-filter-container .category-filter-item .category-filter .cat-filter-title {
+
+                    margin-bottom: 0;
+                }
+                .category-filter-container .category-filter-item {
+                    height: 100%;
+                    margin-bottom: 0px;
+                }
+                .sidebar .top p.title {
+                    font-size: 17px;
+                    line-height: 15px;
+                }
+            }
+            @media only screen and (max-width:768px){
+                .category-filter-container .category-filter-item .category-filter .cat-filter-icon {
+                    height: 20px;
+                    width: 20px;
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                    margin: 0 auto;
+                }
+                .beneficio_name {
+                    font-size: 6px;
+                }
+                .category-filter-container .category-filter-item .category-filter .cat-filter-title {
+                    text-align: center;
+                    font-size: 8px;
+                    margin: 0;
+                }
+                .category-filter-container .category-filter-item {
+                    height: 100%;
+                    margin-bottom: 0px;
+                    padding: 0;
+                }
+                .cities-filter-select-container {
+                    margin: 0 auto;
+                    width: 150px;
+                    height: 30px;
+                }
+                .sidebar .top {
+                    height: 340px;
+                }
+                .sidebar .beneficios {
+                    font-size: 18px;
+                }
+                .beneficio.col-lg-3.efectivo .beneficio_image {
+                    width: 30px;
+                    background-repeat: no-repeat;
+                    background-size: 155px;
+                    background-position: 0px 0px;    height: 35px;
+                }
+                .beneficio.col-lg-3.movil .beneficio_image {
+                    width: 30px;
+                    background-repeat: no-repeat;
+                    background-size: 155px;
+                    background-position: -40px 0px;    height: 35px;
+                }
+                .beneficio.col-lg-3.restaurantes .beneficio_image {
+                    width: 35px;
+                    background-repeat: no-repeat;
+                    background-size: 155px;
+                    background-position: -77px 0px;    height: 35px;
+                }
+                .beneficio.col-lg-3.estaciones .beneficio_image {
+                    width: 30px;
+                    background-repeat: no-repeat;
+                    background-size: 155px;
+                    background-position: -130px 0px;    height: 35px;
+                }
+            }
+            @media only screen and (max-width:425px){
+                .sidebar .top {
+                    height: 165px;
+                }
+                .sidebar .beneficios {
+                    font-size: 18px;
+                    height: 30px;
+                    line-height: 30px;
+
+                }
+                .sidebar{
+                    position: relative;
+                }
+                .category-filter-container .category-filter-item {
+                    height: 60px;
+                }
+                .beneficio.col-lg-3 {
+                    height: 40px;
+                    padding: 0;
+                }
+                .container-beneficios {
+                    margin-top: 10px;
+                    height: 55px;
+                }
+                .container-beneficios .checkbox-container {
+                    margin: 0 auto;
+                    width: 12px;
+                    margin-top: 0px;
+                }
+                .beneficio_name {
+                    font-size: 6px;
+                    margin: 0;
+                }
+                .beneficio.col-lg-3.efectivo .beneficio_image,.beneficio.col-lg-3.restaurantes .beneficio_image,.beneficio.col-lg-3.estaciones .beneficio_image,.beneficio.col-lg-3.movil .beneficio_image {
+
+                    height: 30px;
+                }
+                .beneficia {
+                    height: 35px;
+                    width: 100px;
+                    margin: 0 auto;
+                    margin-top: 20px;
+                    background-size: 100px;
+                    margin-bottom: 10px;
+                }
+                .center {
+                    height: 650px;
+                    box-sizing: content-box;
+                    padding: 0;
+                    padding-top: 325px;
+                }
+                ul.item-list {
+                    list-style: none;
+                    padding: 0;
+                }
+                .item .item-img {
+                    width: 90px;
+                    background: #850308;
+                    height: 90px;
+                    float: left;
+                }
+                .item .item-data .val {
+                    font-size: 50px;
+                    color: #b81d2c;
+                    line-height: 55px;
+                    font-weight: bold;
+                    font-style: italic;
+                    margin: 0;
+                    float: left;
+                }
+                .item .item-data .item-disscount p.mini {
+                    float: left;
+                    color: #b81d2c;
+                    line-height: 0px;
+                    font-weight: bold;
+                    font-size: 20px;
+                    margin: 38px 0px 0px 5px;
+                }
+                .item .item-category-img {
+                    position: absolute;
+                    right: 35px;
+                    width: 35px;
+                    background-size: 35px;
+                    background-repeat: no-repeat;
+                    height: 35px;
+
+                }
+                .item .item-disscount {
+                    height: 50px;
+                    font-family: HelveticaNeueLTStd;
+                }
+                .item-apply-on {
+                    font-family: HelveticaLight;
+                    color: #b81d2c;
+                    margin: 0;
+                    width: 170px;
+                    font-weight: bold;
+                    line-height: 12px;
+                    font-size: 9px;
+                    overflow: hidden;
+                }
+                .item .item-data {
+                    float: left;
+                    margin-left: 5px;
+                    width: 145px;
+                }
+                .item-address {
+                    width: 145px;
+                    font-size: 9px;
+                    line-height: 9px;
+                    padding-left: 50px;
+                }
+                .item {
+                    background: #ebebeb;
+                    height: 155px;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    margin: 15px 0px;
+                    border-radius: 10px;
+                }
+
+            }
         </style>
         <div class="container">
             <!-- Example row of columns -->
@@ -384,8 +593,10 @@ and open the template in the editor.
                         <div class="row">
 
                             <div class="category-filter-container">
-                                
-                                <div  class="category-filter-item  col-lg-4 col-md-6">
+
+
+                                <div class="category-filter-item col-xs-2 col-sm-4 col-lg-4 col-md-6">
+
                                     <div class="category-filter tecnologia">
                                         <div class="cat-filter-icon "></div>
                                         <div class="cat-filter-title">Tecnologia</div>
@@ -394,7 +605,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
-                                <div class="category-filter-item  col-lg-4 col-md-6">
+                                <div class="category-filter-item  col-xs-2 col-sm-4 col-lg-4 col-md-6">
                                     <div class="category-filter moda">
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Moda</div>
@@ -403,7 +614,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
-                                <div class="category-filter-item  col-lg-4 col-md-6" >
+                                <div class="category-filter-item col-xs-2 col-sm-4 col-lg-4 col-md-6" >
                                     <div class="category-filter ninos">
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Niños</div>
@@ -412,7 +623,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
-                                <div class="category-filter-item  col-lg-4 col-md-6" >
+                                <div class="category-filter-item  col-xs-2 col-sm-4 col-lg-4 col-md-6" >
                                     <div class="category-filter hogar">
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Hogar</div>
@@ -421,7 +632,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
-                                <div class="category-filter-item  col-lg-4 col-md-6">
+                                <div class="category-filter-item col-xs-2  col-sm-4 col-lg-4 col-md-6">
                                     <div class="category-filter vehiculos">
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Vehículos</div>
@@ -430,7 +641,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
-                                <div class="category-filter-item  col-lg-4 col-md-6">
+                                <div class="category-filter-item col-xs-2 col-sm-4  col-lg-4 col-md-6">
                                     <div class="category-filter otros">
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Otros</div>
@@ -460,20 +671,24 @@ and open the template in the editor.
                     <div class="beneficios">Beneficios Pranta!</div>
                     <div class="bottom">
                         <div class="container-beneficios">
-                            <div class="beneficio col-lg-3 efectivo">
+                            <div class="beneficio col-lg-3 col-sm-3 col-xs-3 col-md-3 efectivo">
                                 <div class="beneficio_image "></div>
+                                <div class="beneficio_name">Retirar efectivo</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
                             </div>
-                            <div class="beneficio col-lg-3 movil">
+                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  movil">
                                 <div class="beneficio_image"></div>
+                                <div class="beneficio_name">Pago móvil</div>
                                 <div class="checkbox-container"><input type="checkbox"/></div>
                             </div>
-                            <div class="beneficio col-lg-3 restaurantes">
+                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  restaurantes">
                                 <div class="beneficio_image"></div>
+                                <div class="beneficio_name">Restaurantes</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
                             </div>
-                            <div class="beneficio col-lg-3 estaciones">
+                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  estaciones">
                                 <div class="beneficio_image"></div>
+                                <div class="beneficio_name">Estaciones</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
                             </div>
                         </div>
@@ -484,7 +699,8 @@ and open the template in the editor.
                 </div>
                 <div class="col-md-9 center">
                     <ul class="item-list">
-                        <li class="col-md-6 cat-tecnologia dep-montevideo">
+
+                        <li class="col-md-12 col-lg-6 cat-tecnologia dep-montevideo">
                             <div class="item">
                                 <div class="item-img">
                                     <img src=""/>
@@ -510,7 +726,8 @@ and open the template in the editor.
                                     </div></div>
                             </div>
                         </li>
-                        <li class="col-md-6 cat-ninos dep-maldonado">
+
+                        <li class="col-lg-6 col-md-12 cat-ninos dep-maldonado">
                             <div class="item">
                             <div class="item-img">
                                     <img src=""/>
@@ -535,7 +752,7 @@ and open the template in the editor.
                                         8 de octubre
                                     </div></div></div>
                         </li>
-                        <li class="col-md-6 cat-ninos dep-maldonado">
+                        <li class="col-lg-6 col-md-12 cat-ninos dep-maldonado">
                             <div class="item">
                                 <div class="item-img">
                                     <img src=""/>
@@ -560,7 +777,10 @@ and open the template in the editor.
                                     </div></div>
                             </div>
                         </li>
-                        <li class="col-md-6 cat-ninos">
+    
+
+                        <li class="col-lg-6 col-md-12 cat-ninos">
+
                             <div class="item">
                                 <div class="item-img">
                                     <img src=""/>
@@ -585,7 +805,8 @@ and open the template in the editor.
                                     </div></div>
                             </div>
                         </li>
-                        <li class="col-md-6 cat-ninos">
+
+                        <li class="col-lg-6 col-md-12 cat-ninos">
                             <div class="item">
                                 <div class="item-img">
                                     <img src=""/>
@@ -609,33 +830,29 @@ and open the template in the editor.
                                         8 de octubre
                                     </div></div>
                             </div>
-                        </li>
-                        <li class="col-md-6 ">
+
+                        <li class="col-md-12 col-lg-6">
                             <div class="item"></div>
                         </li>
-                        <li class="col-md-6 ">
+                        <li class="col-md-12 col-lg-6">
                             <div class="item"></div>
                         </li>
-                        <li class="col-md-6 ">
+                        <li class="col-md-12 col-lg-6">
                             <div class="item"></div>
                         </li>
-                        <li class="col-md-6 ">
+                        <li class="col-md-12 col-lg-6">
                             <div class="item"></div>
                         </li>
-                        <li class="col-md-6 ">
+                        <li class="col-md-12 col-lg-6">
                             <div class="item"></div>
                         </li>
+
 
                     </ul>
                 </div>
 
             </div>
-
-            <hr>
-
-            <footer>
-                <p>© 2015 Company, Inc.</p>
-            </footer>
+     
         </div>
     </body>
 </html>
