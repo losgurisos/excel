@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -10,51 +9,47 @@
  *
  * @link              http://localhost.com
  * @since             1.0.0
- * @package           Parse_Excel
+ * @package           Parse_Excel_Locations
  *
  * @wordpress-plugin
- * Plugin Name:       Parse Excel
- * Plugin URI:        http://www.notenemospaginadelplugin.com
+ * Plugin Name:       Parse Excel Locations
+ * Plugin URI:        http://www.localhost.com
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
  * Author:            Software
  * Author URI:        http://localhost.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       parse-excel
+ * Text Domain:       parse-excel-locations
  * Domain Path:       /languages
  */
 // If this file is called directly, abort.
-if (!defined('WPINC')) {
-    die;
+if ( ! defined( 'WPINC' ) ) {
+	die;
 }
-
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-parse-excel-activator.php
  */
-function activate_parse_excel() {
-    require_once plugin_dir_path(__FILE__) . 'includes/class-parse-excel-activator.php';
-    Parse_Excel_Activator::activate();
+function activate_parse_excel_locations() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-parse-excel-locations-activator.php';
+	Parse_Excel_Locations_Activator::activate();
 }
-
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-parse-excel-deactivator.php
  */
-function deactivate_parse_excel() {
-    require_once plugin_dir_path(__FILE__) . 'includes/class-parse-excel-deactivator.php';
-    Parse_Excel_Deactivator::deactivate();
+function deactivate_parse_excel_locations() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-parse-excel-locations-deactivator.php';
+	Parse_Excel_Locations_Deactivator::deactivate();
 }
-
-register_activation_hook(__FILE__, 'activate_parse_excel');
-register_deactivation_hook(__FILE__, 'deactivate_parse_excel');
+register_activation_hook( __FILE__, 'activate_parse_excel_locations' );
+register_deactivation_hook( __FILE__, 'deactivate_parse_excel_locations' );
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path(__FILE__) . 'includes/class-parse-excel.php';
-
+require plugin_dir_path( __FILE__ ) . 'includes/class-parse-excel-locations.php';
 /**
  * Begins execution of the plugin.
  *
@@ -64,101 +59,103 @@ require plugin_dir_path(__FILE__) . 'includes/class-parse-excel.php';
  *
  * @since    1.0.0
  */
-function run_parse_excel() {
+function run_parse_excel_locations() {
 
-    $plugin = new Parse_Excel();
-    $plugin->run();
+	$plugin = new Parse_Excel_Locations();
+	$plugin->run();
+
 }
-
 //menu items
-function parse_excel_menu() {
+function parse_excel_locations_menu() {
 
     // Main Menu
     add_menu_page(
-            'Subir Promos', //page title
-            'Subir Promos', //menu title
-            'edit_pages', //capabilities
-            'parse_excel', //menu slug
-            'load_from_excel' //function
+        'Subir localidades', //page title
+        'Subir localidades', //menu title
+        'edit_pages', //capabilities
+        'parse_excel_locations', //menu slug
+        'load_locations_from_excel' //function
     );
 
 
     // add
-    /* add_submenu_page(
-      'parse_excel', //parent slug
-      'Cargar Excel', //page title
-      'Cargar desde excel', //menu title
-      'edit_pages', //capability
-      'centros_item_create', //menu slug
-      'centros_item_create' //function
-      ); */
+    /*add_submenu_page(
+        'parse_excel', //parent slug
+        'Cargar Excel', //page title
+        'Cargar desde excel', //menu title
+        'edit_pages', //capability
+        'centros_item_create', //menu slug
+        'centros_item_create' //function
+    );*/
 }
-
-require_once('load-from-excel.php');
+require_once('load-locations-from-excel.php');
 //require_once('centros-update-item.php');
 //require_once('centros-list-items.php');
 //require_once('includes/helpers.php');
 
-add_action('admin_menu', 'parse_excel_menu');
+add_action('admin_menu','parse_excel_locations_menu');
 
-add_shortcode('parse_excel_render', 'parse_excel_shortcode');
+add_shortcode( 'parse_excel_locations_render', 'parse_excel_locations_shortcode' );
 
-function parse_excel_shortcode($atts) {
-    return parseExcelLogic($atts);
+function parse_excel_locations_shortcode( $atts )
+{
+    return parseExcelLocationLogic( $atts );
 }
 
 // THE LOGIC
-function parseExcelLogic($atts) {
-    add_action('wp_footer', 'add_shortcode_css');
-    $trans = array("Ã¡" => "a", "Ã©" => "e", "Ã­" => "i", "Ã³" => "o", "Ãº" => "u", "Ã±" => "n");
-
-    // database object
-    global $wpdb;
+function parseExcelLocationLogic( $atts )
+{
+	
+	$trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
+	
+	// database object
+	global $wpdb;
     $table = $wpdb->prefix . "parse_excel_data";
     require( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-    $sql = "SELECT * FROM " . $table;
+    $sql = "SELECT * FROM ".$table;
 
     $result = $wpdb->get_results($sql);
 
-
+    
 
 
     $html = '<div class="container parse-excel">
             	<div class="row">';
 
-    $html .= getSidebar();
+	$html .= getSidebar();
 
-    $html .= '<div class="col-md-9 excel-center">
+	$html .= '<div class="col-md-9 excel-center">
                     <ul class="item-list">';
 
+                   
 
+    for($i = 0; $i < count($result); $i++){
 
-    for ($i = 0; $i < count($result); $i++) {
+    	$_clasificacion = $result[$i]->clasificacion;
+		foreach ($trans as $clave => $valor) {
+		    $_clasificacion = str_replace($clave, $valor, $_clasificacion);
+		}
 
-        $_clasificacion = $result[$i]->clasificacion;
-        foreach ($trans as $clave => $valor) {
-            $_clasificacion = str_replace($clave, $valor, $_clasificacion);
-        }
-
-        $html .= '<li class="col-md-12 col-lg-6 cat-' . strtolower($_clasificacion) . ' dep-' . strtolower(str_replace(" ", "_", $result[$i]->departamento)) . '">
+         $html .= '<li class="col-md-12 col-lg-6 cat-'.strtolower($_clasificacion).' dep-'.strtolower(str_replace(" ", "_", $result[$i]->departamento)).'">
                             <div class="item">
                                 <div class="item-img">
-                                    <img src="' . $result[$i]->imagen . '"/>
+                                    <img src="'.$result[$i]->imagen.'"/>
                                 </div>
                                 <div class="item-data">
-                                    <div class="item-category-img ' . strtolower($_clasificacion) . '">
+                                    <div class="item-category-img '.strtolower($_clasificacion).'">
 
                                     </div>
                                     <div class="item-disscount">
-                                        <p class="val">' . ($result[$i]->descuento === '0' ? "" : ($result[$i]->descuento . '%')) . '</p>
+                                        <p class="val">'.($result[$i]->descuento === '0'? "":($result[$i]->descuento.'%')).'</p>
                                         <p class="mini">dto</p>
                                     </div>
 
-                                    <div class="item-apply-on">' . $result[$i]->beneficios . '</div>
-                                    <div class="item-address">' . $result[$i]->direccion . '</div></div>
+                                    <div class="item-apply-on">'.$result[$i]->beneficios.'</div>
+                                    <div class="item-address">'.$result[$i]->direccion.'</div></div>
                             </div>
                         </li>';
+
     }
 
     // items container center
@@ -167,16 +164,13 @@ function parseExcelLogic($atts) {
     // container and row
     $html .= '</div></div>';
 
-    return $html;
+	return $html;
 }
 
-function add_shortcode_css() {
-    wp_enqueue_style('parse-excel-shortcode-css', plugins_url('public/css/parse-excel-public.css', __FILE__), false);
-}
 
-function getSidebar() {
+function getSidebar(){
 
-    return '<div class="col-md-3 col-sm-3 col-xs-12 excel-sidebar">
+	return '<div class="col-md-3 col-sm-3 col-xs-12 excel-sidebar">
                     <div class="top">
                         <p class="title">Descuentos en comercios amigos</p>
                         <div class="row">
@@ -271,26 +265,26 @@ function getSidebar() {
                     <div class="beneficios">Beneficios Pranta!</div>
                     <div class="bottom">
                         <div class="container-beneficios">
-                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-xs-3 col-md-3 efectivo">
+                            <div class="beneficio col-lg-3 col-sm-3 col-xs-3 col-md-3 efectivo">
                                 <div class="beneficio_image "></div>
                                 <div class="beneficio_name">Retirar efectivo</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
-                            </a>
-                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  movil">
+                            </div>
+                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  movil">
                                 <div class="beneficio_image"></div>
                                 <div class="beneficio_name">Pago móvil</div>
                                 <div class="checkbox-container"><input type="checkbox"/></div>
-                            </a>
-                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  restaurantes">
+                            </div>
+                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  restaurantes">
                                 <div class="beneficio_image"></div>
                                 <div class="beneficio_name">Restaurantes</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
-                            </a>
-                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  estaciones">
+                            </div>
+                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  estaciones">
                                 <div class="beneficio_image"></div>
                                 <div class="beneficio_name">Estaciones</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
-                            </a>
+                            </div>
                         </div>
                         <div class="beneficia">
 
@@ -298,7 +292,6 @@ function getSidebar() {
                     </div>
                 </div>';
 }
-
 // WIDGET
 //require_once( dirname(__FILE__) . "/widget.php");
 run_parse_excel();
