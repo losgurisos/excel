@@ -125,7 +125,7 @@ function parseExcelLogic( $atts )
 
 	$html .= getSidebar();
 
-	$html .= '<div class="col-md-9 center">
+	$html .= '<div class="col-md-9 excel-center">
                     <ul class="item-list">';
 
                    
@@ -143,7 +143,7 @@ function parseExcelLogic( $atts )
                                     <img src="'.$result[$i]->imagen.'"/>
                                 </div>
                                 <div class="item-data">
-                                    <div class="item-category-img">
+                                    <div class="item-category-img '.strtolower($_clasificacion).'">
 
                                     </div>
                                     <div class="item-disscount">
