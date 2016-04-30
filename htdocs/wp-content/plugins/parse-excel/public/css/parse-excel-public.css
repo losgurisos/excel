@@ -116,7 +116,7 @@ ul.item-list {
     position: absolute;
     right: 35px !important;
     width: 60px !important;
-    background-repeat: none;
+    background-repeat: no-repeat;
     background-size: 60px !important;
     height: 60px!important;
     background-image: url('../img/icon_tecnologia_dark.png');
