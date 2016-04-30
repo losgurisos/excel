@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <script   src="https://code.jquery.com/jquery-1.12.3.min.js"   integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
+        <title>Simple markers</title>
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #map {
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            var marker_data = function (depto, lat, lng, title) {
+                this.lat = lat;
+                this.lng = lng;
+                this.title = title;
+                this.depto = depto;
+            };
+            var marker_data_arr = [];
+            marker_data_arr.push(new marker_data("MALDONADO", -31.2783835, -56.5093691, "PANDO"));
+            marker_data_arr.push(new marker_data("MELO", -31.2783837, -57.5193691, "VENEZUELA"));
+            marker_data_arr.push(new marker_data("CANELONES", -31.2783832, -56.5593691, "TU HERMANA"));
+            marker_data_arr.push(new marker_data("MONTEVIDEO", -32.9840109, -57.0524278, "PEPE"));
+            marker_data_arr.push(new marker_data("MONTEVIDEO", -31.2783835, -57.5493691, "ETC"));
+            marker_data_arr.push(new marker_data("MALDONADO", -33.5461217, -56.76919, "ETC"));
+            marker_data_arr.push(new marker_data("MALDONADO", -34.5278466, -55.5014186, "ETC"));
+
+            var google_map_markers = new Array();
+            var map;
+
+            function hide_markers_where_not(attr, value) {
+                var bounds = new google.maps.LatLngBounds();
+                for (var i = 0; i < marker_data_arr.length; i++) {
+                    if (attr === "depto" && marker_data_arr[i].depto != value) {
+                        //console.log(google_map_markers);
+                        google_map_markers[i].setVisible(false);
+                        //console.log(i);
+                    } else {
+                        bounds.extend(google_map_markers[i].getPosition());
+                    }
+                }
+
+                map.fitBounds(bounds);
+            }
+
+            function initMap() {
+                var myLatLng = {lat: -32.5623464, lng: -55.4331402};
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 8,
+                    center: myLatLng
+                });
+                //console.log(document.getElementById('map'));
+                for (var i = 0; i < marker_data_arr.length; i++) {
+
+                    var myLatLng = {lat: marker_data_arr[i].lat, lng: marker_data_arr[i].lng};
+                    //console.log(myLatLng);
+                    var marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map,
+                        title: marker_data_arr[i].title
+                    });
+                    //console.log(marker);
+                    google_map_markers.push(marker);
+
+
+
+                }
+                //example
+                hide_markers_where_not("depto", "MONTEVIDEO");
+
+            }
+
+        </script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGqn2C3RR4HWISu7F62T42P07OrWp3atI&signed_in=true&callback=initMap"></script>
+    </body>
+</html>
