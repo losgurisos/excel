@@ -73,7 +73,7 @@ class Parse_Excel_Locations_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/parse-excel-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/parse-excel-locations-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,7 +96,7 @@ class Parse_Excel_Locations_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/parse-excel-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/parse-excel-locations-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
