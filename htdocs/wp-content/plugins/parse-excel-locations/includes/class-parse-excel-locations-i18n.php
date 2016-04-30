@@ -6,11 +6,11 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       http://lospibesnotienenpagina.com
+ * @link       http://localhost.com
  * @since      1.0.0
  *
- * @package    Parse_Excel
- * @subpackage Parse_Excel/includes
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Parse_Excel
- * @subpackage Parse_Excel/includes
- * @author     Andrés <penalunandres@gmail.com>
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/includes
+ * @author     Software <gmail@gmail.com>
  */
-class Parse_Excel_i18n {
+class Parse_Excel_Locations_i18n {
 
 
 	/**
@@ -35,7 +35,7 @@ class Parse_Excel_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'parse-excel',
+			'parse-excel-locations',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

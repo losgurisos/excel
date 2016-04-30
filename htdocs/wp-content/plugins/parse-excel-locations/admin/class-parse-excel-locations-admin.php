@@ -6,8 +6,8 @@
  * @link       http://lospibesnotienenpagina.com
  * @since      1.0.0
  *
- * @package    Parse_Excel
- * @subpackage Parse_Excel/admin
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Parse_Excel
- * @subpackage Parse_Excel/admin
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/admin
  * @author     Andrés <penalunandres@gmail.com>
  */
-class Parse_Excel_Admin {
+class Parse_Excel_Locations_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -65,10 +65,10 @@ class Parse_Excel_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Parse_Excel_Loader as all of the hooks are defined
+		 * defined in Parse_Excel_Locations_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Parse_Excel_Loader will then create the relationship
+		 * The Parse_Excel_Locations_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -88,10 +88,10 @@ class Parse_Excel_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Parse_Excel_Loader as all of the hooks are defined
+		 * defined in Parse_Excel_Locations_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Parse_Excel_Loader will then create the relationship
+		 * The Parse_Excel_Locations_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */

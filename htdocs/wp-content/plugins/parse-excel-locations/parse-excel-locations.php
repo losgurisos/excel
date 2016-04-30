@@ -70,8 +70,8 @@ function parse_excel_locations_menu() {
 
     // Main Menu
     add_menu_page(
-        'Subir localidades', //page title
-        'Subir localidades', //menu title
+        'Subir Localidades', //page title
+        'Subir Localidades', //menu title
         'edit_pages', //capabilities
         'parse_excel_locations', //menu slug
         'load_locations_from_excel' //function
@@ -110,7 +110,7 @@ function parseExcelLocationLogic( $atts )
 	
 	// database object
 	global $wpdb;
-    $table = $wpdb->prefix . "parse_excel_data";
+    $table = $wpdb->prefix . "parse_excel_locations_data";
     require( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
     $sql = "SELECT * FROM ".$table;
@@ -123,7 +123,7 @@ function parseExcelLocationLogic( $atts )
     $html = '<div class="container parse-excel">
             	<div class="row">';
 
-	$html .= getSidebar();
+	$html .= getSidebarLocations();
 
 	$html .= '<div class="col-md-9 excel-center">
                     <ul class="item-list">';
@@ -168,7 +168,7 @@ function parseExcelLocationLogic( $atts )
 }
 
 
-function getSidebar(){
+function getSidebarLocations(){
 
 	return '<div class="col-md-3 col-sm-3 col-xs-12 excel-sidebar">
                     <div class="top">
@@ -294,4 +294,4 @@ function getSidebar(){
 }
 // WIDGET
 //require_once( dirname(__FILE__) . "/widget.php");
-run_parse_excel();
+run_parse_excel_locations();

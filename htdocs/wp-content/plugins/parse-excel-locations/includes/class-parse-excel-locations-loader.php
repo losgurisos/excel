@@ -3,11 +3,11 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @link       http://lospibesnotienenpagina.com
+ * @link       http://localhost.com
  * @since      1.0.0
  *
- * @package    Parse_Excel
- * @subpackage Parse_Excel/includes
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Parse_Excel
- * @subpackage Parse_Excel/includes
- * @author     Andrés <penalunandres@gmail.com>
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/includes
+ * @author     Software <gmail@gmail.com>
  */
-class Parse_Excel_Loader {
+class Parse_Excel_Locations_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

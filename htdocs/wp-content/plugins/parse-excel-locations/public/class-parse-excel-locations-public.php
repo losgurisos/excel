@@ -3,11 +3,11 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       http://lospibesnotienenpagina.com
+ * @link       http://localhost.com
  * @since      1.0.0
  *
- * @package    Parse_Excel
- * @subpackage Parse_Excel/public
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Parse_Excel
- * @subpackage Parse_Excel/public
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/public
  * @author     Software <gmail@gmail.com>
  */
-class Parse_Excel_Public {
+class Parse_Excel_Locations_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -65,15 +65,15 @@ class Parse_Excel_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Parse_Excel_Loader as all of the hooks are defined
+		 * defined in Parse_Excel_Locations_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Parse_Excel_Loader will then create the relationship
+		 * The Parse_Excel_Locations_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/parse-excel-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/parse-excel-locations-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,15 +88,15 @@ class Parse_Excel_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Parse_Excel_Loader as all of the hooks are defined
+		 * defined in Parse_Excel_Locations_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Parse_Excel_Loader will then create the relationship
+		 * The Parse_Excel_Locations_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/parse-excel-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/parse-excel-locations-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

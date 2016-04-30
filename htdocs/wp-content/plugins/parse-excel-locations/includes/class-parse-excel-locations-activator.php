@@ -2,11 +2,11 @@
 /**
  * Fired during plugin activation
  *
- * @link       http://lospibesnotienenpagina.com
+ * @link       http://localhost.com
  * @since      1.0.0
  *
- * @package    Parse_Excel
- * @subpackage Parse_Excel/includes
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/includes
  */
 
 /**
@@ -15,11 +15,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Parse_Excel
- * @subpackage Parse_Excel/includes
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/includes
  * @author     Software <gmail@gmail.com>
  */
-class Parse_Excel_Activator {
+class Parse_Excel_Locations_Activator {
 
 	/**
 	 * Short Description. (use period)
@@ -30,17 +30,16 @@ class Parse_Excel_Activator {
 	 */
 	public static function activate() {
 		global $wpdb;
-        $table = $wpdb->prefix . "parse_excel_data";
+        $table = $wpdb->prefix . "parse_excel_locations_data";
         $sql = "CREATE TABLE ".$table." (
 		id INT NOT NULL AUTO_INCREMENT,
 		departamento VARCHAR (255) NOT NULL,
-		clasificacion VARCHAR (255) NOT NULL,
+		nombre VARCHAR (255) NOT NULL,
 		localidad VARCHAR (255) NOT NULL,
 		direccion VARCHAR (512) NOT NULL,
-		nombre_comercial VARCHAR (512) NOT NULL,
-		imagen VARCHAR (512) NOT NULL,
-		beneficios VARCHAR (512) NOT NULL,
-		descuento VARCHAR (255) NOT NULL DEFAULT '0',
+		coordenadas VARCHAR (255) NOT NULL,
+		telefono VARCHAR (255) NOT NULL,
+		servicios VARCHAR (512) NOT NULL,
   		PRIMARY KEY (id)
 		);";
 

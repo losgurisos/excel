@@ -6,8 +6,8 @@
  * @link       http://lospibesnotienenpagina.com
  * @since      1.0.0
  *
- * @package    Parse_Excel
- * @subpackage Parse_Excel/includes
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Parse_Excel
- * @subpackage Parse_Excel/includes
+ * @package    Parse_Excel_Locations
+ * @subpackage Parse_Excel_Locations/includes
  * @author     Software <gmail@gmail.com>
  */
-class Parse_Excel_Deactivator {
+class Parse_Excel_Locations_Deactivator {
 
 	/**
 	 * Short Description. (use period)
@@ -31,7 +31,7 @@ class Parse_Excel_Deactivator {
 	 */
 	public static function deactivate() {
 		global $wpdb;
-        $table = $wpdb->prefix . "parse_excel_data";
+        $table = $wpdb->prefix . "parse_excel_locations_data";
 
         $sql = "DROP TABLE IF EXISTS ".$table.";";
 
