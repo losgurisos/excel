@@ -121,20 +121,35 @@ function parseExcelLocationLogic( $atts )
 
 
     for($i = 0; $i < count($result); $i++) {
+        $localidad = $result[$i]->localidad;
+        $depto = $result[$i]->departamento;
+        foreach ($trans as $clave => $valor) {
+            $localidad = str_replace($clave, $valor, $localidad);
+            $depto = str_replace($clave, $valor, $depto);
+        }
+
         $coordenadas = explode(",", $result[$i]->coordenadas);
+        $_servicios = explode(" - ", $result[$i]->servicios);
+        $servicios = array();
+        for($j = 0; $j< count($_servicios); $j++){
+            $servicios.push() = strtolower(str_replace(" ", "_", $_servicios[$j]));
+        }
         $toJsonResult[] =
             array(
-                "departamento" => $result[$i]->departamento,
+                "departamento" => strtolower(str_replace(" ", "_",$depto)),
                 "nombre" => $result[$i]->nombre,
-                "localidad" => $result[$i]->localidad,
-                "direccion" => $result[$i]->nombre,
+                "localidad" =>strtolower(str_replace(" ", "_",$localidad)) ,
+                "direccion" => $result[$i]->direccion,
                 "coordenadas" => array(
                         "x" => $coordenadas[0],
                         "y" => $coordenadas[1],
                     ),
                 "telefono" => $result[$i]->telefono,
-                "servicios" => explode(" - ", $result[$i]->servicios)
+                "servicios" => '',
             );
+            ?>
+            <script type="text/javascript"></script>
+            <?php
         
     }
 
