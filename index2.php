@@ -36,6 +36,22 @@ and open the template in the editor.
             .container {
                 width: 100%;
             }
+            .beneficios p{
+                position: relative !important;
+                width: 60% !important;
+                padding-left: 40px !important;
+                margin: 0 auto !important;
+            }
+            .beneficios p::before{
+                content: " ";
+                height: 45px;
+                width: 31px;
+                position: absolute;
+                display: block;
+                background: url("../img/icon_ubicacion.png");
+                top: 5px;
+                left: 5px;
+            }
             .locations-map{
                 height: 100%;
             }
@@ -398,6 +414,12 @@ and open the template in the editor.
                 height: 750px !important;
             }
             @media only screen and (max-width:1025px){
+                .beneficios p {
+                    position: relative !important;
+                    width: 75% !important;
+                    padding-left: 40px !important;
+                    margin: 0 auto !important;
+                }
                 .cat-filter-title{    
                     width: 70px !important;
                     font-size: 12px !important;
@@ -433,7 +455,12 @@ and open the template in the editor.
                 }
             }
             @media only screen and (max-width:768px){
-
+                .beneficios p {
+                    position: relative !important;
+                    width: 85% !important;
+                    padding-left: 40px !important;
+                    margin: 0 auto !important;
+                }
                 .separator p{
                     font-size: 12px !important;
                     line-height: 40px !important;
@@ -495,9 +522,34 @@ and open the template in the editor.
                 }
             }
             @media only screen and (max-width:425px){
+                .beneficios p::before {
+                    content: " ";
+                    height: 45px !important;
+                    width: 30px !important;
+                    position: absolute !important;
+                    display: block;
+                    background-size: 15px !important;
+                    background: url("../img/icon_ubicacion.png");
+                    top: 5px !important;
+                    background-repeat: no-repeat !important;
+                    left: 5px !important;
+                }
+                .category-filter-container .category-filter-item .category-filter .cat-filter-title {
+                    text-align: center !important;
+                    padding: 0 !important;
+                    width: 100% !important;
+                    font-size: 8px !important;
+                    margin: 0 !important;
+                }
+                .beneficios p {
+                    position: relative !important;
+                    width: 50% !important;
+                    padding-left: 40px !important;
+                    margin: 0 auto !important;
+                }
                 .cat-filter-title{   
-                                      width: 60px !important;
-                                      font-size: 12px !important;
+                    width: 60px !important;
+                    font-size: 12px !important;
                 }
                 .location-excel-sidebar .top{
                     margin-top: 15px !important;
@@ -746,7 +798,7 @@ and open the template in the editor.
                             </div>
                         </div>
 
-                        <div class="beneficios">Mi ubicación</div>
+                        <div class="beneficios"><p>Mi ubicación</p></div>
                     </div>
 
                 </div>
