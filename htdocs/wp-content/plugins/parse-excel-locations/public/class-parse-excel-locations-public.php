@@ -98,6 +98,9 @@ class Parse_Excel_Locations_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/parse-excel-locations-public.js', array( 'jquery' ), $this->version, false );
 
+		wp_localize_script( 'parse-excel-locations', 'my_ajax_object',
+            array( 'parse_excel_locations' =>  plugin_dir_url( __FILE__ ). 'get-locations.php'  ) );
+
 	}
 
 }

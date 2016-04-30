@@ -117,54 +117,122 @@ function parseExcelLocationLogic( $atts )
 
     $result = $wpdb->get_results($sql);
 
-    
+    $toJsonResult = array();
 
 
-    $html = '<div class="container parse-excel">
-            	<div class="row">';
-
-	$html .= getSidebarLocations();
-
-	$html .= '<div class="col-md-9 excel-center">
-                    <ul class="item-list">';
-
-                   
-
-    for($i = 0; $i < count($result); $i++){
-
-    	$_clasificacion = $result[$i]->clasificacion;
-		foreach ($trans as $clave => $valor) {
-		    $_clasificacion = str_replace($clave, $valor, $_clasificacion);
-		}
-
-         $html .= '<li class="col-md-12 col-lg-6 cat-'.strtolower($_clasificacion).' dep-'.strtolower(str_replace(" ", "_", $result[$i]->departamento)).'">
-                            <div class="item">
-                                <div class="item-img">
-                                    <img src="'.$result[$i]->imagen.'"/>
-                                </div>
-                                <div class="item-data">
-                                    <div class="item-category-img '.strtolower($_clasificacion).'">
-
-                                    </div>
-                                    <div class="item-disscount">
-                                        <p class="val">'.($result[$i]->descuento === '0'? "":($result[$i]->descuento.'%')).'</p>
-                                        <p class="mini">dto</p>
-                                    </div>
-
-                                    <div class="item-apply-on">'.$result[$i]->beneficios.'</div>
-                                    <div class="item-address">'.$result[$i]->direccion.'</div></div>
-                            </div>
-                        </li>';
-
+    for($i = 0; $i < count($result); $i++) {
+        $coordenadas = explode(",", $result[$i]->coordenadas);
+        $toJsonResult[] =
+            array(
+                "departamento" => $result[$i]->departamento,
+                "nombre" => $result[$i]->nombre,
+                "localidad" => $result[$i]->localidad,
+                "direccion" => $result[$i]->nombre,
+                "coordenadas" => array(
+                        "x" => $coordenadas[0],
+                        "y" => $coordenadas[1],
+                    ),
+                "telefono" => $result[$i]->telefono,
+                "servicios" => explode(" - ", $result[$i]->servicios)
+            );
+        
     }
 
-    // items container center
-    $html .= '</ul></div>';
+    
+    ?>
+    <script>
+        var marker_data = function (depto, lat, lng, title) {
+                this.lat = lat;
+                this.lng = lng;
+                this.title = title;
+                this.depto = depto;
+        };
+        var localidades_data = <?php echo json_encode($toJsonResult);?>;
+        var marker_data_arr = [];
+        for(var i in localidades_data){
+            marker_data_arr.push(
+                new marker_data(
+                    localidades_data[i].departamento,
+                    parseFloat(localidades_data[i].coordenadas.x),
+                    parseFloat(localidades_data[i].coordenadas.y),
+                    localidades_data[i].localidad
+                )
+            );
+        }
+                
+        
+            
+       /* marker_data_arr.push(new marker_data("MALDONADO", -31.2783835, -56.5093691, "PANDO"));
+        marker_data_arr.push(new marker_data("MELO", -31.2783837, -57.5193691, "VENEZUELA"));
+        marker_data_arr.push(new marker_data("CANELONES", -31.2783832, -56.5593691, "TU HERMANA"));
+        marker_data_arr.push(new marker_data("MONTEVIDEO", -32.9840109, -57.0524278, "PEPE"));
+        marker_data_arr.push(new marker_data("MONTEVIDEO", -31.2783835, -57.5493691, "ETC"));
+        marker_data_arr.push(new marker_data("MALDONADO", -33.5461217, -56.76919, "ETC"));
+        marker_data_arr.push(new marker_data("MALDONADO", -34.5278466, -55.5014186, "ETC"));
+*/
+        var google_map_markers = new Array();
+        var map;
 
-    // container and row
-    $html .= '</div></div>';
+        function hide_markers_where_not(attr, value) {
+            var bounds = new google.maps.LatLngBounds();
+            for (var i = 0; i < marker_data_arr.length; i++) {
+                if (attr === "depto" && marker_data_arr[i].depto != value) {
+                    //console.log(google_map_markers);
+                    google_map_markers[i].setVisible(false);
+                    //console.log(i);
+                } else {
+                    bounds.extend(google_map_markers[i].getPosition());
+                }
+            }
 
-	return $html;
+            map.fitBounds(bounds);
+        }
+
+        function initMap() {
+            var myLatLng = {lat: -32.5623464, lng: -55.4331402};
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: myLatLng
+            });
+            //console.log(document.getElementById('map'));
+            console.log(marker_data_arr);
+            for (var i = 0; i < marker_data_arr.length; i++) {
+
+                var myLatLng = {lat: marker_data_arr[i].lat, lng: marker_data_arr[i].lng};
+                //console.log(myLatLng);
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: marker_data_arr[i].title
+                });
+                //console.log(marker);
+                google_map_markers.push(marker);
+
+
+
+            }
+            //example
+            //hide_markers_where_not("depto", "MONTEVIDEO");
+
+        }
+    </script>
+    <?php
+
+    $html = '<style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #map {
+                height: 500px;
+            }
+        </style><div id="map"></div>';
+	//$html .= getSidebarLocations();
+
+    return $html;
+
+    
 }
 
 
