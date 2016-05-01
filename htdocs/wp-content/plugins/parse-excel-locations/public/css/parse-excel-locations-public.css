@@ -13,7 +13,22 @@
 .container {
     width: 100%;
 }
-
+.beneficios p{
+    position: relative !important;
+    width: 60% !important;
+    padding-left: 40px !important;
+    margin: 0 auto !important;
+}
+.beneficios p::before{
+    content: " ";
+    height: 45px;
+    width: 31px;
+    position: absolute;
+    display: block;
+    background: url("../img/icon_ubicacion.png");
+    top: 5px;
+    left: 5px;
+}
 .locations-map {
     padding: 0 !important;
 

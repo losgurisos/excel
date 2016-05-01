@@ -269,25 +269,25 @@ function getSidebar() {
                             </div>
                         </div>
                     </div>
-                    <div class="beneficios">Beneficios Pranta!</div>
+                    <a href="/tarjeta-beneficia" class="beneficios">Beneficios Pronto!</a>
                     <div class="bottom">
                         <div class="container-beneficios">
-                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-xs-3 col-md-3 efectivo">
+                            <a href="/retiros-en-efectivo" class="beneficio col-lg-3 col-sm-3 col-xs-3 col-md-3 efectivo">
                                 <div class="beneficio_image "></div>
                                 <div class="beneficio_name">Retirar efectivo</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
                             </a>
-                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  movil">
+                            <a href="/pago-movil" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  movil">
                                 <div class="beneficio_image"></div>
                                 <div class="beneficio_name">Pago móvil</div>
                                 <div class="checkbox-container"><input type="checkbox"/></div>
                             </a>
-                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  restaurantes">
+                            <a href="/restaurantes/" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  restaurantes">
                                 <div class="beneficio_image"></div>
                                 <div class="beneficio_name">Restaurantes</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
                             </a>
-                            <a href="#" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  estaciones">
+                            <a href="/beneficios-estaciones/" class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  estaciones">
                                 <div class="beneficio_image"></div>
                                 <div class="beneficio_name">Estaciones</div>
                                 <div  class="checkbox-container"><input type="checkbox"/></div>
