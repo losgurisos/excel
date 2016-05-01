@@ -144,7 +144,7 @@ function parseExcelLogic($atts) {
         $html .= '<li class="col-md-12 col-lg-6 cat-' . strtolower($_clasificacion) . ' dep-' . strtolower(str_replace(" ", "_", $result[$i]->departamento)) . '">
                             <div class="item">
                                 <div class="item-img">
-                                    <img src="'. $result[$i]->imagen . '"/>
+                                <img src="' . plugins_url('public/marcas/' . $result[$i]->imagen . '', __FILE__) . '"/>
                                 </div>
                                 <div class="item-data">
                                     <div class="item-category-img ' . strtolower($_clasificacion) . '">
@@ -200,7 +200,7 @@ function getSidebar() {
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Moda</div>
                                         <div class="cat-filter-checkbox-container">
-                                             <!--<input category="moda" type="checkbox" class="cat-filter-checkbox"/>-->
+                                            <input category="moda" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@ function getSidebar() {
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Niños</div>
                                         <div class="cat-filter-checkbox-container">
-                                            <!--<input category="ninos" type="checkbox" class="cat-filter-checkbox"/>-->
+                                            <input category="ninos" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -218,7 +218,7 @@ function getSidebar() {
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Hogar</div>
                                         <div class="cat-filter-checkbox-container">
-                                             <!--<input category="hogar" type="checkbox" class="cat-filter-checkbox"/>-->
+                                             <input category="hogar" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -227,7 +227,7 @@ function getSidebar() {
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Vehículos</div>
                                         <div class="cat-filter-checkbox-container">
-                                             <!--<input category="vehiculos" type="checkbox" class="cat-filter-checkbox"/>-->
+                                             <input category="vehiculos" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -236,7 +236,7 @@ function getSidebar() {
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Otros</div>
                                         <div class="cat-filter-checkbox-container">
-                                             <!--<input category="otros" type="checkbox" class="cat-filter-checkbox"/>-->
+                                            <input category="otros" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
