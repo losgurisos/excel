@@ -521,8 +521,8 @@ ul.item-list {
     .item-address {
         width: 145px !important;;text-align: left !important;
         font-size: 9px  !important;
-        line-height: 9px;
-        padding-left: 15px;
+        line-height: 9px !important;
+        padding-left: 15px !important;
     }
     .item {
         background: #ebebeb;
