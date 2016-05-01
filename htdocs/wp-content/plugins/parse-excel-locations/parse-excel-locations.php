@@ -172,19 +172,21 @@ function parseExcelLocationLogic($atts) {
         }
 
 
-
-        $toJsonResult[] = array(
-            "departamento" => strtolower(str_replace(" ", "_", $depto)),
-            "nombre" => $result[$i]->nombre,
-            "localidad" => strtolower(str_replace(" ", "_", $localidad)),
-            "direccion" => $result[$i]->direccion,
-            "coordenadas" => array(
-                "x" => $coordenadas[0],
-                "y" => $coordenadas[1],
-            ),
-            "telefono" => $result[$i]->telefono,
-            "servicios" => $servicios
-        );
+        $toJsonResult[] =
+            array(
+                "departamento_titulo" => $depto,
+                "departamento" => strtolower(str_replace(" ", "_",$depto)),
+                "nombre" => $result[$i]->nombre,
+                "localidad_titulo" =>  $localidad,
+                "localidad" =>strtolower(str_replace(" ", "_",$localidad)) ,
+                "direccion" => $result[$i]->direccion,
+                "coordenadas" => array(
+                        "x" => $coordenadas[0],
+                        "y" => $coordenadas[1],
+                    ),
+                "telefono" => $result[$i]->telefono,
+                "servicios" => $servicios
+            );
     }
     ?>
     <script>
@@ -222,8 +224,23 @@ function parseExcelLocationLogic($atts) {
         jQuery(document).ready(function () {
 
             cbFilters = jQuery(".cat-filter-checkbox");
-            deptoFilter = jQuery("#cities-filter-select");
-            localidadFilter = jQuery("");
+            deptoSelect = jQuery("#cities-filter-select");
+            localidadSelect = jQuery("#localidades-filter-select");
+
+            var _localidadesPos = [];
+            var _localidades = [];
+            for(var i in localidades_data) {
+                if(_localidades.indexOf(localidades_data[i].localidad) === -1){
+                    _localidades.push(localidades_data[i].localidad);
+                    _localidadesPos.push(i);
+                }
+                
+                
+            }
+
+            for(var i in _localidadesPos){
+                localidadSelect.append('<option value="'+localidades_data[_localidadesPos[i]].localidad+'">'+localidades_data[_localidadesPos[i]].localidad_titulo+'</option>');
+            }
 
             cbFilters.change(function () {
 
@@ -239,9 +256,15 @@ function parseExcelLocationLogic($atts) {
                 reloadFilters();
             });
 
-            deptoFilter.change(function () {
+            deptoSelect.change(function () {
 
-                depFilter = jQuery(this).val();
+                deptoFilter = jQuery(this).val();
+                reloadFilters();
+
+            });
+            localidadSelect.change(function () {
+
+                localidadFilter = jQuery(this).val();
                 reloadFilters();
 
             });
@@ -261,15 +284,15 @@ function parseExcelLocationLogic($atts) {
         var map;
 
         function reloadFilters() {
-
-            console.log([servicesFilters, deptoFilter, localidadFilter])
+ 
             var bounds = new google.maps.LatLngBounds();
             for (var i = 0; i < marker_data_arr.length; i++) {
                 //console.log(deptoFilter !=='',marker_data_arr[i].depto !== deptoFilter )
-                console.log(localidadFilter !== '', marker_data_arr[i].localidad !== localidadFilter)
-                if ((deptoFilter !== '' && marker_data_arr[i].depto !== deptoFilter)
-                        || (localidadFilter !== '' && marker_data_arr[i].localidad !== localidadFilter)
-                        || intersect_safe(servicesFilters, marker_data_arr[i].servicios)) {
+  
+                if ((deptoFilter !=='' && marker_data_arr[i].depto !== deptoFilter)
+                    || (localidadFilter!=='' && marker_data_arr[i].localidad !== localidadFilter)
+                    || intersect_safe(servicesFilters, marker_data_arr[i].servicios)) {
+
                     //console.log(google_map_markers);
                     google_map_markers[i].setVisible(false);
 
@@ -297,7 +320,6 @@ function parseExcelLocationLogic($atts) {
                 center: myLatLng
             });
             //console.log(document.getElementById('map'));
-            console.log(marker_data_arr);
             for (var i = 0; i < marker_data_arr.length; i++) {
 
                 myLatLng = {lat: marker_data_arr[i].lat, lng: marker_data_arr[i].lng};
@@ -325,7 +347,7 @@ function parseExcelLocationLogic($atts) {
     $html = '<div class="container parse-excel">
             	<div class="row">';
     $html .= getSidebarLocations();
-    $html = '<style>
+    $html .= '<style>
                 html, body {
                     height: 100%;
                     margin: 0;
@@ -385,8 +407,8 @@ function getSidebarLocations() {
                                             Barrio/Localidad
                                         </div>
                                         <div class="cbox col-lg-6 col-md-6 col-sm-12">
-                                            <select id="cities-filter-select" class="cities-filter-select">
-                                                <option>Montevideo</option>
+                                            <select id="localidades-filter-select" class="localidades-filter-select">
+                                                <option value=""> -- Barrio/Localidad -- </option>
                                             </select>
                                         </div>
                                     </div>
