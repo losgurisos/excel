@@ -13,15 +13,16 @@
 .container {
     width: 100%;
 }
-.locations-map{
-    .locations-map {
-        height: 750px;
-        width: 75% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        float: left !important;
-    }
+
+.locations-map {
+    padding: 0 !important;
+    padding-left: 25% !important;
+    height: 750px;
+    width: 100% !important;
+    margin: 0 !important;
+    float: left !important;
 }
+
 .item-apply-on {
     font-family: HelveticaLight;
     color: #b81d2c;
@@ -299,7 +300,8 @@ select {
     width: 100% !important;
 
 }
-
+.cities-filter-select {
+    color: black;}
 .container-beneficios {
     margin-top: 30px !important;overflow: hidden;height: 95px !important;
 }
@@ -478,6 +480,7 @@ select {
     }
 }
 @media only screen and (max-width:425px){
+    .locations-map{padding: 0 !important;}
     .cat-filter-title{   
         width: 60px !important;
         font-size: 12px !important;

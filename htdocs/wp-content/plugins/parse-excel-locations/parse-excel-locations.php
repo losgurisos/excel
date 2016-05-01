@@ -324,6 +324,7 @@ function parseExcelLocationLogic($atts) {
     <?php
     $html = '<div class="container parse-excel">
             	<div class="row">';
+    $html .= getSidebarLocations();
     $html = '<style>
                 html, body {
                     height: 100%;
@@ -333,7 +334,7 @@ function parseExcelLocationLogic($atts) {
 
             </style><div class="locations-map" id="locations-map"></div>';
 
-    $html .= getSidebarLocations();
+
 // container and row
     $html .= '</div></div>';
     return $html;
