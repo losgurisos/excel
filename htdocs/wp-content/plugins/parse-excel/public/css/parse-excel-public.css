@@ -14,6 +14,7 @@
     width: 100%;
 }
 .item-apply-on {
+    text-align: left !important;
     font-family: HelveticaLight;
     color: #b81d2c;
     margin: 2px !important;
@@ -45,6 +46,7 @@
     padding-top: 25px;
 }
 .excel-sidebar .beneficios {
+    display:block !important;
     line-height: 55px !important;
     height: 55px !important;
     background: #fdc600;
@@ -142,6 +144,7 @@ ul.item-list {
 
 .item-address {font-family: HelveticaLight;
                font-weight: bold;
+               text-align: left !important;
                position: relative;
                margin-top: 10px !important;
                width: 195px !important;
@@ -388,8 +391,21 @@ ul.item-list {
         height: 55x !important;
 
     }
+    .item-address::before{
+        content: " ";
+        height: 15px !important;
+        width: 15px !important;
+        display: block;
+        left: 0px !important;
+        background-size: 10px !important;
+        background-repeat: no-repeat !important;
+    }
+    .container.parse-excel .row {
+        margin: 0 !important;
+        height: 85px !important;
+    }
     .excel-sidebar .top {
-        height: 180px !important;
+        height: 190px !important;
     }
     .excel-center {
         padding-left: 0 !important;
@@ -429,11 +445,13 @@ ul.item-list {
 
         height: 30px !important;
     }
+    .item .item-data .val {
+        font-size: 35px !important;
+    }
     .beneficia {
-        height: 35px !important;
+        height: 34px !important;
         width: 100px !important;
-        margin: 0 auto;
-        margin-top: 20px !important;
+        margin-top: 0px !important;
         background-size: 100px !important;
         margin-bottom: 10px !important;
     }
@@ -454,7 +472,7 @@ ul.item-list {
         float: left;
     }
     .item .item-data .val {
-        font-size: 50px  !important;
+        font-size: 35px  !important;
         color: #b81d2c;
         line-height: 55px !important;
         font-weight: bold;
@@ -465,19 +483,19 @@ ul.item-list {
     .item .item-data .item-disscount p.mini {
         float: left;
         color: #b81d2c;
-        line-height: 0px;
+        line-height: 0px !important;
         font-weight: bold;
-        font-size: 20px  !important;
-        margin: 38px 0px 0px 5px !important;
+        font-size: 20px !important;
+        margin: 20px 0px 0px 5px !important
+    }
+    .item .item-disscount {
+        height: 35px !important;
     }
     .item .item-category-img {
         position: absolute;
-        right: 35px;
-        width: 35px;
-        background-size: 35px;
+        width: 35px !important;
+        background-size: 35px !important;
         background-repeat: no-repeat;
-        height: 35px;
-
     }
     .item .item-disscount {
         height: 50px;
@@ -501,15 +519,15 @@ ul.item-list {
         width: 145px;
     }
     .item-address {
-        width: 145px;text-align: left !important;
+        width: 145px !important;;text-align: left !important;
         font-size: 9px  !important;
         line-height: 9px;
-        padding-left: 50px;
+        padding-left: 15px;
     }
     .item {
         background: #ebebeb;
-        height: 155px;
-        padding: 10px;
+        height: 125px !important;
+        padding: 10px !important;
         box-sizing: border-box;
         margin: 15px 0px;
         border-radius: 10px;
