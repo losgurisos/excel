@@ -16,10 +16,11 @@
 
 .locations-map {
     padding: 0 !important;
-    margin-left: 25% !important;
+
     height: 750px !important;
     width: 100% !important;
     margin: 0 !important;
+    margin-left: 25% !important;
     float: left !important;
 }
 
