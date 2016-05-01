@@ -222,9 +222,129 @@ function parseExcelLocationLogic($atts) {
 
         jQuery(document).ready(function () {
 
-            cbFilters = jQuery(".cat-filter-checkbox");
-            deptoSelect = jQuery("#cities-filter-select");
-            localidadSelect = jQuery("#localidades-filter-select");
+            var cbFilters = jQuery(".cat-filter-checkbox");
+            var deptoSelect = jQuery("#cities-filter-select");
+            var localidadSelect = jQuery("#localidades-filter-select");
+
+
+            function DepartamentosSelectManager (dep_select_id, loc_select_id) {
+
+                var _dep_select_id = dep_select_id;
+                var _loc_select_id = loc_select_id;
+                var departamentos = [];
+
+                function newOption(value, title){
+                    return '<option value="'+value+'">'+title+'</option>';
+                }
+
+                this.addDepartamento = function (dep_code, dep_title){
+                    if(!this.exists(dep_code))
+                        departamentos.push(new Departamento(dep_code, dep_title));
+                    
+                }
+                this.addLocalidad = function(dep_code, loc_code, loc_title){
+                    if(!this.exists(dep_code))
+                        return false;
+
+                    this.getDepartamento(dep_code).addLocalidad(loc_code, loc_title);
+                }
+                this.exists = function (dep_code) {
+                    for(var i in departamentos){
+                        if(dep_code === departamentos[i].getCode())
+                            return true;
+                    }
+                    return false;
+                }
+                this.getDepartamento= function (dep_code) {
+                    for(var i in departamentos){
+                        if(dep_code === departamentos[i].getCode())
+                            return departamentos[i];
+                    }
+                    return false;
+                }
+                this.loadDeptosOptions = function () {
+                    var _select = jQuery("#"+_dep_select_id);
+                    _select.html('');
+                    _select.append(newOption('', ' -- Departamento -- '))
+                    for(var i in departamentos)
+                        _select.append(
+                            newOption(
+                                departamentos[i].getCode(),
+                                departamentos[i].getTitle()
+                            )
+                        )
+                    
+                }
+                this.loadLocalidadesOption = function (dep_code) {
+                    var _select = jQuery("#"+_loc_select_id);
+                    if(!this.exists(dep_code)) return;
+                    _select.html('');
+                    _select.append(newOption('', ' -- Barrio/Localidad -- '))
+                    var _localidades = this.getDepartamento(dep_code).getLocalidades();
+                    for(var i in _localidades)
+                        _select.append(
+                            newOption(
+                                _localidades[i].getCode(),
+                                _localidades[i].getTitle()
+                            )
+                        ) 
+                }
+
+                function Departamento(code, title){
+
+                    var localidades = [];
+                    var title = title;
+                    var code = code;
+
+
+                    this.getCode = function(){
+                        return code;
+                    }
+                    this.getTitle = function(){
+                        return title;
+                    }
+                    this.addLocalidad = function(loc_code, loc_title){
+                        if(!this.exists(loc_code))
+                            localidades.push(new Localidad(loc_code, loc_title));
+                    }
+                    this.exists = function (loc_code) {
+                        for(var i in localidades){
+                            if(loc_code === localidades[i].getCode())
+                                return true;
+                        }
+                        return false;
+                    }
+                    this.getLocalidades = function(){
+                        return localidades;
+                    }
+
+                    function Localidad (code, title) {
+                        var title = title;
+                        var code = code;
+                        this.getCode = function(){
+                            return code;
+                        }
+                        this.getTitle = function(){
+                            return title;
+                        }
+                    }
+                    
+                }
+            }
+
+
+            
+
+            var departamentosManager = new DepartamentosSelectManager('cities-filter-select', 'localidades-filter-select');
+
+            for (var i in localidades_data) {
+               departamentosManager.addDepartamento(localidades_data[i].departamento, localidades_data[i].departamento_titulo);
+               departamentosManager.addLocalidad(localidades_data[i].departamento, localidades_data[i].localidad, localidades_data[i].localidad_titulo);
+
+            }
+
+            departamentosManager.loadDeptosOptions();
+            
 
             var _localidadesPos = [];
             var _localidades = [];
@@ -238,7 +358,7 @@ function parseExcelLocationLogic($atts) {
             }
 
             for (var i in _localidadesPos) {
-                localidadSelect.append('<option value="' + localidades_data[_localidadesPos[i]].localidad + '">' + localidades_data[_localidadesPos[i]].localidad_titulo + '</option>');
+                //localidadSelect.append('<option value="' + localidades_data[_localidadesPos[i]].localidad + '">' + localidades_data[_localidadesPos[i]].localidad_titulo + '</option>');
             }
 
             cbFilters.change(function () {
@@ -258,6 +378,8 @@ function parseExcelLocationLogic($atts) {
             deptoSelect.change(function () {
 
                 deptoFilter = jQuery(this).val();
+                departamentosManager.loadLocalidadesOption(deptoFilter);
+                localidadFilter = '';
                 reloadFilters();
 
             });
@@ -283,6 +405,8 @@ function parseExcelLocationLogic($atts) {
         var map;
 
         function reloadFilters() {
+
+            console.log(localidadFilter);
 
             var bounds = new google.maps.LatLngBounds();
             var foundAny = false;
@@ -386,25 +510,6 @@ function getSidebarLocations() {
                                         <div class="cbox col-lg-6 col-md-6 col-sm-12">
                                              <select id="cities-filter-select" class="cities-filter-select">
                                                 <option value=""> -- Departamento -- </option>
-                                                <option value="montevideo">Montevideo</option>
-                                                <option value="artigas">Artigas</option>
-                                                <option value="canelones">Canelones</option>
-                                                <option value="colonia">Colonia</option>
-                                                <option value="durazno">Durazno</option>
-                                                <option value="treinta_y_tres">Treinta y Tres</option>
-                                                <option value="cerro_largo">Cerro Largo</option>
-                                                <option value="flores">Flores</option>
-                                                <option value="florida">Florida</option>
-                                                <option value="maldonado">Maldonado</option>
-                                                <option value="lavalleja">Lavalleja</option>
-                                                <option value="paysandu">Paysandu</option>
-                                                <option value="rio_negro">Rio Negro</option>
-                                                <option value="rivera">Rivera</option>
-                                                <option value="rocha">Rocha</option>
-                                                <option value="san_jose">San Jose</option>
-                                                <option value="salto">Salto</option>
-                                                <option value="soriano">Soriano</option>
-                                                <option value="tacuarembo">Tacuarembo</option>  
                                             </select>
                                         </div>
                                     </div>
