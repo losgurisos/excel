@@ -407,7 +407,7 @@ function parseExcelLocationLogic($atts) {
                 reloadFilters();
 
             });
-            $("#my_location").click(function () {
+            jQuery("#my_location").click(function () {
     // Try HTML5 geolocation.
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function (position) {
