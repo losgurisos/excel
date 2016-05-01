@@ -233,13 +233,26 @@ function parseExcelLocationLogic($atts) {
                 var _loc_select_id = loc_select_id;
                 var departamentos = [];
 
+                // custom compare for sorting
+                function compare(a,b) {
+                  if (a.getTitle() < b.getTitle())
+                    return -1;
+                  else if (a.getTitle() > b.getTitle())
+                    return 1;
+                  else 
+                    return 0;
+                }
+
+                // new option tag
                 function newOption(value, title){
                     return '<option value="'+value+'">'+title+'</option>';
                 }
 
                 this.addDepartamento = function (dep_code, dep_title){
-                    if(!this.exists(dep_code))
+                    if(!this.exists(dep_code)){
                         departamentos.push(new Departamento(dep_code, dep_title));
+                        departamentos.sort(compare);
+                    }
                     
                 }
                 this.addLocalidad = function(dep_code, loc_code, loc_title){
@@ -304,8 +317,10 @@ function parseExcelLocationLogic($atts) {
                         return title;
                     }
                     this.addLocalidad = function(loc_code, loc_title){
-                        if(!this.exists(loc_code))
+                        if(!this.exists(loc_code)){
                             localidades.push(new Localidad(loc_code, loc_title));
+                            localidades.sort(compare);
+                        }
                     }
                     this.exists = function (loc_code) {
                         for(var i in localidades){
@@ -405,8 +420,6 @@ function parseExcelLocationLogic($atts) {
         var map;
 
         function reloadFilters() {
-
-            console.log(localidadFilter);
 
             var bounds = new google.maps.LatLngBounds();
             var foundAny = false;
