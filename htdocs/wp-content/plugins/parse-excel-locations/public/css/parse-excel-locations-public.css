@@ -35,7 +35,7 @@
 }
 .locations-map {
     padding: 0 !important;
-
+    width: 75% !important;
     height: 750px !important;
     width: 100% !important;
     margin: 0 !important;
@@ -518,7 +518,7 @@ select {
         top: 6px;
         left: 5px;
     }
-    .locations-map{margin: 0 !important;}
+    .locations-map{width: 100% !important;margin: 0 !important;}
     .cat-filter-title{   
         width: 60px !important;
         font-size: 12px !important;
