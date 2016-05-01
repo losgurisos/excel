@@ -16,7 +16,7 @@
 
 .locations-map {
     padding: 0 !important;
-    padding-left: 25% !important;
+    margin-left: 25% !important;
     height: 750px !important;
     width: 100% !important;
     margin: 0 !important;
@@ -171,6 +171,7 @@ hr {
     border-top: 3px solid #eee !important;
 }
 select {
+    color: black;
     width: 100% !important;
     border: 0 !important;
 }
@@ -480,7 +481,7 @@ select {
     }
 }
 @media only screen and (max-width:425px){
-    .locations-map{padding: 0 !important;}
+    .locations-map{margin: 0 !important;}
     .cat-filter-title{   
         width: 60px !important;
         font-size: 12px !important;

@@ -172,21 +172,20 @@ function parseExcelLocationLogic($atts) {
         }
 
 
-        $toJsonResult[] =
-            array(
-                "departamento_titulo" => $depto,
-                "departamento" => strtolower(str_replace(" ", "_",$depto)),
-                "nombre" => $result[$i]->nombre,
-                "localidad_titulo" =>  $localidad,
-                "localidad" =>strtolower(str_replace(" ", "_",$localidad)) ,
-                "direccion" => $result[$i]->direccion,
-                "coordenadas" => array(
-                        "x" => $coordenadas[0],
-                        "y" => $coordenadas[1],
-                    ),
-                "telefono" => $result[$i]->telefono,
-                "servicios" => $servicios
-            );
+        $toJsonResult[] = array(
+            "departamento_titulo" => $depto,
+            "departamento" => strtolower(str_replace(" ", "_", $depto)),
+            "nombre" => $result[$i]->nombre,
+            "localidad_titulo" => $localidad,
+            "localidad" => strtolower(str_replace(" ", "_", $localidad)),
+            "direccion" => $result[$i]->direccion,
+            "coordenadas" => array(
+                "x" => $coordenadas[0],
+                "y" => $coordenadas[1],
+            ),
+            "telefono" => $result[$i]->telefono,
+            "servicios" => $servicios
+        );
     }
     ?>
     <script>
@@ -229,17 +228,17 @@ function parseExcelLocationLogic($atts) {
 
             var _localidadesPos = [];
             var _localidades = [];
-            for(var i in localidades_data) {
-                if(_localidades.indexOf(localidades_data[i].localidad) === -1){
+            for (var i in localidades_data) {
+                if (_localidades.indexOf(localidades_data[i].localidad) === -1) {
                     _localidades.push(localidades_data[i].localidad);
                     _localidadesPos.push(i);
                 }
-                
-                
+
+
             }
 
-            for(var i in _localidadesPos){
-                localidadSelect.append('<option value="'+localidades_data[_localidadesPos[i]].localidad+'">'+localidades_data[_localidadesPos[i]].localidad_titulo+'</option>');
+            for (var i in _localidadesPos) {
+                localidadSelect.append('<option value="' + localidades_data[_localidadesPos[i]].localidad + '">' + localidades_data[_localidadesPos[i]].localidad_titulo + '</option>');
             }
 
             cbFilters.change(function () {
@@ -284,25 +283,32 @@ function parseExcelLocationLogic($atts) {
         var map;
 
         function reloadFilters() {
- 
+
             var bounds = new google.maps.LatLngBounds();
+            var foundAny = false;
             for (var i = 0; i < marker_data_arr.length; i++) {
                 //console.log(deptoFilter !=='',marker_data_arr[i].depto !== deptoFilter )
-  
-                if ((deptoFilter !=='' && marker_data_arr[i].depto !== deptoFilter)
-                    || (localidadFilter!=='' && marker_data_arr[i].localidad !== localidadFilter)
-                    || intersect_safe(servicesFilters, marker_data_arr[i].servicios)) {
+
+                if ((deptoFilter !== '' && marker_data_arr[i].depto !== deptoFilter)
+                        || (localidadFilter !== '' && marker_data_arr[i].localidad !== localidadFilter)
+                        || intersect_safe(servicesFilters, marker_data_arr[i].servicios)) {
 
                     //console.log(google_map_markers);
                     google_map_markers[i].setVisible(false);
 
                 } else {
+                    foundAny = true;
                     google_map_markers[i].setVisible(true);
                     bounds.extend(google_map_markers[i].getPosition());
                 }
             }
+            if (foundAny) {
+                map.fitBounds(bounds);
+            } else {
+                var center = new google.maps.LatLng(-32.7027405, -54.7530596);
+                map.setCenter(center, 8);
+            }
 
-            map.fitBounds(bounds);
         }
 
         function intersect_safe(a, b) {
@@ -314,7 +320,7 @@ function parseExcelLocationLogic($atts) {
 
 
         function initMap() {
-            var myLatLng = {lat: -32.5623464, lng: -55.4331402};
+            var myLatLng = {lat: -32.7027405, lng: -54.7530596};
             map = new google.maps.Map(document.getElementById('locations-map'), {
                 zoom: 8,
                 center: myLatLng
@@ -464,7 +470,7 @@ function getSidebarLocations() {
                             </div>
                         </div>
 
-                        <div class="beneficios">Mi ubicación</div>
+                        <div class="beneficios" id="my_location"><p>Mi ubicación</p></div>
                     </div>
 
                 </div>';
