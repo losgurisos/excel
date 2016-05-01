@@ -109,7 +109,7 @@ function parse_excel_shortcode($atts) {
 
 // THE LOGIC
 function parseExcelLogic($atts) {
-    add_action('wp_footer', 'add_shortcode_css');
+    add_action('wp_footer', 'add_shortcode_css_and_js');
     $trans = array("Ã¡" => "a", "Ã©" => "e", "Ã­" => "i", "Ã³" => "o", "Ãº" => "u", "Ã±" => "n");
 
     // database object
@@ -144,7 +144,7 @@ function parseExcelLogic($atts) {
         $html .= '<li class="col-md-12 col-lg-6 cat-' . strtolower($_clasificacion) . ' dep-' . strtolower(str_replace(" ", "_", $result[$i]->departamento)) . '">
                             <div class="item">
                                 <div class="item-img">
-                                    <img src="' . $result[$i]->imagen . '"/>
+                                    <img src="'. $result[$i]->imagen . '"/>
                                 </div>
                                 <div class="item-data">
                                     <div class="item-category-img ' . strtolower($_clasificacion) . '">
@@ -170,7 +170,8 @@ function parseExcelLogic($atts) {
     return $html;
 }
 
-function add_shortcode_css() {
+function add_shortcode_css_and_js() {
+    wp_enqueue_script('parse-excel-shortcode-js', plugins_url('public/js/parse-excel-public.js', __FILE__), false);
     wp_enqueue_style('parse-excel-shortcode-css', plugins_url('public/css/parse-excel-public.css', __FILE__), false);
 }
 

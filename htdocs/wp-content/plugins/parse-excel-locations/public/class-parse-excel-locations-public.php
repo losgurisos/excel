@@ -73,7 +73,7 @@ class Parse_Excel_Locations_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/parse-excel-locations-public.css', array(), $this->version, 'all' );
+		//wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/parse-excel-locations-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,10 +96,7 @@ class Parse_Excel_Locations_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/parse-excel-locations-public.js', array( 'jquery' ), $this->version, false );
-
-		wp_localize_script( 'parse-excel-locations', 'my_ajax_object',
-            array( 'parse_excel_locations' =>  plugin_dir_url( __FILE__ ). 'get-locations.php'  ) );
+		//wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/parse-excel-locations-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

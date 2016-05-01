@@ -102,11 +102,25 @@ function parse_excel_locations_shortcode( $atts )
     return parseExcelLocationLogic( $atts );
 }
 
+function transform($str){
+    $trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
+
+
+}
+
 // THE LOGIC
 function parseExcelLocationLogic( $atts )
 {
-	
+	add_action('wp_footer', 'add_shortcode_locations_css_and_js');
+
 	$trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
+
+    $transServices = array(
+        "tarjeta_de_credito" => "tarjeta",
+        "prestamo_en_efectivo" => "solicitud",
+        "cobranzas" => "pagos",
+        "orden_de_compra" => "compras"
+    );
 	
 	// database object
 	global $wpdb;
@@ -121,19 +135,44 @@ function parseExcelLocationLogic( $atts )
 
 
     for($i = 0; $i < count($result); $i++) {
+            
+
         $localidad = $result[$i]->localidad;
         $depto = $result[$i]->departamento;
+
         foreach ($trans as $clave => $valor) {
             $localidad = str_replace($clave, $valor, $localidad);
             $depto = str_replace($clave, $valor, $depto);
         }
 
-        $coordenadas = explode(",", $result[$i]->coordenadas);
-        $_servicios = explode(" - ", $result[$i]->servicios);
-        $servicios = array();
-        for($j = 0; $j< count($_servicios); $j++){
-            $servicios.push() = strtolower(str_replace(" ", "_", $_servicios[$j]));
+        foreach ($trans as $clave => $valor) {
+                    
+            $result[$i]->servicios = str_replace($clave, $valor, $result[$i]->servicios);
         }
+
+        $_servicios = explode(" - ", $result[$i]->servicios);
+
+        $coordenadas = explode(",", $result[$i]->coordenadas);
+        
+        
+        $servicios = array();
+
+        for($j = 0; $j< count($_servicios); $j++){
+
+            $_serv = strtolower(str_replace(" ", "_", $_servicios[$j]));
+
+            
+            foreach ($transServices as $clave => $valor) {
+                $_serv = str_replace($clave, $valor, $_serv);
+            }
+            
+
+            $servicios[] = $_serv;
+            
+        }
+
+        
+
         $toJsonResult[] =
             array(
                 "departamento" => strtolower(str_replace(" ", "_",$depto)),
@@ -145,22 +184,26 @@ function parseExcelLocationLogic( $atts )
                         "y" => $coordenadas[1],
                     ),
                 "telefono" => $result[$i]->telefono,
-                "servicios" => '',
+                "servicios" => $servicios
             );
-            ?>
-            <script type="text/javascript"></script>
-            <?php
+            
         
     }
 
     
     ?>
     <script>
-        var marker_data = function (depto, lat, lng, title) {
+        var servicesFilters = [];
+        var deptoFilter = '';
+        var localidadFilter = '';
+
+        var marker_data = function (depto, localidad, lat, lng, title, servicios) {
                 this.lat = lat;
                 this.lng = lng;
                 this.title = title;
                 this.depto = depto;
+                this.localidad = localidad;
+                this.servicios = servicios;
         };
         var localidades_data = <?php echo json_encode($toJsonResult);?>;
         var marker_data_arr = [];
@@ -168,15 +211,47 @@ function parseExcelLocationLogic( $atts )
             marker_data_arr.push(
                 new marker_data(
                     localidades_data[i].departamento,
+                    localidades_data[i].localidad,
                     parseFloat(localidades_data[i].coordenadas.x),
-                    parseFloat(localidades_data[i].coordenadas.y),
-                    localidades_data[i].localidad
+                    parseFloat(localidades_data[i].coordenadas.y), 
+                    localidades_data[i].nombre,
+                    localidades_data[i].servicios
                 )
             );
         }
-                
+
         
-            
+
+        jQuery(document).ready(function(){
+
+            cbFilters = jQuery(".cat-filter-checkbox");
+            deptoFilter = jQuery("#cities-filter-select");
+            localidadFilter = jQuery("");
+
+            cbFilters.change(function () {
+
+                var service = jQuery(this).attr('service');
+
+                var index = servicesFilters.indexOf(service);
+
+                if (index === -1)
+                    servicesFilters.push(service);
+                else
+                    servicesFilters.splice(index, 1);
+
+                reloadFilters();
+            });
+
+            deptoFilter.change(function () {
+
+                depFilter = jQuery(this).val();
+                reloadFilters();
+
+            });
+               
+        })
+
+ 
        /* marker_data_arr.push(new marker_data("MALDONADO", -31.2783835, -56.5093691, "PANDO"));
         marker_data_arr.push(new marker_data("MELO", -31.2783837, -57.5193691, "VENEZUELA"));
         marker_data_arr.push(new marker_data("CANELONES", -31.2783832, -56.5593691, "TU HERMANA"));
@@ -188,14 +263,21 @@ function parseExcelLocationLogic( $atts )
         var google_map_markers = new Array();
         var map;
 
-        function hide_markers_where_not(attr, value) {
+        function reloadFilters() {
+
+            console.log([servicesFilters,deptoFilter,localidadFilter])
             var bounds = new google.maps.LatLngBounds();
             for (var i = 0; i < marker_data_arr.length; i++) {
-                if (attr === "depto" && marker_data_arr[i].depto != value) {
+                //console.log(deptoFilter !=='',marker_data_arr[i].depto !== deptoFilter )
+                console.log(localidadFilter!=='', marker_data_arr[i].localidad !== localidadFilter)
+                if ((deptoFilter !=='' && marker_data_arr[i].depto !== deptoFilter)
+                    || (localidadFilter!=='' && marker_data_arr[i].localidad !== localidadFilter)
+                    || intersect_safe(servicesFilters, marker_data_arr[i].servicios)) {
                     //console.log(google_map_markers);
                     google_map_markers[i].setVisible(false);
-                    //console.log(i);
+
                 } else {
+                    google_map_markers[i].setVisible(true);
                     bounds.extend(google_map_markers[i].getPosition());
                 }
             }
@@ -203,9 +285,17 @@ function parseExcelLocationLogic( $atts )
             map.fitBounds(bounds);
         }
 
+        function intersect_safe(a, b){
+            for(var i in a)
+                if (b.indexOf(a[i]) === -1)
+                    return true
+            return false;
+        }
+
+
         function initMap() {
             var myLatLng = {lat: -32.5623464, lng: -55.4331402};
-            map = new google.maps.Map(document.getElementById('map'), {
+            map = new google.maps.Map(document.getElementById('locations-map'), {
                 zoom: 8,
                 center: myLatLng
             });
@@ -213,8 +303,8 @@ function parseExcelLocationLogic( $atts )
             console.log(marker_data_arr);
             for (var i = 0; i < marker_data_arr.length; i++) {
 
-                var myLatLng = {lat: marker_data_arr[i].lat, lng: marker_data_arr[i].lng};
-                //console.log(myLatLng);
+                myLatLng = {lat: marker_data_arr[i].lat, lng: marker_data_arr[i].lng};
+            
                 var marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
@@ -226,10 +316,13 @@ function parseExcelLocationLogic( $atts )
 
 
             }
+            
             //example
             //hide_markers_where_not("depto", "MONTEVIDEO");
 
         }
+
+
     </script>
     <?php
 
@@ -239,11 +332,10 @@ function parseExcelLocationLogic( $atts )
                 margin: 0;
                 padding: 0;
             }
-            #map {
-                height: 500px;
-            }
-        </style><div id="map"></div>';
-	//$html .= getSidebarLocations();
+            
+        </style><div class="locations-map" id="locations-map"></div>';
+
+	$html .= getSidebarLocations();
 
     return $html;
 
@@ -253,127 +345,114 @@ function parseExcelLocationLogic( $atts )
 
 function getSidebarLocations(){
 
-	return '<div class="col-md-3 col-sm-3 col-xs-12 excel-sidebar">
+	return '<div class="col-md-3 col-sm-3 col-xs-12 location-excel-sidebar">
                     <div class="top">
-                        <p class="title">Descuentos en comercios amigos</p>
+                        <p class="title">Encontrá la sucursal más cercana a vos</p>
                         <div class="row">
 
                             <div class="category-filter-container">
 
+                                <div class="col-lg-12 filter-container">
+                                    <div class="filter-depto col-lg-12">
+                                        <div class="label col-lg-6 col-md-6 col-sm-12">
+                                            Elegí tu departamento
+                                        </div>
+                                        <div class="cbox col-lg-6 col-md-6 col-sm-12">
+                                             <select id="cities-filter-select" class="cities-filter-select">
+                                                <option value=""> -- Departamento -- </option>
+                                                <option value="montevideo">Montevideo</option>
+                                                <option value="artigas">Artigas</option>
+                                                <option value="canelones">Canelones</option>
+                                                <option value="colonia">Colonia</option>
+                                                <option value="durazno">Durazno</option>
+                                                <option value="treinta_y_tres">Treinta y Tres</option>
+                                                <option value="cerro_largo">Cerro Largo</option>
+                                                <option value="flores">Flores</option>
+                                                <option value="florida">Florida</option>
+                                                <option value="maldonado">Maldonado</option>
+                                                <option value="lavalleja">Lavalleja</option>
+                                                <option value="paysandu">Paysandu</option>
+                                                <option value="rio_negro">Rio Negro</option>
+                                                <option value="rivera">Rivera</option>
+                                                <option value="rocha">Rocha</option>
+                                                <option value="san_jose">San Jose</option>
+                                                <option value="salto">Salto</option>
+                                                <option value="soriano">Soriano</option>
+                                                <option value="tacuarembo">Tacuarembo</option>  
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="filter-barrio col-lg-12">
+                                        <div class="label col-lg-6 col-md-6 col-sm-12">
+                                            Barrio/Localidad
+                                        </div>
+                                        <div class="cbox col-lg-6 col-md-6 col-sm-12">
+                                            <select>
+                                                <option>Montevideo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 separator">
+                                    <hr>
+                                    <div class="absbox"><p>Locales con</p></div>
+                                </div>
+                                <div class="category-filter-item  col-xs-3 col-sm-6 col-lg-6 col-md-6">
+                                    <div class="category-filter solicitud">
+                                        <div class="cat-filter-icon"></div>
+                                        <div class="cat-filter-checkbox-container">
+                                            <input category="solicitud" type="checkbox" class="cat-filter-checkbox"/>
+                                        </div>
+                                        <div class="cat-filter-title">Solicitud de prestamo</div>
 
-                                <div class="category-filter-item col-xs-2 col-sm-4 col-lg-4 col-md-6">
+                                    </div>
+                                </div>
+                                <div class="category-filter-item col-xs-3 col-sm-6 col-lg-6 col-md-6" >
+                                    <div class="category-filter tarjeta">
+                                        <div class="cat-filter-icon"></div>
+                                        <div class="cat-filter-checkbox-container">
+                                            <input service="tarjeta" type="checkbox" class="cat-filter-checkbox"/>
+                                        </div>
+                                        <div class="cat-filter-title">Solicitar tarjeta</div>
 
-                                    <div class="category-filter tecnologia">
+                                    </div>
+                                </div>
+                                <div class="category-filter-item col-xs-3 col-sm-6 col-lg-6 col-md-6">
+
+                                    <div class="category-filter sucursal">
                                         <div class="cat-filter-icon "></div>
-                                        <div class="cat-filter-title">Tecnologia</div>
                                         <div class="cat-filter-checkbox-container">
-                                            <input category="tecnologia" type="checkbox" class="cat-filter-checkbox"/>
+                                            <input service="compras" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="category-filter-item  col-xs-2 col-sm-4 col-lg-4 col-md-6">
-                                    <div class="category-filter moda">
-                                        <div class="cat-filter-icon"></div>
-                                        <div class="cat-filter-title">Moda</div>
-                                        <div class="cat-filter-checkbox-container">
-                                            <input category="moda" type="checkbox" class="cat-filter-checkbox"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="category-filter-item col-xs-2 col-sm-4 col-lg-4 col-md-6" >
-                                    <div class="category-filter ninos">
-                                        <div class="cat-filter-icon"></div>
-                                        <div class="cat-filter-title">Niños</div>
-                                        <div class="cat-filter-checkbox-container">
-                                            <input category="ninos" type="checkbox" class="cat-filter-checkbox"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="category-filter-item  col-xs-2 col-sm-4 col-lg-4 col-md-6" >
-                                    <div class="category-filter hogar">
-                                        <div class="cat-filter-icon"></div>
-                                        <div class="cat-filter-title">Hogar</div>
-                                        <div class="cat-filter-checkbox-container">
-                                            <input category="hogar" type="checkbox" class="cat-filter-checkbox"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="category-filter-item col-xs-2  col-sm-4 col-lg-4 col-md-6">
-                                    <div class="category-filter vehiculos">
-                                        <div class="cat-filter-icon"></div>
-                                        <div class="cat-filter-title">Vehículos</div>
-                                        <div class="cat-filter-checkbox-container">
-                                            <input category="vehiculos" type="checkbox" class="cat-filter-checkbox"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="category-filter-item col-xs-2 col-sm-4  col-lg-4 col-md-6">
-                                    <div class="category-filter otros">
-                                        <div class="cat-filter-icon"></div>
-                                        <div class="cat-filter-title">Otros</div>
-                                        <div class="cat-filter-checkbox-container">
-                                            <input category="otros" type="checkbox" class="cat-filter-checkbox"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cities-filter-container">
-                            <div class="cities-filter-select-container">
-                                <select id="cities-filter-select" class="cities-filter-select">
-                                    <option value=""> -- Departamento -- </option>
-                                    <option value="montevideo">Montevideo</option>
-                                    <option value="artigas">Artigas</option>
-                                    <option value="canelones">Canelones</option>
-                                    <option value="colonia">Colonia</option>
-                                    <option value="durazno">Durazno</option>
-                                    <option value="treinta_y_tres">Treinta y Tres</option>
-                                    <option value="cerro_largo">Cerro Largo</option>
-                                    <option value="flores">Flores</option>
-                                    <option value="florida">Florida</option>
-                                    <option value="maldonado">Maldonado</option>
-                                    <option value="lavalleja">Lavalleja</option>
-                                    <option value="paysandu">Paysandu</option>
-                                    <option value="rio_negro">Rio Negro</option>
-                                    <option value="rivera">Rivera</option>
-                                    <option value="rocha">Rocha</option>
-                                    <option value="san_jose">San Jose</option>
-                                    <option value="salto">Salto</option>
-                                    <option value="soriano">Soriano</option>
-                                    <option value="tacuarembo">Tacuarembo</option>  
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="beneficios">Beneficios Pranta!</div>
-                    <div class="bottom">
-                        <div class="container-beneficios">
-                            <div class="beneficio col-lg-3 col-sm-3 col-xs-3 col-md-3 efectivo">
-                                <div class="beneficio_image "></div>
-                                <div class="beneficio_name">Retirar efectivo</div>
-                                <div  class="checkbox-container"><input type="checkbox"/></div>
-                            </div>
-                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  movil">
-                                <div class="beneficio_image"></div>
-                                <div class="beneficio_name">Pago móvil</div>
-                                <div class="checkbox-container"><input type="checkbox"/></div>
-                            </div>
-                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  restaurantes">
-                                <div class="beneficio_image"></div>
-                                <div class="beneficio_name">Restaurantes</div>
-                                <div  class="checkbox-container"><input type="checkbox"/></div>
-                            </div>
-                            <div class="beneficio col-lg-3 col-sm-3 col-md-3 col-xs-3  estaciones">
-                                <div class="beneficio_image"></div>
-                                <div class="beneficio_name">Estaciones</div>
-                                <div  class="checkbox-container"><input type="checkbox"/></div>
-                            </div>
-                        </div>
-                        <div class="beneficia">
+                                        <div class="cat-filter-title">Ordenes de compra</div>
 
+                                    </div>
+                                </div>
+
+
+                                <div class="category-filter-item  col-xs-3 col-sm-6 col-lg-6 col-md-6" >
+                                    <div class="category-filter estadoc">
+                                        <div class="cat-filter-icon"></div>
+                                        <div class="cat-filter-checkbox-container">
+                                            <input service="pagos" type="checkbox" class="cat-filter-checkbox"/>
+                                        </div>
+                                        <div class="cat-filter-title">Pagos</div>
+
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
+
+                        <div class="beneficios">Mi ubicación</div>
                     </div>
+
                 </div>';
+}
+function add_shortcode_locations_css_and_js() {
+
+    wp_enqueue_script('parse-excel-locations-shortcode-js', plugins_url('public/js/parse-excel-locations-public.js', __FILE__), false);
+    wp_enqueue_style('parse-excel-locations-shortcode-css', plugins_url('public/css/parse-excel-locations-public.css', __FILE__), false);
 }
 // WIDGET
 //require_once( dirname(__FILE__) . "/widget.php");
