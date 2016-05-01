@@ -199,7 +199,7 @@ function getSidebar() {
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Moda</div>
                                         <div class="cat-filter-checkbox-container">
-                                             <!--<input category="moda" type="checkbox" class="cat-filter-checkbox"/>-->
+                                            <input category="moda" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -208,7 +208,7 @@ function getSidebar() {
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Niños</div>
                                         <div class="cat-filter-checkbox-container">
-                                            <!--<input category="ninos" type="checkbox" class="cat-filter-checkbox"/>-->
+                                            <input category="ninos" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -217,7 +217,7 @@ function getSidebar() {
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Hogar</div>
                                         <div class="cat-filter-checkbox-container">
-                                             <!--<input category="hogar" type="checkbox" class="cat-filter-checkbox"/>-->
+                                             <input category="hogar" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +226,7 @@ function getSidebar() {
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Vehículos</div>
                                         <div class="cat-filter-checkbox-container">
-                                             <!--<input category="vehiculos" type="checkbox" class="cat-filter-checkbox"/>-->
+                                             <input category="vehiculos" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
@@ -235,7 +235,7 @@ function getSidebar() {
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-title">Otros</div>
                                         <div class="cat-filter-checkbox-container">
-                                             <!--<input category="otros" type="checkbox" class="cat-filter-checkbox"/>-->
+                                            <input category="otros" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                     </div>
                                 </div>
