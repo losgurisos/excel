@@ -24,32 +24,36 @@
  * Domain Path:       /languages
  */
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (!defined('WPINC')) {
+    die;
 }
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-parse-excel-activator.php
  */
 function activate_parse_excel_locations() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-parse-excel-locations-activator.php';
-	Parse_Excel_Locations_Activator::activate();
+    require_once plugin_dir_path(__FILE__) . 'includes/class-parse-excel-locations-activator.php';
+    Parse_Excel_Locations_Activator::activate();
 }
+
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-parse-excel-deactivator.php
  */
 function deactivate_parse_excel_locations() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-parse-excel-locations-deactivator.php';
-	Parse_Excel_Locations_Deactivator::deactivate();
+    require_once plugin_dir_path(__FILE__) . 'includes/class-parse-excel-locations-deactivator.php';
+    Parse_Excel_Locations_Deactivator::deactivate();
 }
-register_activation_hook( __FILE__, 'activate_parse_excel_locations' );
-register_deactivation_hook( __FILE__, 'deactivate_parse_excel_locations' );
+
+register_activation_hook(__FILE__, 'activate_parse_excel_locations');
+register_deactivation_hook(__FILE__, 'deactivate_parse_excel_locations');
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-parse-excel-locations.php';
+require plugin_dir_path(__FILE__) . 'includes/class-parse-excel-locations.php';
+
 /**
  * Begins execution of the plugin.
  *
@@ -61,59 +65,56 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-parse-excel-locations.php'
  */
 function run_parse_excel_locations() {
 
-	$plugin = new Parse_Excel_Locations();
-	$plugin->run();
-
+    $plugin = new Parse_Excel_Locations();
+    $plugin->run();
 }
+
 //menu items
 function parse_excel_locations_menu() {
 
     // Main Menu
     add_menu_page(
-        'Subir Localidades', //page title
-        'Subir Localidades', //menu title
-        'edit_pages', //capabilities
-        'parse_excel_locations', //menu slug
-        'load_locations_from_excel' //function
+            'Subir Localidades', //page title
+            'Subir Localidades', //menu title
+            'edit_pages', //capabilities
+            'parse_excel_locations', //menu slug
+            'load_locations_from_excel' //function
     );
 
 
     // add
-    /*add_submenu_page(
-        'parse_excel', //parent slug
-        'Cargar Excel', //page title
-        'Cargar desde excel', //menu title
-        'edit_pages', //capability
-        'centros_item_create', //menu slug
-        'centros_item_create' //function
-    );*/
+    /* add_submenu_page(
+      'parse_excel', //parent slug
+      'Cargar Excel', //page title
+      'Cargar desde excel', //menu title
+      'edit_pages', //capability
+      'centros_item_create', //menu slug
+      'centros_item_create' //function
+      ); */
 }
+
 require_once('load-locations-from-excel.php');
 //require_once('centros-update-item.php');
 //require_once('centros-list-items.php');
 //require_once('includes/helpers.php');
 
-add_action('admin_menu','parse_excel_locations_menu');
+add_action('admin_menu', 'parse_excel_locations_menu');
 
-add_shortcode( 'parse_excel_locations_render', 'parse_excel_locations_shortcode' );
+add_shortcode('parse_excel_locations_render', 'parse_excel_locations_shortcode');
 
-function parse_excel_locations_shortcode( $atts )
-{
-    return parseExcelLocationLogic( $atts );
+function parse_excel_locations_shortcode($atts) {
+    return parseExcelLocationLogic($atts);
 }
 
-function transform($str){
+function transform($str) {
     $trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
-
-
 }
 
 // THE LOGIC
-function parseExcelLocationLogic( $atts )
-{
-	add_action('wp_footer', 'add_shortcode_locations_css_and_js');
+function parseExcelLocationLogic($atts) {
+    add_action('wp_footer', 'add_shortcode_locations_css_and_js');
 
-	$trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
+    $trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
 
     $transServices = array(
         "tarjeta_de_credito" => "tarjeta",
@@ -121,21 +122,21 @@ function parseExcelLocationLogic( $atts )
         "cobranzas" => "pagos",
         "orden_de_compra" => "compras"
     );
-	
-	// database object
-	global $wpdb;
+
+    // database object
+    global $wpdb;
     $table = $wpdb->prefix . "parse_excel_locations_data";
     require( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-    $sql = "SELECT * FROM ".$table;
+    $sql = "SELECT * FROM " . $table;
 
     $result = $wpdb->get_results($sql);
 
     $toJsonResult = array();
 
 
-    for($i = 0; $i < count($result); $i++) {
-            
+    for ($i = 0; $i < count($result); $i++) {
+
 
         $localidad = $result[$i]->localidad;
         $depto = $result[$i]->departamento;
@@ -146,51 +147,45 @@ function parseExcelLocationLogic( $atts )
         }
 
         foreach ($trans as $clave => $valor) {
-                    
+
             $result[$i]->servicios = str_replace($clave, $valor, $result[$i]->servicios);
         }
 
         $_servicios = explode(" - ", $result[$i]->servicios);
 
         $coordenadas = explode(",", $result[$i]->coordenadas);
-        
-        
+
+
         $servicios = array();
 
-        for($j = 0; $j< count($_servicios); $j++){
+        for ($j = 0; $j < count($_servicios); $j++) {
 
             $_serv = strtolower(str_replace(" ", "_", $_servicios[$j]));
 
-            
+
             foreach ($transServices as $clave => $valor) {
                 $_serv = str_replace($clave, $valor, $_serv);
             }
-            
+
 
             $servicios[] = $_serv;
-            
         }
 
-        
 
-        $toJsonResult[] =
-            array(
-                "departamento" => strtolower(str_replace(" ", "_",$depto)),
-                "nombre" => $result[$i]->nombre,
-                "localidad" =>strtolower(str_replace(" ", "_",$localidad)) ,
-                "direccion" => $result[$i]->direccion,
-                "coordenadas" => array(
-                        "x" => $coordenadas[0],
-                        "y" => $coordenadas[1],
-                    ),
-                "telefono" => $result[$i]->telefono,
-                "servicios" => $servicios
-            );
-            
-        
+
+        $toJsonResult[] = array(
+            "departamento" => strtolower(str_replace(" ", "_", $depto)),
+            "nombre" => $result[$i]->nombre,
+            "localidad" => strtolower(str_replace(" ", "_", $localidad)),
+            "direccion" => $result[$i]->direccion,
+            "coordenadas" => array(
+                "x" => $coordenadas[0],
+                "y" => $coordenadas[1],
+            ),
+            "telefono" => $result[$i]->telefono,
+            "servicios" => $servicios
+        );
     }
-
-    
     ?>
     <script>
         var servicesFilters = [];
@@ -198,33 +193,33 @@ function parseExcelLocationLogic( $atts )
         var localidadFilter = '';
 
         var marker_data = function (depto, localidad, lat, lng, title, servicios) {
-                this.lat = lat;
-                this.lng = lng;
-                this.title = title;
-                this.depto = depto;
-                this.localidad = localidad;
-                this.servicios = servicios;
+            this.lat = lat;
+            this.lng = lng;
+            this.title = title;
+            this.depto = depto;
+            this.localidad = localidad;
+            this.servicios = servicios;
         };
-        var localidades_data = <?php echo json_encode($toJsonResult);?>;
+        var localidades_data = <?php echo json_encode($toJsonResult); ?>;
         var marker_data_arr = [];
-        for(var i in localidades_data){
+        for (var i in localidades_data) {
             marker_data_arr.push(
-                new marker_data(
-                    localidades_data[i].departamento,
-                    localidades_data[i].localidad,
-                    parseFloat(localidades_data[i].coordenadas.x),
-                    parseFloat(localidades_data[i].coordenadas.y), 
-                    localidades_data[i].nombre,
-                    localidades_data[i].servicios
-                )
-            );
+                    new marker_data(
+                            localidades_data[i].departamento,
+                            localidades_data[i].localidad,
+                            parseFloat(localidades_data[i].coordenadas.x),
+                            parseFloat(localidades_data[i].coordenadas.y),
+                            localidades_data[i].nombre,
+                            localidades_data[i].servicios
+                            )
+                    );
 
 
         }
 
-        
 
-        jQuery(document).ready(function(){
+
+        jQuery(document).ready(function () {
 
             cbFilters = jQuery(".cat-filter-checkbox");
             deptoFilter = jQuery("#cities-filter-select");
@@ -250,31 +245,31 @@ function parseExcelLocationLogic( $atts )
                 reloadFilters();
 
             });
-               
+
         })
 
- 
-       /* marker_data_arr.push(new marker_data("MALDONADO", -31.2783835, -56.5093691, "PANDO"));
-        marker_data_arr.push(new marker_data("MELO", -31.2783837, -57.5193691, "VENEZUELA"));
-        marker_data_arr.push(new marker_data("CANELONES", -31.2783832, -56.5593691, "TU HERMANA"));
-        marker_data_arr.push(new marker_data("MONTEVIDEO", -32.9840109, -57.0524278, "PEPE"));
-        marker_data_arr.push(new marker_data("MONTEVIDEO", -31.2783835, -57.5493691, "ETC"));
-        marker_data_arr.push(new marker_data("MALDONADO", -33.5461217, -56.76919, "ETC"));
-        marker_data_arr.push(new marker_data("MALDONADO", -34.5278466, -55.5014186, "ETC"));
-*/
+
+        /* marker_data_arr.push(new marker_data("MALDONADO", -31.2783835, -56.5093691, "PANDO"));
+         marker_data_arr.push(new marker_data("MELO", -31.2783837, -57.5193691, "VENEZUELA"));
+         marker_data_arr.push(new marker_data("CANELONES", -31.2783832, -56.5593691, "TU HERMANA"));
+         marker_data_arr.push(new marker_data("MONTEVIDEO", -32.9840109, -57.0524278, "PEPE"));
+         marker_data_arr.push(new marker_data("MONTEVIDEO", -31.2783835, -57.5493691, "ETC"));
+         marker_data_arr.push(new marker_data("MALDONADO", -33.5461217, -56.76919, "ETC"));
+         marker_data_arr.push(new marker_data("MALDONADO", -34.5278466, -55.5014186, "ETC"));
+         */
         var google_map_markers = new Array();
         var map;
 
         function reloadFilters() {
 
-            console.log([servicesFilters,deptoFilter,localidadFilter])
+            console.log([servicesFilters, deptoFilter, localidadFilter])
             var bounds = new google.maps.LatLngBounds();
             for (var i = 0; i < marker_data_arr.length; i++) {
                 //console.log(deptoFilter !=='',marker_data_arr[i].depto !== deptoFilter )
-                console.log(localidadFilter!=='', marker_data_arr[i].localidad !== localidadFilter)
-                if ((deptoFilter !=='' && marker_data_arr[i].depto !== deptoFilter)
-                    || (localidadFilter!=='' && marker_data_arr[i].localidad !== localidadFilter)
-                    || intersect_safe(servicesFilters, marker_data_arr[i].servicios)) {
+                console.log(localidadFilter !== '', marker_data_arr[i].localidad !== localidadFilter)
+                if ((deptoFilter !== '' && marker_data_arr[i].depto !== deptoFilter)
+                        || (localidadFilter !== '' && marker_data_arr[i].localidad !== localidadFilter)
+                        || intersect_safe(servicesFilters, marker_data_arr[i].servicios)) {
                     //console.log(google_map_markers);
                     google_map_markers[i].setVisible(false);
 
@@ -287,8 +282,8 @@ function parseExcelLocationLogic( $atts )
             map.fitBounds(bounds);
         }
 
-        function intersect_safe(a, b){
-            for(var i in a)
+        function intersect_safe(a, b) {
+            for (var i in a)
                 if (b.indexOf(a[i]) === -1)
                     return true
             return false;
@@ -306,7 +301,7 @@ function parseExcelLocationLogic( $atts )
             for (var i = 0; i < marker_data_arr.length; i++) {
 
                 myLatLng = {lat: marker_data_arr[i].lat, lng: marker_data_arr[i].lng};
-            
+
                 var marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
@@ -318,7 +313,7 @@ function parseExcelLocationLogic( $atts )
 
 
             }
-            
+
             //example
             //hide_markers_where_not("depto", "MONTEVIDEO");
 
@@ -327,27 +322,27 @@ function parseExcelLocationLogic( $atts )
 
     </script>
     <?php
-
+    $html = '<div class="container parse-excel">
+            	<div class="row">';
     $html = '<style>
-            html, body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            
-        </style><div class="locations-map" id="locations-map"></div>';
+                html, body {
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                }
 
-	$html .= getSidebarLocations();
+            </style><div class="locations-map" id="locations-map"></div>';
 
+    $html .= getSidebarLocations();
+// container and row
+    $html .= '</div></div>';
     return $html;
-
-    
 }
 
+function getSidebarLocations() {
 
-function getSidebarLocations(){
-
-	return '<div class="col-md-3 col-sm-3 col-xs-12 location-excel-sidebar">
+    return '
+            <div class="col-md-3 col-sm-3 col-xs-12 location-excel-sidebar">
                     <div class="top">
                         <p class="title">Encontrá la sucursal más cercana a vos</p>
                         <div class="row">
@@ -451,11 +446,13 @@ function getSidebarLocations(){
 
                 </div>';
 }
+
 function add_shortcode_locations_css_and_js() {
 
     wp_enqueue_script('parse-excel-locations-shortcode-js', plugins_url('public/js/parse-excel-locations-public.js', __FILE__), false);
     wp_enqueue_style('parse-excel-locations-shortcode-css', plugins_url('public/css/parse-excel-locations-public.css', __FILE__), false);
 }
+
 // WIDGET
 //require_once( dirname(__FILE__) . "/widget.php");
 run_parse_excel_locations();
