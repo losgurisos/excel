@@ -388,7 +388,7 @@ ul.item-list {
 }
 @media only screen and (max-width:425px){
     .category-filter-container .category-filter-item .category-filter {
-        height: 55x !important;
+        height: 55px !important;
 
     }
     .item-address::before{
@@ -445,9 +445,7 @@ ul.item-list {
 
         height: 30px !important;
     }
-    .item .item-data .val {
-        font-size: 35px !important;
-    }
+
     .beneficia {
         height: 34px !important;
         width: 100px !important;
@@ -478,6 +476,7 @@ ul.item-list {
         font-weight: bold;
         font-style: italic;
         margin: 0 !important;
+        height: 100% important;
         float: left !important;
     }
     .item .item-data .item-disscount p.mini {
@@ -521,8 +520,8 @@ ul.item-list {
     .item-address {
         width: 145px !important;;text-align: left !important;
         font-size: 9px  !important;
-        line-height: 9px;
-        padding-left: 15px;
+        line-height: 9px !important;
+        padding-left: 15px !important;
     }
     .item {
         background: #ebebeb;

@@ -13,7 +13,11 @@
 .container {
     width: 100%;
 }
+.beneficios{
+    cursor: pointer !important;
+}
 .beneficios p{
+    line-height: 50px !important;
     position: relative !important;
     width: 60% !important;
     padding-left: 40px !important;
@@ -400,6 +404,9 @@ select {
     height: 750px !important;
 }
 @media only screen and (max-width:1025px){
+    .beneficios p{
+        font-size: 20px !important;
+    }
     .cat-filter-title{    
         width: 70px !important;
         font-size: 12px !important;
@@ -435,7 +442,9 @@ select {
     }
 }
 @media only screen and (max-width:768px){
-
+    .beneficios p{
+        font-size: 12px !important;
+    }
     .separator p{
         font-size: 12px !important;
         line-height: 40px !important;
@@ -497,6 +506,18 @@ select {
     }
 }
 @media only screen and (max-width:425px){
+    .beneficios p {
+        line-height: 30px !important;}
+    .beneficios p::before {
+        content: " ";
+        height: 20px;
+        width: 12px;
+        background-size: 12px !important;
+        background-repeat: no-repeat !important;
+        display: block;
+        top: 6px;
+        left: 5px;
+    }
     .locations-map{margin: 0 !important;}
     .cat-filter-title{   
         width: 60px !important;

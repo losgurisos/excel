@@ -242,139 +242,140 @@ function parseExcelLocationLogic($atts) {
             });
 
 
-            function DepartamentosSelectManager (dep_select_id, loc_select_id) {
+            function DepartamentosSelectManager(dep_select_id, loc_select_id) {
 
                 var _dep_select_id = dep_select_id;
                 var _loc_select_id = loc_select_id;
                 var departamentos = [];
 
                 // custom compare for sorting
-                function compare(a,b) {
-                  if (a.getTitle() < b.getTitle())
-                    return -1;
-                  else if (a.getTitle() > b.getTitle())
-                    return 1;
-                  else 
-                    return 0;
+                function compare(a, b) {
+                    if (a.getTitle() < b.getTitle())
+                        return -1;
+                    else if (a.getTitle() > b.getTitle())
+                        return 1;
+                    else
+                        return 0;
                 }
 
                 // new option tag
-                function newOption(value, title){
-                    return '<option value="'+value+'">'+title+'</option>';
+                function newOption(value, title) {
+                    return '<option value="' + value + '">' + title + '</option>';
                 }
 
-                this.addDepartamento = function (dep_code, dep_title){
-                    if(!this.exists(dep_code)){
+                this.addDepartamento = function (dep_code, dep_title) {
+                    if (!this.exists(dep_code)) {
                         departamentos.push(new Departamento(dep_code, dep_title));
                         departamentos.sort(compare);
                     }
-                    
+
                 }
-                this.addLocalidad = function(dep_code, loc_code, loc_title){
-                    if(!this.exists(dep_code))
+                this.addLocalidad = function (dep_code, loc_code, loc_title) {
+                    if (!this.exists(dep_code))
                         return false;
 
                     this.getDepartamento(dep_code).addLocalidad(loc_code, loc_title);
                 }
                 this.exists = function (dep_code) {
-                    for(var i in departamentos){
-                        if(dep_code === departamentos[i].getCode())
+                    for (var i in departamentos) {
+                        if (dep_code === departamentos[i].getCode())
                             return true;
                     }
                     return false;
                 }
-                this.getDepartamento= function (dep_code) {
-                    for(var i in departamentos){
-                        if(dep_code === departamentos[i].getCode())
+                this.getDepartamento = function (dep_code) {
+                    for (var i in departamentos) {
+                        if (dep_code === departamentos[i].getCode())
                             return departamentos[i];
                     }
                     return false;
                 }
                 this.loadDeptosOptions = function () {
-                    var _select = jQuery("#"+_dep_select_id);
+                    var _select = jQuery("#" + _dep_select_id);
                     _select.html('');
                     _select.append(newOption('', ' -- Departamento -- '))
-                    for(var i in departamentos)
+                    for (var i in departamentos)
                         _select.append(
-                            newOption(
-                                departamentos[i].getCode(),
-                                departamentos[i].getTitle()
-                            )
-                        )
-                    
+                                newOption(
+                                        departamentos[i].getCode(),
+                                        departamentos[i].getTitle()
+                                        )
+                                )
+
                 }
                 this.loadLocalidadesOption = function (dep_code) {
-                    var _select = jQuery("#"+_loc_select_id);
-                    if(!this.exists(dep_code)) return;
+                    var _select = jQuery("#" + _loc_select_id);
+                    if (!this.exists(dep_code))
+                        return;
                     _select.html('');
                     _select.append(newOption('', ' -- Barrio/Localidad -- '))
                     var _localidades = this.getDepartamento(dep_code).getLocalidades();
-                    for(var i in _localidades)
+                    for (var i in _localidades)
                         _select.append(
-                            newOption(
-                                _localidades[i].getCode(),
-                                _localidades[i].getTitle()
-                            )
-                        ) 
+                                newOption(
+                                        _localidades[i].getCode(),
+                                        _localidades[i].getTitle()
+                                        )
+                                )
                 }
 
-                function Departamento(code, title){
+                function Departamento(code, title) {
 
                     var localidades = [];
                     var title = title;
                     var code = code;
 
 
-                    this.getCode = function(){
+                    this.getCode = function () {
                         return code;
                     }
-                    this.getTitle = function(){
+                    this.getTitle = function () {
                         return title;
                     }
-                    this.addLocalidad = function(loc_code, loc_title){
-                        if(!this.exists(loc_code)){
+                    this.addLocalidad = function (loc_code, loc_title) {
+                        if (!this.exists(loc_code)) {
                             localidades.push(new Localidad(loc_code, loc_title));
                             localidades.sort(compare);
                         }
                     }
                     this.exists = function (loc_code) {
-                        for(var i in localidades){
-                            if(loc_code === localidades[i].getCode())
+                        for (var i in localidades) {
+                            if (loc_code === localidades[i].getCode())
                                 return true;
                         }
                         return false;
                     }
-                    this.getLocalidades = function(){
+                    this.getLocalidades = function () {
                         return localidades;
                     }
 
-                    function Localidad (code, title) {
+                    function Localidad(code, title) {
                         var title = title;
                         var code = code;
-                        this.getCode = function(){
+                        this.getCode = function () {
                             return code;
                         }
-                        this.getTitle = function(){
+                        this.getTitle = function () {
                             return title;
                         }
                     }
-                    
+
                 }
             }
 
 
-            
+
 
             var departamentosManager = new DepartamentosSelectManager('cities-filter-select', 'localidades-filter-select');
 
             for (var i in localidades_data) {
-               departamentosManager.addDepartamento(localidades_data[i].departamento, localidades_data[i].departamento_titulo);
-               departamentosManager.addLocalidad(localidades_data[i].departamento, localidades_data[i].localidad, localidades_data[i].localidad_titulo);
+                departamentosManager.addDepartamento(localidades_data[i].departamento, localidades_data[i].departamento_titulo);
+                departamentosManager.addLocalidad(localidades_data[i].departamento, localidades_data[i].localidad, localidades_data[i].localidad_titulo);
 
             }
 
             departamentosManager.loadDeptosOptions();
-            
+
 
             var _localidadesPos = [];
             var _localidades = [];
@@ -406,6 +407,27 @@ function parseExcelLocationLogic($atts) {
                 reloadFilters();
 
             });
+            $("#my_location").click(function () {
+    // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var geolocationLatLng = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        infoWindow.setPosition(geolocationLatLng);
+                        infoWindow.setContent('Tu te encuentras aqui.');
+                        map.setZoom(12);
+                        map.setCenter(geolocationLatLng);
+                    }, function () {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+            });
 
         })
 
@@ -420,6 +442,8 @@ function parseExcelLocationLogic($atts) {
          */
         var google_map_markers = new Array();
         var map;
+        var geolocationLatLng = {lat: -32.7027405, lng: -54.7530596};
+        var infoWindow;
 
         function reloadFilters() {
 
@@ -465,7 +489,8 @@ function parseExcelLocationLogic($atts) {
                 zoom: 8,
                 center: myLatLng
             });
-            //console.log(document.getElementById('map'));
+            infoWindow = new google.maps.InfoWindow({map: map});
+    //console.log(document.getElementById('map'));
             for (var i = 0; i < marker_data_arr.length; i++) {
 
                 myLatLng = {lat: marker_data_arr[i].lat, lng: marker_data_arr[i].lng};
@@ -481,11 +506,15 @@ function parseExcelLocationLogic($atts) {
 
 
             }
-
-            //example
-            //hide_markers_where_not("depto", "MONTEVIDEO");
-
         }
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                    'Error: El servicio de geolocalización ha fallado.' :
+                    'Error: Su navegador no soporta geolocalización.');
+        }
+
+
 
 
     </script>
