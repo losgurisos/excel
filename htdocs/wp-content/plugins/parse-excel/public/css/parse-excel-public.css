@@ -445,9 +445,7 @@ ul.item-list {
 
         height: 30px !important;
     }
-    .item .item-data .val {
-        font-size: 35px !important;
-    }
+
     .beneficia {
         height: 34px !important;
         width: 100px !important;
@@ -478,6 +476,7 @@ ul.item-list {
         font-weight: bold;
         font-style: italic;
         margin: 0 !important;
+        height: 100% important;
         float: left !important;
     }
     .item .item-data .item-disscount p.mini {
