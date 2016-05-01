@@ -45,6 +45,16 @@ function load_locations_from_excel (){
 
 		    $recordsCount = 0;
 
+		    $indexes = array(
+		    	"departamento" => 0,
+		    	"nombre" => 1,
+				"localidad" => 2,
+				"direccion" => 3,
+				"coordenadas" => 4,
+				"telefono" => 6,
+				"servicios" => 5
+	    	);
+
 			for ($row = 2; $row <= $highestRow; $row++){ 
 			    //  Read a row of data into an array
 			    $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
@@ -69,13 +79,13 @@ function load_locations_from_excel (){
 					telefono,
 					servicios
 				) VALUES (
-					'".$rowData[0][0]."',
-					'".$rowData[0][1]."',
-					'".$rowData[0][2]."',
-					'".$rowData[0][3]."',
-					'".$rowData[0][4]."',
-					'".$rowData[0][5]."',
-					'".$rowData[0][6]."'
+					'".$rowData[0][$indexes["departamento"]]."',
+					'".$rowData[0][$indexes["nombre"]]."',
+					'".$rowData[0][$indexes["localidad"]]."',
+					'".$rowData[0][$indexes["direccion"]]."',
+					'".$rowData[0][$indexes["coordenadas"]]."',
+					'".$rowData[0][$indexes["telefono"]]."',
+					'".$rowData[0][$indexes["servicios"]]."'
 				);";
 
 				// Exec query

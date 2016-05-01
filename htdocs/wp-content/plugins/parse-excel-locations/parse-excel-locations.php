@@ -106,15 +106,11 @@ function parse_excel_locations_shortcode($atts) {
     return parseExcelLocationLogic($atts);
 }
 
-function transform($str) {
-    $trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
-}
-
 // THE LOGIC
 function parseExcelLocationLogic($atts) {
     add_action('wp_footer', 'add_shortcode_locations_css_and_js');
 
-    $trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
+    $trans = array("á" => "a", "Á" => "A", "é" => "e", "É" => "E", "í" => "i", "Í" =>"I", "ó" => "o", "Ó" => "O", "ú" => "u", "Ú" => "U", "ñ" => "n");
 
     $transServices = array(
         "tarjeta_de_credito" => "tarjeta",
@@ -146,17 +142,22 @@ function parseExcelLocationLogic($atts) {
             $depto = str_replace($clave, $valor, $depto);
         }
 
-        foreach ($trans as $clave => $valor) {
+        $serviceResult = $result[$i]->servicios;
 
-            $result[$i]->servicios = str_replace($clave, $valor, $result[$i]->servicios);
+        foreach ($trans as $clave => $valor) {
+            $serviceResult = str_replace($clave, $valor, $serviceResult);
+
         }
 
-        $_servicios = explode(" - ", $result[$i]->servicios);
+        $_servicios = explode(" - ", $serviceResult);
+
 
         $coordenadas = explode(",", $result[$i]->coordenadas);
 
 
         $servicios = array();
+
+        ?> <!--<script><?php var_dump($_servicios)?></script> --> <?php
 
         for ($j = 0; $j < count($_servicios); $j++) {
 
@@ -225,6 +226,20 @@ function parseExcelLocationLogic($atts) {
             var cbFilters = jQuery(".cat-filter-checkbox");
             var deptoSelect = jQuery("#cities-filter-select");
             var localidadSelect = jQuery("#localidades-filter-select");
+
+            cbFilters.change(function () {
+
+                var service = jQuery(this).attr('service');
+
+                var index = servicesFilters.indexOf(service);
+
+                if (index === -1)
+                    servicesFilters.push(service);
+                else
+                    servicesFilters.splice(index, 1);
+
+                reloadFilters();
+            });
 
 
             function DepartamentosSelectManager (dep_select_id, loc_select_id) {
@@ -376,19 +391,6 @@ function parseExcelLocationLogic($atts) {
                 //localidadSelect.append('<option value="' + localidades_data[_localidadesPos[i]].localidad + '">' + localidades_data[_localidadesPos[i]].localidad_titulo + '</option>');
             }
 
-            cbFilters.change(function () {
-
-                var service = jQuery(this).attr('service');
-
-                var index = servicesFilters.indexOf(service);
-
-                if (index === -1)
-                    servicesFilters.push(service);
-                else
-                    servicesFilters.splice(index, 1);
-
-                reloadFilters();
-            });
 
             deptoSelect.change(function () {
 
@@ -425,10 +427,10 @@ function parseExcelLocationLogic($atts) {
             var foundAny = false;
             for (var i = 0; i < marker_data_arr.length; i++) {
                 //console.log(deptoFilter !=='',marker_data_arr[i].depto !== deptoFilter )
-
+                //console.log(intersect_safe(servicesFilters, marker_data_arr[i].servicios), servicesFilters.length);
                 if ((deptoFilter !== '' && marker_data_arr[i].depto !== deptoFilter)
                         || (localidadFilter !== '' && marker_data_arr[i].localidad !== localidadFilter)
-                        || intersect_safe(servicesFilters, marker_data_arr[i].servicios)) {
+                        || !(intersect_safe(servicesFilters, marker_data_arr[i].servicios) === servicesFilters.length)) {
 
                     //console.log(google_map_markers);
                     google_map_markers[i].setVisible(false);
@@ -449,10 +451,11 @@ function parseExcelLocationLogic($atts) {
         }
 
         function intersect_safe(a, b) {
+            var intersections = 0;
             for (var i in a)
-                if (b.indexOf(a[i]) === -1)
-                    return true
-            return false;
+                if (b.indexOf(a[i]) !== -1)
+                    intersections++;
+            return intersections;
         }
 
 
@@ -545,7 +548,7 @@ function getSidebarLocations() {
                                     <div class="category-filter solicitud">
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-checkbox-container">
-                                            <input category="solicitud" type="checkbox" class="cat-filter-checkbox"/>
+                                            <input service="solicitud" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
                                         <div class="cat-filter-title">Solicitud de prestamo</div>
 
