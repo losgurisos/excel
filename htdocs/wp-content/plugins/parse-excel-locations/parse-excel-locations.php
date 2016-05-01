@@ -110,7 +110,7 @@ function parse_excel_locations_shortcode($atts) {
 function parseExcelLocationLogic($atts) {
     add_action('wp_footer', 'add_shortcode_locations_css_and_js');
 
-    $trans = array("á" => "a", "Á" => "A", "é" => "e", "É" => "E", "í" => "i", "Í" =>"I", "ó" => "o", "Ó" => "O", "ú" => "u", "Ú" => "U", "ñ" => "n");
+    $trans = array("á" => "a", "Á" => "A", "é" => "e", "É" => "E", "í" => "i", "Í" => "I", "ó" => "o", "Ó" => "O", "ú" => "u", "Ú" => "U", "ñ" => "n");
 
     $transServices = array(
         "tarjeta_de_credito" => "tarjeta",
@@ -146,7 +146,6 @@ function parseExcelLocationLogic($atts) {
 
         foreach ($trans as $clave => $valor) {
             $serviceResult = str_replace($clave, $valor, $serviceResult);
-
         }
 
         $_servicios = explode(" - ", $serviceResult);
@@ -156,9 +155,7 @@ function parseExcelLocationLogic($atts) {
 
 
         $servicios = array();
-
-        ?> <!--<script><?php var_dump($_servicios)?></script> --> <?php
-
+        ?> <!--<script><?php var_dump($_servicios) ?></script> --> <?php
         for ($j = 0; $j < count($_servicios); $j++) {
 
             $_serv = strtolower(str_replace(" ", "_", $_servicios[$j]));
@@ -509,10 +506,15 @@ function parseExcelLocationLogic($atts) {
             }
         }
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                    'Error: El servicio de geolocalización ha fallado.' :
-                    'Error: Su navegador no soporta geolocalización.');
+            if (browserHasGeolocation) {
+                alert("Error: El servicio de geolocalización ha fallado.");
+            } else {
+                alert('Error: Su navegador no soporta geolocalización.');
+            }
+            /*infoWindow.setPosition(pos);
+             infoWindow.setContent(browserHasGeolocation ?
+             'Error: El servicio de geolocalización ha fallado.' :
+             'Error: Su navegador no soporta geolocalización.');*/
         }
 
 
