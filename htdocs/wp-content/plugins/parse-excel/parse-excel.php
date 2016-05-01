@@ -144,7 +144,7 @@ function parseExcelLogic($atts) {
         $html .= '<li class="col-md-12 col-lg-6 cat-' . strtolower($_clasificacion) . ' dep-' . strtolower(str_replace(" ", "_", $result[$i]->departamento)) . '">
                             <div class="item">
                                 <div class="item-img">
-                                    <img src="' . $result[$i]->imagen . '"/>
+                                <img src="' . plugins_url('public/marcas/' . $result[$i]->imagen . '', __FILE__) . '"/>
                                 </div>
                                 <div class="item-data">
                                     <div class="item-category-img ' . strtolower($_clasificacion) . '">
