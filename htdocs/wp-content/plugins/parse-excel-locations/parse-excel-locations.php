@@ -469,6 +469,7 @@ function parseExcelLocationLogic($atts) {
                 map.fitBounds(bounds);
             } else {
                 var center = new google.maps.LatLng(-32.7027405, -54.7530596);
+                map.setZoom(8);
                 map.setCenter(center, 8);
             }
 
