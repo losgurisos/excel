@@ -218,6 +218,8 @@ function parseExcelLocationLogic( $atts )
                     localidades_data[i].servicios
                 )
             );
+
+
         }
 
         
@@ -387,7 +389,7 @@ function getSidebarLocations(){
                                             Barrio/Localidad
                                         </div>
                                         <div class="cbox col-lg-6 col-md-6 col-sm-12">
-                                            <select>
+                                            <select id="cities-filter-select" class="cities-filter-select">
                                                 <option>Montevideo</option>
                                             </select>
                                         </div>
