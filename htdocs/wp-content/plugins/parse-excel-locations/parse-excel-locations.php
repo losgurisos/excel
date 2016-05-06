@@ -119,6 +119,10 @@ function parseExcelLocationLogic($atts) {
         "orden_de_compra" => "compras"
     );
 
+    $transTipolocal = array(
+        "sucursal_pronto!" => "sucursal_pronto"
+    );
+
     // database object
     global $wpdb;
     $table = $wpdb->prefix . "parse_excel_locations_data";
@@ -143,18 +147,24 @@ function parseExcelLocationLogic($atts) {
         }
 
         $serviceResult = $result[$i]->servicios;
+        $tipoLocalResult = $result[$i]->tipo_local;
 
         foreach ($trans as $clave => $valor) {
             $serviceResult = str_replace($clave, $valor, $serviceResult);
+            $tipoLocalResult = str_replace($clave, $valor, $tipoLocalResult);
         }
 
+
         $_servicios = explode(" - ", $serviceResult);
+        $_tipoLocal = explode(" - ", $tipoLocalResult);
 
 
         $coordenadas = explode(",", $result[$i]->coordenadas);
 
 
         $servicios = array();
+        $tipoLocal = array();
+
         ?> <!--<script><?php var_dump($_servicios) ?></script> --> <?php
         for ($j = 0; $j < count($_servicios); $j++) {
 
@@ -165,8 +175,19 @@ function parseExcelLocationLogic($atts) {
                 $_serv = str_replace($clave, $valor, $_serv);
             }
 
-
             $servicios[] = $_serv;
+        }
+
+        for ($j = 0; $j < count($_tipoLocal); $j++) {
+
+            $_tipo = strtolower(str_replace(" ", "_", $_tipoLocal[$j]));
+
+
+            foreach ($transTipolocal as $clave => $valor) {
+                $_tipo = str_replace($clave, $valor, $_tipo);
+            }
+
+            $tipoLocal[] = $_tipo;
         }
 
 
@@ -182,7 +203,10 @@ function parseExcelLocationLogic($atts) {
                 "y" => $coordenadas[1],
             ),
             "telefono" => $result[$i]->telefono,
-            "servicios" => $servicios
+            "servicios" => $servicios,
+            "tipo_local_titulo" => $_tipoLocal,
+            "tipo_local" => $tipoLocal
+
         );
     }
     ?>
@@ -190,14 +214,16 @@ function parseExcelLocationLogic($atts) {
         var servicesFilters = [];
         var deptoFilter = '';
         var localidadFilter = '';
+        var tipoLocalSelect = '';
 
-        var marker_data = function (depto, localidad, lat, lng, title, servicios) {
+        var marker_data = function (depto, localidad, lat, lng, title, servicios, tipo_local) {
             this.lat = lat;
             this.lng = lng;
             this.title = title;
             this.depto = depto;
             this.localidad = localidad;
             this.servicios = servicios;
+            this.tipo_local = tipo_local;
         };
         var localidades_data = <?php echo json_encode($toJsonResult); ?>;
         var marker_data_arr = [];
@@ -209,12 +235,14 @@ function parseExcelLocationLogic($atts) {
                             parseFloat(localidades_data[i].coordenadas.x),
                             parseFloat(localidades_data[i].coordenadas.y),
                             localidades_data[i].nombre,
-                            localidades_data[i].servicios
-                            )
+                            localidades_data[i].servicios,
+                            localidades_data[i].tipo_local
+                        )
                     );
 
 
         }
+        console.log(marker_data_arr);
 
 
 
@@ -223,6 +251,7 @@ function parseExcelLocationLogic($atts) {
             var cbFilters = jQuery(".cat-filter-checkbox");
             var deptoSelect = jQuery("#cities-filter-select");
             var localidadSelect = jQuery("#localidades-filter-select");
+            var tipoLocalSelect = jQuery("#tipo-local-filter-select");
 
             cbFilters.change(function () {
 
@@ -237,6 +266,64 @@ function parseExcelLocationLogic($atts) {
 
                 reloadFilters();
             });
+
+            tipoLocalSelect.change(function () {
+
+                tipoLocalFilter = jQuery(this).val();
+                reloadFilters();
+
+            });
+
+            function TipoLocalSelectManager(tipo_local_select_id){
+                 var tipo_locales = [];
+
+                 function newOption(value, title) {
+                    return '<option value="' + value + '">' + title + '</option>';
+                }
+
+                this.addTipoLocal = function (tipo_local_cod, tipo_local_title) {
+                    if (!this.exists(tipo_local_cod)) {
+                        tipo_locales.push(new TipoLocal(tipo_local_cod, tipo_local_title));
+                        //tipo_locales.sort(compare);
+                    }
+
+                }
+
+                this.exists = function (tipo_local_cod) {
+                    for (var i in tipo_locales) {
+                        if (tipo_local_cod === tipo_locales[i].getCode())
+                            return true;
+                    }
+                    return false;
+                }
+
+                this.loadTipolocalesOptions = function () {
+                    var _select = jQuery("#" + tipo_local_select_id);
+                    _select.html('');
+                    _select.append(newOption('', ' -- Tipo de Local -- '))
+                    for (var i in tipo_locales)
+                        _select.append(
+                                newOption(
+                                        tipo_locales[i].getCode(),
+                                        tipo_locales[i].getTitle()
+                                        )
+                                )
+
+                }
+
+                function TipoLocal (tipo_local_cod, tipo_local_title){
+                    var _tipo_local_cod = tipo_local_cod;
+                    var _tipo_local_title = tipo_local_title;
+
+                    this.getCode = function () {
+                        return _tipo_local_cod;
+                    }
+                    this.getTitle = function () {
+                        return _tipo_local_title;
+                    }
+                }
+
+            }
 
 
             function DepartamentosSelectManager(dep_select_id, loc_select_id) {
@@ -364,14 +451,19 @@ function parseExcelLocationLogic($atts) {
 
 
             var departamentosManager = new DepartamentosSelectManager('cities-filter-select', 'localidades-filter-select');
+            var tipoLocalSelectManager = new TipoLocalSelectManager('tipo-local-filter-select');
 
             for (var i in localidades_data) {
                 departamentosManager.addDepartamento(localidades_data[i].departamento, localidades_data[i].departamento_titulo);
                 departamentosManager.addLocalidad(localidades_data[i].departamento, localidades_data[i].localidad, localidades_data[i].localidad_titulo);
 
+                for(var j in localidades_data[i].tipo_local)
+                    tipoLocalSelectManager.addTipoLocal(localidades_data[i].tipo_local[j],localidades_data[i].tipo_local_titulo[j] );
+
             }
 
             departamentosManager.loadDeptosOptions();
+            tipoLocalSelectManager.loadTipolocalesOptions();
 
 
             var _localidadesPos = [];
@@ -451,6 +543,7 @@ function parseExcelLocationLogic($atts) {
                 //console.log(intersect_safe(servicesFilters, marker_data_arr[i].servicios), servicesFilters.length);
                 if ((deptoFilter !== '' && marker_data_arr[i].depto !== deptoFilter)
                         || (localidadFilter !== '' && marker_data_arr[i].localidad !== localidadFilter)
+                        || (tipoLocalFilter !== '' && marker_data_arr[i].tipo_local.indexOf(tipoLocalFilter) === -1)
                         || !(intersect_safe(servicesFilters, marker_data_arr[i].servicios) === servicesFilters.length)) {
 
                     //console.log(google_map_markers);
@@ -576,7 +669,7 @@ function getSidebarLocations() {
                                           Tipo de Local
                                         </div>
                                         <div class="cbox col-lg-6 col-md-6 col-sm-12">
-                                            <select id="localidades-filter-select" class="localidades-filter-select">
+                                            <select id="tipo-local-filter-select" class="tipo-local-filter-select">
                                                 <option value=""> -- Tipo de Local -- </option>
                                             </select>
                                         </div>

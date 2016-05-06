@@ -51,8 +51,9 @@ function load_locations_from_excel (){
 				"localidad" => 2,
 				"direccion" => 3,
 				"coordenadas" => 4,
-				"telefono" => 6,
-				"servicios" => 5
+				"telefono" => 7,
+				"servicios" => 5,
+				"tipo_local" => 6
 	    	);
 
 			for ($row = 2; $row <= $highestRow; $row++){ 
@@ -77,7 +78,8 @@ function load_locations_from_excel (){
 					direccion,
 					coordenadas,
 					telefono,
-					servicios
+					servicios,
+					tipo_local
 				) VALUES (
 					'".$rowData[0][$indexes["departamento"]]."',
 					'".$rowData[0][$indexes["nombre"]]."',
@@ -85,7 +87,8 @@ function load_locations_from_excel (){
 					'".$rowData[0][$indexes["direccion"]]."',
 					'".$rowData[0][$indexes["coordenadas"]]."',
 					'".$rowData[0][$indexes["telefono"]]."',
-					'".$rowData[0][$indexes["servicios"]]."'
+					'".$rowData[0][$indexes["servicios"]]."',
+					'".$rowData[0][$indexes["tipo_local"]]."'
 				);";
 
 				// Exec query
