@@ -33,7 +33,7 @@
     z-index: 999;
 }
 .excel-sidebar .top{
-    height:422px !important;background: #b81d2c;
+    height:750px !important;background: #b81d2c;
 }
 .excel-sidebar .top p.title {
     color: white;
@@ -92,7 +92,8 @@ ul.item-list {
     margin-left: 15px !important;
 }
 .item .item-data .val{
-    font-size: 80px  !important; color:#b81d2c;
+    //font-size: 80px  !important;
+    color:#b81d2c;
     line-height: 75px !important;
     font-weight: bold;
     font-style: italic;
@@ -356,7 +357,7 @@ ul.item-list {
         height: 30px !important;
     }
     .excel-sidebar .top {
-        height: 340px !important;
+        height: 750px !important;
     }
     .excel-sidebar .beneficios {
         font-size: 18px !important;
@@ -402,14 +403,15 @@ ul.item-list {
     }
     .container.parse-excel .row {
         margin: 0 !important;
-        height: 85px !important;
+        height: 90px !important;
     }
+
     .excel-sidebar .top {
-        height: 190px !important;
+        height: 200px !important;
     }
     .excel-center {
         padding-left: 0 !important;
-        padding-top: 330px !important;
+        padding-top: 200px !important;
     }
 
     .excel-sidebar .beneficios {
@@ -419,7 +421,7 @@ ul.item-list {
 
     }
     .excel-sidebar{
-        position: relative !important;height: 330px !important;
+        position: relative !important;height: 200px !important;
     }
     .category-filter-container .category-filter-item {
         height: 60px !important;
@@ -482,7 +484,7 @@ ul.item-list {
     .item .item-data .item-disscount p.mini {
         float: left;
         color: #b81d2c;
-        line-height: 0px !important;
+        line-height: 22px !important;
         font-weight: bold;
         font-size: 20px !important;
         margin: 20px 0px 0px 5px !important
@@ -559,3 +561,31 @@ ul.item-list {
 .edit-link,.sep-str{
     display: none !important;
 }
+//########## item text fix #############
+@media (max-width:1300px) and (min-width:1200px) {
+    .item-data {
+        width: 210px !important;
+    }
+    .item-data .val {
+        font-size: 70px !important;
+    }
+    .item-data .mini{
+        font-size: 31px !important;
+    }
+}
+@media (min-width:1300px) {
+    .item .item-data .val{
+        font-size: 80px !important;
+    }
+}
+@media (max-width:1200px) {
+    .item .item-data .val{
+        font-size: 80px !important;
+    }
+}
+@media (max-width:475px) {
+    .item .item-data .val{
+        font-size: 35px !important;
+    }
+}
+//########## item text fix #############
