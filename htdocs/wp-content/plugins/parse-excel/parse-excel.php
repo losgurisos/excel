@@ -269,7 +269,7 @@ function getSidebar() {
                             </div>
                         </div>
                     </div>
-                    <a href="/tarjeta-beneficia" class="beneficios">Beneficios Pronto!</a>
+                    <!--<a href="/tarjeta-beneficia" class="beneficios">Beneficios Pronto!</a>
                     <div class="bottom">
                         <div class="container-beneficios">
                             <a href="/retiros-en-efectivo" class="beneficio col-lg-3 col-sm-3 col-xs-3 col-md-3 efectivo">
@@ -296,7 +296,7 @@ function getSidebar() {
                         <div class="beneficia">
 
                         </div>
-                    </div>
+                    </div>-->
                 </div>';
 }
 
