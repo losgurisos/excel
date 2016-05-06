@@ -405,7 +405,7 @@ function parseExcelLocationLogic($atts) {
 
             });
             jQuery("#my_location").click(function () {
-    // Try HTML5 geolocation.
+                // Try HTML5 geolocation.
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function (position) {
                         var geolocationLatLng = {
@@ -488,7 +488,7 @@ function parseExcelLocationLogic($atts) {
                 center: myLatLng
             });
             infoWindow = new google.maps.InfoWindow({map: map});
-    //console.log(document.getElementById('map'));
+            //console.log(document.getElementById('map'));
             for (var i = 0; i < marker_data_arr.length; i++) {
 
                 myLatLng = {lat: marker_data_arr[i].lat, lng: marker_data_arr[i].lng};
@@ -571,12 +571,22 @@ function getSidebarLocations() {
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="filter-barrio col-lg-12">
+                                        <div class="label col-lg-6 col-md-6 col-sm-12">
+                                          Tipo de Local
+                                        </div>
+                                        <div class="cbox col-lg-6 col-md-6 col-sm-12">
+                                            <select id="localidades-filter-select" class="localidades-filter-select">
+                                                <option value=""> -- Tipo de Local -- </option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-lg-12 separator">
                                     <hr>
                                     <div class="absbox"><p>Locales con</p></div>
                                 </div>
-                                <div class="category-filter-item  col-xs-3 col-sm-6 col-lg-6 col-md-6">
+                                <div class="category-filter-item  col-xs-4 col-sm-4 col-lg-4 col-md-4">
                                     <div class="category-filter solicitud">
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-checkbox-container">
@@ -586,7 +596,7 @@ function getSidebarLocations() {
 
                                     </div>
                                 </div>
-                                <div class="category-filter-item col-xs-3 col-sm-6 col-lg-6 col-md-6" >
+                                <div class="category-filter-item  col-xs-4 col-sm-4 col-lg-4 col-md-4" >
                                     <div class="category-filter tarjeta">
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-checkbox-container">
@@ -596,7 +606,7 @@ function getSidebarLocations() {
 
                                     </div>
                                 </div>
-                                <div class="category-filter-item col-xs-3 col-sm-6 col-lg-6 col-md-6">
+                                <div class="category-filter-item  col-xs-4 col-sm-4 col-lg-4 col-md-4" style="display:none !important;">
 
                                     <div class="category-filter sucursal">
                                         <div class="cat-filter-icon "></div>
@@ -609,7 +619,7 @@ function getSidebarLocations() {
                                 </div>
 
 
-                                <div class="category-filter-item  col-xs-3 col-sm-6 col-lg-6 col-md-6" >
+                                <div class="category-filter-item  col-xs-4 col-sm-4 col-lg-4 col-md-4" >
                                     <div class="category-filter estadoc">
                                         <div class="cat-filter-icon"></div>
                                         <div class="cat-filter-checkbox-container">

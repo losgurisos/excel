@@ -241,6 +241,7 @@ select {
 .category-filter-container .category-filter-item {
     height: 100% !important;
     margin-bottom: 20px !important;
+    padding: 0 !important;
 }
 .category-filter-container .category-filter-item .category-filter{
     height: 100px !important;
@@ -286,7 +287,7 @@ select {
 }
 .category-filter-container .category-filter-item .category-filter .cat-filter-title {
     color: white;
-    width: 85px;
+    width: 100% !important;
     margin: 0 auto !important;
     text-align: center !important;
     font-family: HelveticaLight;
@@ -407,7 +408,7 @@ select {
         font-size: 20px !important;
     }
     .cat-filter-title{    
-        width: 70px !important;
+        //width: 70px !important;
         font-size: 12px !important;
     }
     .filter-depto, .filter-barrio{
