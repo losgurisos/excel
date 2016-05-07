@@ -293,7 +293,7 @@ ul.item-list {
     margin-top: 10px !important;
 }
 .excel-sidebar .top {
-    height: 465px !important;
+    height: 750px !important;
     background: #b81d2c;
 }
 .excel-center {
@@ -456,10 +456,9 @@ ul.item-list {
         margin-bottom: 10px !important;
     }
     .excel-center {
-        height: 650px !important;
+        height: 200px !important;
         box-sizing: content-box;
         padding: 0 !important;
-        padding-top: 325px !important;
     }
     ul.item-list {
         list-style: none !important;
@@ -561,7 +560,7 @@ ul.item-list {
 .edit-link,.sep-str{
     display: none !important;
 }
-//########## item text fix #############
+
 @media (max-width:1300px) and (min-width:1200px) {
     .item-data {
         width: 210px !important;
@@ -588,4 +587,3 @@ ul.item-list {
         font-size: 35px !important;
     }
 }
-//########## item text fix #############
