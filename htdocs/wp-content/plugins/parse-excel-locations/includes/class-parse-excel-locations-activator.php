@@ -40,6 +40,7 @@ class Parse_Excel_Locations_Activator {
 		coordenadas VARCHAR (255) NOT NULL,
 		telefono VARCHAR (255) NOT NULL,
 		servicios VARCHAR (512) NOT NULL,
+		tipo_local VARCHAR (512) NOT NULL,
   		PRIMARY KEY (id)
 		);";
 
