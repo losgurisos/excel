@@ -242,9 +242,6 @@ function parseExcelLocationLogic($atts) {
 
 
         }
-        console.log(marker_data_arr);
-
-
 
         jQuery(document).ready(function () {
 
@@ -280,7 +277,9 @@ function parseExcelLocationLogic($atts) {
                  function newOption(value, title) {
                     return '<option value="' + value + '">' + title + '</option>';
                 }
-
+                this.getTiposLocalQty = function(){
+                    return tipo_locales.length;
+                }
                 this.addTipoLocal = function (tipo_local_cod, tipo_local_title) {
                     if (!this.exists(tipo_local_cod)) {
                         tipo_locales.push(new TipoLocal(tipo_local_cod, tipo_local_title));
@@ -300,7 +299,8 @@ function parseExcelLocationLogic($atts) {
                 this.loadTipolocalesOptions = function () {
                     var _select = jQuery("#" + tipo_local_select_id);
                     _select.html('');
-                    _select.append(newOption('', ' -- Tipo de Local -- '))
+                    _select.append(newOption('', ' -- Tipo de Local -- '));
+                    _select.append(newOption('todos', 'Todos'));
                     for (var i in tipo_locales)
                         _select.append(
                                 newOption(
@@ -465,6 +465,8 @@ function parseExcelLocationLogic($atts) {
             departamentosManager.loadDeptosOptions();
             tipoLocalSelectManager.loadTipolocalesOptions();
 
+            tipoLocalesQty = tipoLocalSelectManager.getTiposLocalQty();
+
 
             var _localidadesPos = [];
             var _localidades = [];
@@ -529,6 +531,7 @@ function parseExcelLocationLogic($atts) {
          marker_data_arr.push(new marker_data("MALDONADO", -33.5461217, -56.76919, "ETC"));
          marker_data_arr.push(new marker_data("MALDONADO", -34.5278466, -55.5014186, "ETC"));
          */
+        var tipoLocalesQty = 0;
         var google_map_markers = new Array();
         var map;
         var geolocationLatLng = {lat: -32.7027405, lng: -54.7530596};
@@ -543,7 +546,7 @@ function parseExcelLocationLogic($atts) {
                 //console.log(intersect_safe(servicesFilters, marker_data_arr[i].servicios), servicesFilters.length);
                 if ((deptoFilter !== '' && marker_data_arr[i].depto !== deptoFilter)
                         || (localidadFilter !== '' && marker_data_arr[i].localidad !== localidadFilter)
-                        || (tipoLocalFilter !== '' && marker_data_arr[i].tipo_local.indexOf(tipoLocalFilter) === -1)
+                        || (tipoLocalFilter !== '' && ((tipoLocalFilter === 'todos' && marker_data_arr[i].tipo_local.length <tipoLocalesQty ) || (tipoLocalFilter !== 'todos' && marker_data_arr[i].tipo_local.indexOf(tipoLocalFilter) === -1)))
                         || !(intersect_safe(servicesFilters, marker_data_arr[i].servicios) === servicesFilters.length)) {
 
                     //console.log(google_map_markers);
