@@ -639,6 +639,7 @@ function getSidebarLocations() {
             <div class="col-md-3 col-sm-3 col-xs-12 location-excel-sidebar">
                     <div class="top">
                         <p class="title">Encontrá la sucursal más cercana a vos</p>
+                        <div class="beneficios" id="my_location"><p>Mi ubicación</p></div>
                         <div class="row">
 
                             <div class="category-filter-container">
@@ -726,7 +727,7 @@ function getSidebarLocations() {
                             </div>
                         </div>
 
-                        <div class="beneficios" id="my_location"><p>Mi ubicación</p></div>
+                        
                     </div>
 
                 </div>';
