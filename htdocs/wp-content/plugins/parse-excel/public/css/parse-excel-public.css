@@ -393,6 +393,9 @@ ul.item-list {
         height: 55px !important;
 
     }
+    .container{
+        padding: 0 15px !important;
+    }
     .item-address::before{
         content: " ";
         height: 15px !important;
@@ -456,11 +459,11 @@ ul.item-list {
         background-size: 100px !important;
         margin-bottom: 10px !important;
     }
-    .excel-center {
+    /*.excel-center {
         height: 200px !important;
         box-sizing: content-box;
         padding: 0 !important;
-    }
+    }*/
     ul.item-list {
         list-style: none !important;
         padding: 0 !important;
@@ -517,7 +520,7 @@ ul.item-list {
     .item .item-data {
         float: left;
         margin-left: 5px;
-        width: 145px;
+        width: 120px !important;
     }
     .item-address {
         width: 145px !important;;text-align: left !important;
