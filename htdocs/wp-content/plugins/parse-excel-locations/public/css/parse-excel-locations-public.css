@@ -10,7 +10,12 @@
 .body{
     font-family: HelveticaLight;
 }
-.container {
+.container{
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.container.parse-excel{
     width: 100%;
 }
 .beneficios{
@@ -193,6 +198,7 @@ select {
     color: black;
     width: 100% !important;
     border: 0 !important;
+    background: white;
 }
 .filter-depto,.filter-barrio {
     text-align: left !important;
@@ -216,7 +222,7 @@ select {
 .container.parse-excel .row{
     margin: 0 !important;
 }
-.container{
+.container.parse-excel{
     padding: 0 !important;
     margin: 0 !important;
     margin-top: 30px !important;
@@ -506,6 +512,9 @@ select {
     }
 }
 @media only screen and (max-width:425px){
+    .container{
+        padding: 0 15px !important;
+    }
     .beneficios p {
         line-height: 30px !important;}
     .beneficios p::before {
@@ -526,12 +535,9 @@ select {
     .location-excel-sidebar .top{
         margin-top: 15px !important;
     }
-    .category-filter-container .category-filter-item .category-filter {
-        height: 55x !important;
 
-    }
     .location-excel-sidebar .top {
-        height: 355px !important;
+        height: 100% !important;
     }
     .excel-center {
         padding-left: 0 !important;
@@ -545,10 +551,13 @@ select {
 
     }
     .location-excel-sidebar{
-        position: relative !important;height: 385px !important;
+        position: relative !important;
+        height: 100% !important;
+        padding-bottom: 15px !important;
     }
     .category-filter-container .category-filter-item {
-        height: 60px !important;
+        height: 75px !important;
+        margin-bottom: 10px !important;
     }
     .beneficio.col-lg-3 {
         height: 40px !important;
@@ -660,12 +669,8 @@ select {
 .entry-header{
     display:none;
 }
-.container{
-    width: 100%;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-.container {
+
+.container.parse-excel{
     width: 100% !important;
 }
 

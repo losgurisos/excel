@@ -164,7 +164,6 @@ function parseExcelLocationLogic($atts) {
 
         $servicios = array();
         $tipoLocal = array();
-
         ?> <!--<script><?php var_dump($_servicios) ?></script> --> <?php
         for ($j = 0; $j < count($_servicios); $j++) {
 
@@ -206,7 +205,6 @@ function parseExcelLocationLogic($atts) {
             "servicios" => $servicios,
             "tipo_local_titulo" => $_tipoLocal,
             "tipo_local" => $tipoLocal
-
         );
     }
     ?>
@@ -237,7 +235,7 @@ function parseExcelLocationLogic($atts) {
                             localidades_data[i].nombre,
                             localidades_data[i].servicios,
                             localidades_data[i].tipo_local
-                        )
+                            )
                     );
 
 
@@ -271,13 +269,13 @@ function parseExcelLocationLogic($atts) {
 
             });
 
-            function TipoLocalSelectManager(tipo_local_select_id){
-                 var tipo_locales = [];
+            function TipoLocalSelectManager(tipo_local_select_id) {
+                var tipo_locales = [];
 
-                 function newOption(value, title) {
+                function newOption(value, title) {
                     return '<option value="' + value + '">' + title + '</option>';
                 }
-                this.getTiposLocalQty = function(){
+                this.getTiposLocalQty = function () {
                     return tipo_locales.length;
                 }
                 this.addTipoLocal = function (tipo_local_cod, tipo_local_title) {
@@ -311,7 +309,7 @@ function parseExcelLocationLogic($atts) {
 
                 }
 
-                function TipoLocal (tipo_local_cod, tipo_local_title){
+                function TipoLocal(tipo_local_cod, tipo_local_title) {
                     var _tipo_local_cod = tipo_local_cod;
                     var _tipo_local_title = tipo_local_title;
 
@@ -457,8 +455,8 @@ function parseExcelLocationLogic($atts) {
                 departamentosManager.addDepartamento(localidades_data[i].departamento, localidades_data[i].departamento_titulo);
                 departamentosManager.addLocalidad(localidades_data[i].departamento, localidades_data[i].localidad, localidades_data[i].localidad_titulo);
 
-                for(var j in localidades_data[i].tipo_local)
-                    tipoLocalSelectManager.addTipoLocal(localidades_data[i].tipo_local[j],localidades_data[i].tipo_local_titulo[j] );
+                for (var j in localidades_data[i].tipo_local)
+                    tipoLocalSelectManager.addTipoLocal(localidades_data[i].tipo_local[j], localidades_data[i].tipo_local_titulo[j]);
 
             }
 
@@ -508,7 +506,8 @@ function parseExcelLocationLogic($atts) {
                         };
 
                         infoWindow.setPosition(geolocationLatLng);
-                        infoWindow.setContent('Tu te encuentras aqui.');
+                        infowindow.open(map);
+                        infoWindow.setContent('Te encuentras aqui.');
                         map.setZoom(12);
                         map.setCenter(geolocationLatLng);
                     }, function () {
@@ -546,7 +545,7 @@ function parseExcelLocationLogic($atts) {
                 //console.log(intersect_safe(servicesFilters, marker_data_arr[i].servicios), servicesFilters.length);
                 if ((deptoFilter !== '' && marker_data_arr[i].depto !== deptoFilter)
                         || (localidadFilter !== '' && marker_data_arr[i].localidad !== localidadFilter)
-                        || (tipoLocalFilter !== '' && ((tipoLocalFilter === 'todos' && marker_data_arr[i].tipo_local.length <tipoLocalesQty ) || (tipoLocalFilter !== 'todos' && marker_data_arr[i].tipo_local.indexOf(tipoLocalFilter) === -1)))
+                        || (tipoLocalFilter !== '' && ((tipoLocalFilter === 'todos' && marker_data_arr[i].tipo_local.length < tipoLocalesQty) || (tipoLocalFilter !== 'todos' && marker_data_arr[i].tipo_local.indexOf(tipoLocalFilter) === -1)))
                         || !(intersect_safe(servicesFilters, marker_data_arr[i].servicios) === servicesFilters.length)) {
 
                     //console.log(google_map_markers);
@@ -561,9 +560,9 @@ function parseExcelLocationLogic($atts) {
             if (foundAny) {
                 map.fitBounds(bounds);
             } else {
-                var center = new google.maps.LatLng(-32.7027405, -54.7530596);
-                map.setZoom(8);
-                map.setCenter(center, 8);
+                var center = new google.maps.LatLng(-32.63597, -55.6288045);
+                map.setZoom(7);
+                map.setCenter(center, 7);
             }
 
         }
@@ -578,12 +577,14 @@ function parseExcelLocationLogic($atts) {
 
 
         function initMap() {
-            var myLatLng = {lat: -32.7027405, lng: -54.7530596};
+            //32.63597,-55.6288045
+            var myLatLng = {lat: -32.63597, lng: -55.6288045};
             map = new google.maps.Map(document.getElementById('locations-map'), {
-                zoom: 8,
+                zoom: 7,
                 center: myLatLng
             });
             infoWindow = new google.maps.InfoWindow({map: map});
+            infoWindow.close();
             //console.log(document.getElementById('map'));
             for (var i = 0; i < marker_data_arr.length; i++) {
 
@@ -642,7 +643,7 @@ function getSidebarLocations() {
             <div class="col-md-3 col-sm-3 col-xs-12 location-excel-sidebar">
                     <div class="top">
                         <p class="title">Encontrá la sucursal más cercana a vos</p>
-                        <div class="beneficios" id="my_location"><p>Mi ubicación</p></div>
+                        <div class="my-location" id="my_location"><p>Mi ubicación</p></div>
                         <div class="row">
 
                             <div class="category-filter-container">

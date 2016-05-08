@@ -244,7 +244,8 @@ ul.item-list {
 .cities-filter-select {
     height: 100% !important;
     width: 100% !important;
-
+    background-color: white;
+    border: none;
 }
 
 .container-beneficios {
@@ -537,19 +538,10 @@ ul.item-list {
 .entry-header{
     display:none;
 }
-.container{
-    width: 100%;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-.container {
+.container.parse-excel{
     width: 100% !important;
-}
-
-.container.parse-excel {
-    padding: 0 !important;
     margin: 0 !important;
-    width: 100%;
+    padding: 0 !important;
 }
 #content ul li{
     list-style: none !important;
