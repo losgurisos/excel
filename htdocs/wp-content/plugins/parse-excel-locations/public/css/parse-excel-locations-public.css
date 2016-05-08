@@ -18,17 +18,21 @@
 .container.parse-excel{
     width: 100%;
 }
-.beneficios{
+.my-location{
     cursor: pointer !important;
 }
-.beneficios p{
-    line-height: 50px !important;
+.my-location .my-location-content{
+    line-height: 30px !important;
     position: relative !important;
-    width: 60% !important;
-    padding-left: 40px !important;
+    width: 100% !important;
+    padding: 0 50px !important;
     margin: 0 auto !important;
 }
-.beneficios p::before{
+.my-location-subtitle {
+    font-size: 11px;
+    line-height: 11px;
+}
+.my-location .my-location-content::before{
     content: " ";
     height: 45px;
     width: 31px;
@@ -78,7 +82,7 @@
     line-height: 25px !important;
     padding-top: 20px;margin-bottom: 30px !important;
 }
-.location-excel-sidebar .beneficios {
+.location-excel-sidebar .my-location {
     line-height: 55px !important;
     height: 55px !important;
     background: #fdc600;
@@ -410,7 +414,11 @@ select {
     height: 750px !important;
 }
 @media only screen and (max-width:1025px){
-    .beneficios p{
+    .my-location-subtitle {
+        font-size: 8px;
+        line-height: 11px;
+    }
+    .my-location .my-location-content{
         font-size: 20px !important;
     }
     .cat-filter-title{    
@@ -448,8 +456,9 @@ select {
     }
 }
 @media only screen and (max-width:768px){
-    .beneficios p{
+    .my-location .my-location-content{
         font-size: 12px !important;
+        padding-right: 0px !important;
     }
     .separator p{
         font-size: 12px !important;
@@ -483,7 +492,7 @@ select {
     .location-excel-sidebar .top {
         height: 530px !important;
     }
-    .location-excel-sidebar .beneficios {
+    .location-excel-sidebar .my-location {
         font-size: 18px !important;
     }
     .beneficio.col-lg-3.efectivo .beneficio_image {
@@ -515,9 +524,14 @@ select {
     .container{
         padding: 0 15px !important;
     }
-    .beneficios p {
-        line-height: 30px !important;}
-    .beneficios p::before {
+    .my-location .my-location-content {
+        line-height: 20px !important;
+    }
+    .my-location-subtitle {
+        font-size: 6px;
+        line-height: 6px;
+    }
+    .my-location .my-location-content::before {
         content: " ";
         height: 20px;
         width: 12px;
@@ -525,7 +539,7 @@ select {
         background-repeat: no-repeat !important;
         display: block;
         top: 6px;
-        left: 5px;
+        left: 25px;
     }
     .locations-map{width: 100% !important;margin: 0 !important;}
     .cat-filter-title{   
@@ -544,7 +558,7 @@ select {
         padding-top: 370px !important;
     }
 
-    .location-excel-sidebar .beneficios {
+    .location-excel-sidebar .my-location {
         font-size: 18px  !important;
         height: 30px !important;
         line-height: 30px !important;
