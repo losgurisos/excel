@@ -164,7 +164,6 @@ function parseExcelLocationLogic($atts) {
 
         $servicios = array();
         $tipoLocal = array();
-        ?> <!--<script><?php var_dump($_servicios) ?></script> --> <?php
         for ($j = 0; $j < count($_servicios); $j++) {
 
             $_serv = strtolower(str_replace(" ", "_", $_servicios[$j]));
