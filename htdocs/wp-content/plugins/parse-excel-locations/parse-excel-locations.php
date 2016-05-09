@@ -211,7 +211,7 @@ function parseExcelLocationLogic($atts) {
         var servicesFilters = [];
         var deptoFilter = '';
         var localidadFilter = '';
-        var tipoLocalSelect = '';
+        var tipoLocalFilter = '';
 
         var marker_data = function (depto, localidad, lat, lng, title, servicios, tipo_local) {
             this.lat = lat;
