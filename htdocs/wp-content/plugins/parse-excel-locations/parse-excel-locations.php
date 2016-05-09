@@ -506,7 +506,7 @@ function parseExcelLocationLogic($atts) {
                         };
 
                         infoWindow.setPosition(geolocationLatLng);
-                        infowindow.open(map);
+                        infoWindow.open(map);
                         infoWindow.setContent('Te encuentras aqui.');
                         map.setZoom(12);
                         map.setCenter(geolocationLatLng);
