@@ -296,8 +296,7 @@ function parseExcelLocationLogic($atts) {
                 this.loadTipolocalesOptions = function () {
                     var _select = jQuery("#" + tipo_local_select_id);
                     _select.html('');
-                    _select.append(newOption('', ' -- Tipo de Local -- '));
-                    _select.append(newOption('todos', 'Todos'));
+                    _select.append(newOption('', 'Todos'));
                     for (var i in tipo_locales)
                         _select.append(
                                 newOption(
@@ -645,7 +644,7 @@ function getSidebarLocations() {
                         <div class="my-location" id="my_location">
                         <div class="my-location-content">
                         <div class="my-location-title">Mi ubicación</div>
-                        <div class="my-location-subtitle">Haz click en el botón y automáticamente busca la sucursal mas cercana a vos.</div>
+                        <div class="my-location-subtitle">Haz click en el botón y automáticamente busca la sucursal más cercana a vos.</div>
                         </div>
                         </div>
                         <div class="row">
