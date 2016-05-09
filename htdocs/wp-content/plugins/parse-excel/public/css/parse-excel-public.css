@@ -88,7 +88,7 @@ ul.item-list {
 }
 
 .item .item-data {
-    float: left;
+    float: left;    width: 230px !important;
     margin-left: 15px !important;
 }
 .item .item-data .val{
@@ -163,7 +163,7 @@ ul.item-list {
 .container{
     padding: 0 !important;
     margin: 0 !important;
-    margin-top: 30px !important;
+
     width: 100% !important;
 }
 
@@ -187,7 +187,7 @@ ul.item-list {
     margin-bottom: 50px !important;
 }
 .category-filter-container .category-filter-item .category-filter{
-    height: 100px !important;
+    height: 100% !important;
     width: 100% !important;
 }
 
@@ -325,7 +325,7 @@ ul.item-list {
     }
     .category-filter-container .category-filter-item {
         height: 100% !important;
-        margin-bottom: 0px !important;
+        margin-bottom: 15px !important;
     }
     .excel-sidebar .top p.title {
         font-size: 20px !important;
@@ -351,7 +351,7 @@ ul.item-list {
     }
     .category-filter-container .category-filter-item {
         height: 100%;
-        margin-bottom: 0px !important;
+        margin-bottom: 15px !important;
         padding: 0 !important;
     }
     .cities-filter-select-container {
