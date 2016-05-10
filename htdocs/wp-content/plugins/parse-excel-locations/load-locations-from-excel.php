@@ -51,9 +51,9 @@ function load_locations_from_excel (){
 				"localidad" => 2,
 				"direccion" => 3,
 				"coordenadas" => 4,
-				"telefono" => 7,
-				"servicios" => 5,
-				"tipo_local" => 6
+				"telefono" => 5,
+				"servicios" => 6,
+				"tipo_local" => 7
 	    	);
 
 			for ($row = 2; $row <= $highestRow; $row++){ 

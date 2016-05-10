@@ -190,11 +190,11 @@ function parseExcelLocationLogic($atts) {
 
 
         $toJsonResult[] = array(
-            "departamento_titulo" => $depto,
-            "departamento" => strtolower(str_replace(" ", "_", $depto)),
+            "departamento_titulo" => rtrim($depto),
+            "departamento" => strtolower(str_replace(" ", "_", rtrim($depto))),
             "nombre" => $result[$i]->nombre,
-            "localidad_titulo" => $localidad,
-            "localidad" => strtolower(str_replace(" ", "_", $localidad)),
+            "localidad_titulo" => rtrim($localidad),
+            "localidad" => strtolower(str_replace(" ", "_", rtrim($localidad))),
             "direccion" => $result[$i]->direccion,
             "coordenadas" => array(
                 "x" => $coordenadas[0],
@@ -213,7 +213,7 @@ function parseExcelLocationLogic($atts) {
         var localidadFilter = '';
         var tipoLocalFilter = '';
 
-        var marker_data = function (depto, localidad, lat, lng, title, servicios, tipo_local) {
+        var marker_data = function (depto, localidad, lat, lng, title, servicios, tipo_local, direccion) {
             this.lat = lat;
             this.lng = lng;
             this.title = title;
@@ -221,23 +221,24 @@ function parseExcelLocationLogic($atts) {
             this.localidad = localidad;
             this.servicios = servicios;
             this.tipo_local = tipo_local;
+            this.direccion = direccion;
         };
         var localidades_data = <?php echo json_encode($toJsonResult); ?>;
         var marker_data_arr = [];
         for (var i in localidades_data) {
-            marker_data_arr.push(
-                    new marker_data(
-                            localidades_data[i].departamento,
-                            localidades_data[i].localidad,
-                            parseFloat(localidades_data[i].coordenadas.x),
-                            parseFloat(localidades_data[i].coordenadas.y),
-                            localidades_data[i].nombre,
-                            localidades_data[i].servicios,
-                            localidades_data[i].tipo_local
+            if(localidades_data[i].coordenadas.x && localidades_data[i].coordenadas.y)
+                marker_data_arr.push(
+                        new marker_data(
+                                localidades_data[i].departamento,
+                                localidades_data[i].localidad,
+                                parseFloat(localidades_data[i].coordenadas.x),
+                                parseFloat(localidades_data[i].coordenadas.y),
+                                localidades_data[i].nombre,
+                                localidades_data[i].servicios,
+                                localidades_data[i].tipo_local,
+                                localidades_data[i].direccion
                             )
-                    );
-
-
+                        );
         }
 
         jQuery(document).ready(function () {
@@ -591,12 +592,16 @@ function parseExcelLocationLogic($atts) {
                 var marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
-                    title: marker_data_arr[i].title
+                    title: marker_data_arr[i].title,
+                    direccion: marker_data_arr[i].direccion
                 });
+                google.maps.event.addListener(marker, 'click', function () {
+                    infoWindow.setContent(this.title+"<br>"+this.direccion);
+                    infoWindow.open(map, this);
+                });
+
                 //console.log(marker);
                 google_map_markers.push(marker);
-
-
 
             }
         }
