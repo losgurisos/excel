@@ -593,10 +593,16 @@ function parseExcelLocationLogic($atts) {
                     position: myLatLng,
                     map: map,
                     title: marker_data_arr[i].title,
-                    direccion: marker_data_arr[i].direccion
+                    direccion: marker_data_arr[i].direccion,
+                    getHtmlInfoContent: function() {
+                        return "<div style='text-align:left;line-height:20px'>"+
+                                    "<b>"+this.title+"</b><br>"+
+                                    this.direccion+
+                                "</div>"
+                    }
                 });
                 google.maps.event.addListener(marker, 'click', function () {
-                    infoWindow.setContent(this.title+"<br>"+this.direccion);
+                    infoWindow.setContent(this.getHtmlInfoContent());
                     infoWindow.open(map, this);
                 });
 
