@@ -704,7 +704,7 @@ function getSidebarLocations() {
                                         <div class="cat-filter-checkbox-container">
                                             <input service="solicitud" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>
-                                        <div class="cat-filter-title">Solicitúd de prestamo</div>
+                                        <div class="cat-filter-title">Solicitúd de préstamo</div>
 
                                     </div>
                                 </div>
