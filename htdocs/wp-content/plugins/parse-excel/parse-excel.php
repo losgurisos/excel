@@ -189,7 +189,7 @@ function getSidebar() {
 
                                     <div class="category-filter tecnologia">
                                         <div class="cat-filter-icon "></div>
-                                        <div class="cat-filter-title">Tecnologia</div>
+                                        <div class="cat-filter-title">Tecnología</div>
                                         <div class="cat-filter-checkbox-container">
                                             <input category="tecnologia" type="checkbox" class="cat-filter-checkbox"/>
                                         </div>

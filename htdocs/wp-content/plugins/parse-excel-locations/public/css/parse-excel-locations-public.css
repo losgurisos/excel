@@ -13,7 +13,7 @@
 .container{
     width: 100%;
     margin: 0 !important;
-    padding: 0 !important;
+    //padding: 0 !important;
 }
 .container.parse-excel{
     width: 100%;
@@ -403,11 +403,12 @@ select {
 }
 .separator p{
     text-align: center !important;
-    margin: 0 auto  !important;
-    display: block  !important;
-    width: 50%  !important;
-    font-size: 27px  !important;
-    background: #B81D2C  !important;
+    margin: 0 auto !important;
+    display: block !important;
+    width: 55% !important;
+    font-size: 20px !important;
+    background: #B81D2C !important;
+    line-height: 40px !important;
 }
 
 @media only screen and (min-width:1024px){

@@ -88,8 +88,8 @@ ul.item-list {
 }
 
 .item .item-data {
-    float: left;    width: 230px !important;
-    margin-left: 15px !important;
+    float: left;    width: 235px !important;
+    margin-left: 10px !important;
 }
 .item .item-data .val{
     //font-size: 80px  !important;
@@ -217,7 +217,7 @@ ul.item-list {
 }
 .category-filter-container .category-filter-item .category-filter .cat-filter-title {
     color: white;
-    text-align: center !important;
+    text-align: center !important;    line-height: 20px !important;
 }
 .category-filter-container .category-filter-item .category-filter .cat-filter-checkbox-container {
     width: 13px !important;
@@ -229,7 +229,7 @@ ul.item-list {
     height: 100% !important;
 }
 .category-filter-container .category-filter-item .category-filter div {
-    margin-bottom: 15px !important;
+    margin-bottom: 0px !important;
 }
 .cities-filter-container {
     width: 100% !important;
