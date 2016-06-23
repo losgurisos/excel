@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /**
  * The plugin bootstrap file
@@ -110,7 +110,7 @@ function parse_excel_shortcode($atts) {
 // THE LOGIC
 function parseExcelLogic($atts) {
     add_action('wp_footer', 'add_shortcode_css_and_js');
-    $trans = array("Ã¡" => "a", "Ã©" => "e", "Ã­" => "i", "Ã³" => "o", "Ãº" => "u", "Ã±" => "n");
+    $trans = array("á" => "a", "é" => "e", "í" => "i", "ó" => "o", "ú" => "u", "ñ" => "n");
 
     // database object
     global $wpdb;
@@ -144,7 +144,7 @@ function parseExcelLogic($atts) {
         $html .= '<li class="col-md-12 col-lg-6 cat-' . strtolower($_clasificacion) . ' dep-' . strtolower(str_replace(" ", "_", $result[$i]->departamento)) . '">
                             <div class="item">
                                 <div class="item-img">
-                                <img src="' . plugins_url('public/marcas/' . $result[$i]->imagen . '', __FILE__) . '"/>
+                                <img src="' . ($result[$i]->imagen !== '' && $result[$i]->imagen !== NULL ? plugins_url('public/marcas/' . $result[$i]->imagen . '', __FILE__) : plugins_url('public/img/pronto1.jpg', __FILE__)) . '"/>
                                 </div>
                                 <div class="item-data">
                                     <div class="item-category-img ' . strtolower($_clasificacion) . '">
