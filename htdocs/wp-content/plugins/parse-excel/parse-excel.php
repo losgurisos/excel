@@ -1,4 +1,5 @@
 ﻿<?php
+ob_start();
 
 /**
  * The plugin bootstrap file
@@ -303,3 +304,5 @@ function getSidebar() {
 // WIDGET
 //require_once( dirname(__FILE__) . "/widget.php");
 run_parse_excel();
+ob_end_flush();
+?>

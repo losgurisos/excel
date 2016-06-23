@@ -48,4 +48,4 @@ class Parse_Excel_Activator {
         require( ABSPATH . 'wp-admin/includes/upgrade.php' );
         dbDelta( $sql );
 	}
-}
+}?>
