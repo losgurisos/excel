@@ -206,6 +206,8 @@ function parseExcelLocationLogic($atts) {
             "tipo_local" => $tipoLocal
         );
     }
+
+
     ?>
     <script>
         var servicesFilters = [];
@@ -574,7 +576,6 @@ function parseExcelLocationLogic($atts) {
             return intersections;
         }
 
-
         function initMap() {
             //32.63597,-55.6288045
             var myLatLng = {lat: -32.63597, lng: -55.6288045};
@@ -584,6 +585,7 @@ function parseExcelLocationLogic($atts) {
             });
             infoWindow = new google.maps.InfoWindow({map: map});
             infoWindow.close();
+            var img_plugin_url = '<?php echo plugins_url('public/img', __FILE__) ?>';
             //console.log(document.getElementById('map'));
             for (var i = 0; i < marker_data_arr.length; i++) {
 
@@ -599,7 +601,7 @@ function parseExcelLocationLogic($atts) {
                                     "<b>"+this.title+"</b><br>"+
                                     this.direccion+
                                 "</div>"
-                    }
+                    }, icon:  marker_data_arr[i].tipo_local[0] !== 'sucursal_pronto' ?img_plugin_url + '/spotlight-poi-y.png': undefined
                 });
                 google.maps.event.addListener(marker, 'click', function () {
                     infoWindow.setContent(this.getHtmlInfoContent());
