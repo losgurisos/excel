@@ -151,8 +151,8 @@ function parseExcelLogic($atts) {
 
                                     </div>
                                     <div class="item-disscount">
-                                        <p class="val">' . ($result[$i]->descuento === '0' ? "" : ($result[$i]->descuento . '%')) . '</p>
-                                        <p class="mini">dto</p>
+                                        <p class="val">' . ($result[$i]->descuento === '' ? $result[$i]->cuotas : ($result[$i]->descuento . '%')) . '</p>
+                                        <p class="mini">' . ($result[$i]->descuento === ''? 'cuotas' : 'dto' ) .'</p>
                                     </div>
 
                                     <div class="item-apply-on">' . $result[$i]->beneficios . '</div>

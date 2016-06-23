@@ -65,7 +65,8 @@ function load_from_excel (){
 					nombre_comercial,
 					imagen,
 					beneficios,
-					descuento
+					descuento,
+					cuotas
 				) VALUES (
 					'".$rowData[0][0]."',
 					'".$rowData[0][1]."',
@@ -74,7 +75,8 @@ function load_from_excel (){
 					'".$rowData[0][4]."',
 					'".$rowData[0][5]."',
 					'".$rowData[0][6]."',
-					'".$rowData[0][7]."'
+					'".$rowData[0][7]."',
+					'".$rowData[0][8]."'
 				);";
 
 				// Exec query
